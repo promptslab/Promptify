@@ -5,6 +5,11 @@
     @date last modified: 02/08/2022
 """
 
+import json
+import pandas as pd
+from tqdm import tqdm
+from textacy import text_stats
+
 class Generation_metrices(object):
     
     def __init__(self, spacy_model):
