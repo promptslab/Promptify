@@ -24,10 +24,21 @@ class Generation_metrices(object):
                   'Smog Index' : [text_stats.readability.smog_index(doc)]}
         
         
-        df = pd.DataFrame(result).T
+        df = pd.DataFrame(result)
         return df
     
     def plot_data(self, score_df):
-      
+        
         """score_df : pandas dataframe"""
         score_df.plot(kind='bar')
+        
+        
+    def bulk_evaluate(self, content_list):
+        
+        """content_list = ["sentence_1", "sentence_2", "sentence_3"]"""
+        
+        all_frames = []
+        for each_sentence in content_list:
+            all_frames.append(self. get_score(each_sentence))
+        
+        return pd.concat(all_frames).reset_index(drop=True)
