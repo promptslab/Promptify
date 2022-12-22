@@ -1,0 +1,60 @@
+#text classification
+
+
+subject_template   = 'Anatomy is the study of the body’s structure. It is a branch of science that investigates organs, bones, structures, and cells that exist in animals and people and how they are organized in the body. Below is a paragraph from the Anatomy branch.'
+subject_name       =  'Anatomy'
+query_paragraph    = "abdominal cavity, largest hollow space of the body. Its upper boundary is the diaphragm, a sheet of muscle and connective tissue that separates it from the chest cavity; its lower boundary is the upper plane of the pelvic cavity. Vertically it is enclosed by the vertebral column and the abdominal and other muscles. The abdominal cavity contains the greater part of the digestive tract, the liver and pancreas, the spleen, the kidneys, and the adrenal glands located above the kidneys."
+classfication_type = 'multi-label classification'
+
+mk_or = subject_template + " Perform a " +  classfication_type + " on a given paragraph; The output must be in the below form:\n\n[ {\'main " + subject_name +  " class\': Main " + subject_name +  " class,\n\'confidence_score\': Model Probability Score},\n{\'second level " + subject_name +  " class\': Second level " + subject_name +  " class,\n\'confidence_score\': Model Probability Score},\n{\'third level " + subject_name +  " class\': Third level " + subject_name +  " class,\n\'confidence_score\': Model Probability Score},\n{\'forth level " + subject_name +  " class\': Forth level " + subject_name +  " class,\n\'confidence_score\': Model Probability Score},\n{\'fifth level " + subject_name +  " class\': Fifth level " + subject_name +  " class,\n\'confidence_score\': Model Probability Score},\n{\'sixth level " + subject_name +  " class\': Sixth level " + subject_name +  " class,\n\'confidence_score\': Model Probability Score},\n{\'branch\': " + subject_name +  " Branch, \'group\' : Group of " + subject_name +  " }]\n\n" + query_paragraph
+
+print(mk_or)
+
+
+
+
+
+#NER task
+
+
+subject_template   = 'Anatomy is the study of the body’s structure. It is a branch of science that investigates organs, bones, structures, and cells that exist in animals and people and how they are organized in the body. Below is a paragraph from the Anatomy branch.'
+subject_name       =  'Anatomy Branch'
+query_paragraph    = "abdominal cavity, largest hollow space of the body. Its upper boundary is the diaphragm, a sheet of muscle and connective tissue that separates it from the chest cavity; its lower boundary is the upper plane of the pelvic cavity. Vertically it is enclosed by the vertebral column and the abdominal and other muscles. The abdominal cavity contains the greater part of the digestive tract, the liver and pancreas, the spleen, the kidneys, and the adrenal glands located above the kidneys."
+classfication_type = 'multi-label classification'
+
+
+yu = subject_template +  " Perform <dynamic : 10> Named Entity Recognition (NER) for the given paragraph; The output must be in the below form:\n\n[{\'id\': current index, \n  \'entity\': " + subject_name + " Entity,\n\'type_of_entity\': Type of " + subject_name + " Entity,\n\'group\' : Group of " + subject_name + " Entity,\n\'subject\': sub subject of " + subject_name + " of the Entity,\n\'topic level 0\': " + subject_name + " topic of the Entity at level 0, \n\'topic level  1\': " + subject_name + " topic of the Entity at level 1, \n\'topic level 2\': " + subject_name + " topic of the Entity at level 2},]\n\n\n" + query_paragraph 
+print(yu)
+
+
+
+
+##question-answering
+
+
+query_paragraph    = " there might be more; she says that her family is very private and likely wouldn't share about their condition. her father had esophageal cancer, her maternal grandfather liver cancer and her maternal grandmother lung cancer. a paternal aunt had breast cancer and her mother had basal and squamous cell carcinoma. physical exam: admission physical exam: vitals: temp 98f, bp 132\\\\/76, hr 125s, rr 18, o2 sat 98% ra gen: obese female in no apparent distress, a&ox3 heent: op clear, perrl, eomi cvs: s1\\\\/s2 appreciated and regular, rapid irregularly irregular rate, no rubs, no overt murmurs but exam limited due to rapid rate resp: cta bilaterally, no wheezes or crackles abd: obese, soft, left sided tenderness at mid-left and left lower quadrant, no guarding and no rebound tenderness. normoactive bowel sounds throughout. skin: pale complexion, no bruises noted, small left groin region 1\" furuncle noted with erythematous margins and central yellowish purulent draining discharge. ext: 2+pedal pulses, 1+ bilateral edema bilaterally . note: rectal exam per surgical assessment with normal rectal tone with no blood in vault pertinent results: xxdate 12:11pm lactate-3.6* xxdate 12:00pm glucose-99 urea n-13 creat-1.1 sodium-137 potassium-4.1 chloride-96 total co2-29 anion gap-16 xxdate 12:00pm alt(sgpt)-14 ast(sgot)-11 alk phos-159* tot bili-0.5 xxdate 12:00pm lipase-12 xxdate 12:00pm albumin-2.9* xxdate 12:00pm wbc-14.6* rbc-4.79# hgb-12.0 hct-39.7 mcv-83 mch-25.1* mchc-30.3* rdw-15.3 xxdate 12:00pm neuts-74.6* lymphs-20.4 monos-3.6 eos-1.0 basos-0.4 xxdate 12:00pm plt count-833*# xxmmdd cxr: there is moderate cardiomegaly."
+subject_template   = 'Anatomy is the study of the body’s structure. It is a branch of science that investigates organs, bones, structures, and cells that exist in animals and people and how they are organized in the body. Below is a paragraph from the Anatomy branch.'
+subject_name       =  'Medicine Branch'
+question_answering_domain = 'Medical-domain'
+
+qa =      'Below is an example of question-answering task based on the given paragraph. The answers should be extracted as a single contiguous span from a given text paragraph along with the start character position. \n\n""" Beyoncé Giselle Knowles-Carter (/biːˈjɒnseɪ/ bee-YON-say) (born September 4, 1981) is an American singer, songwriter, record producer and actress. Born and raised in Houston, Texas, she performed in various singing and dancing competitions as a child, and rose to fame in the late 1990s as lead singer of R&B girl-group Destiny\'s Child." \n\n[{\'question\' : "When did Beyonce start becoming popular?"\n  \'extracted_answer\' : "in the late 1990s", \n  \'offset\' : 269}, \n{\'question\' : "What areas did Beyonce compete in when she was growing up?"\n  \'extracted_answer\' : "singing and dancing",\n  \'offset\' : 207}, \n{\'question\' : "In what R&B group was she the lead singer?"\n  \'extracted_answer\' : "Destiny\'s Child",\n  \'offset\' : 320}] \n\n"""\n\nGenerate many ' +   question_answering_domain + ' questions-answers based on the below paragraph with similar output provided in\n the above example. The question-answers must be based on ' + subject_name +  ' disease or ' + subject_name + ' related issues.\n\n\n' + query_paragraph
+print(qa)
+
+
+
+
+## sentence similarity
+
+
+query_paragraph    = "abdominal cavity, largest hollow space of the body. Its upper boundary is the diaphragm, a sheet of muscle and connective tissue that separates it from the chest cavity; its lower boundary is the upper plane of the pelvic cavity. Vertically it is enclosed by the vertebral column and the abdominal and other muscles. The abdominal cavity contains the greater part of the digestive tract, the liver and pancreas, the spleen, the kidneys, and the adrenal glands located above the kidneys."
+subject_template   = 'Anatomy is the study of the body’s structure. It is a branch of science that investigates organs, bones, structures, and cells that exist in animals and people and how they are organized in the body. Below is a paragraph from the Anatomy branch.'
+subject_name       =  'Physiology Branch'
+
+
+
+tyu = subject_template + ' Generate three similar paragraphs from the ' + subject_name + ' with a similarity score for the given paragraph, The output must be in the below form:\n\n[{\'id\': current index, \n\'generated_paragraph\' : generated similar ' + subject_name + ' paragraph,\n\'similarity_score\' : Similarity score}]\n\n'  + query_paragraph
+
+print(tyu)
+
+
+
