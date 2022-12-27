@@ -1,0 +1,82 @@
+[
+    {
+        "sentence": "Thousands of demonstrators have marched through London to protest the war in Iraq and demand the withdrawal of British troops from that country .",
+        "word": "London",
+        "entity_group": "B-geo",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "Thousands of demonstrators have marched through London to protest the war in Iraq and demand the withdrawal of British troops from that country .",
+        "word": "Iraq",
+        "entity_group": "B-geo",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "Thousands of demonstrators have marched through London to protest the war in Iraq and demand the withdrawal of British troops from that country .",
+        "word": "British",
+        "entity": "B-gpe",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "They marched from the Houses of Parliament to a rally in Hyde Park .",
+        "word": "Hyde",
+        "entity_group": "B-geo",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "They marched from the Houses of Parliament to a rally in Hyde Park .",
+        "word": "Park",
+        "entity_group": "I-geo",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
+        "word": "Britain",
+        "entity_group": "B-geo",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
+        "word": "Labor",
+        "entity_group": "B-org",
+        "start": "",
+        "score": "",
+        "end": ""
+    },
+    {
+        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
+        "word": "Party",
+        "entity_group": "I-org",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
+        "word": "London",
+        "entity_group": "B-gpe",
+        "score": "",
+        "start": "",
+        "end": ""
+    },
+    {
+        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
+        "word": "English",
+        "entity_group": "B-geo",
+        "score": "",
+        "start": "",
+        "end": ""
+    }
+]

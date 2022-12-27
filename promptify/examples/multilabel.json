@@ -1,0 +1,127 @@
+[
+    {
+        "sentence": "The Taj Mahal incorporates and expands on design traditions of Indo-Islamic and earlier Mughal architecture. Specific inspiration came from successful Timurid and Mughal buildings including the Gur-e Amir (the tomb of Timur, progenitor of the Mughal dynasty, in Samarkand),[17] Humayun's Tomb which inspired the Charbagh gardens and hasht-behesht (architecture) plan of the site, Itmad-Ud-Daulah's Tomb (sometimes called the Baby Taj), and Shah Jahan's own Jama Masjid in Delhi. While earlier Mughal buildings were primarily constructed of red sandstone, Shah Jahan promoted the use of white marble inlaid with semi-precious stones. Buildings under his patronage reached new levels of refinement.",
+        "data": [
+            {
+                "main Architecture class": "Islamic Architecture",
+                "confidence_score": 0.9
+            },
+            {
+                "second level Architecture class": "Mughal Architecture",
+                "confidence_score": 0.8
+            },
+            {
+                "branch": "Tombs and Mausoleums",
+                "group": "Historic Buildings"
+            }
+        ]
+    },
+    {
+        "sentence": "High-level languages made the process of developing a program simpler and more understandable, and less bound to the underlying hardware. The first compiler related tool, the A-0 System, was developed in 1952[12] by Grace Hopper, who also coined the term compiler FORTRAN, the first widely used high-level language to have a functional implementation, came out in 1957,[15] and many other languages were soon developed—in particular, COBOL aimed at commercial data processing, and Lisp for computer research.These compiled languages allow the programmer to write programs in terms that are syntactically richer, and more capable of abstracting the code, making it easy to target for varying machine instruction sets via compilation declarations and heuristics. Compilers harnessed the power of computers to make programming easier[] by allowing programmers to specify calculations by entering a formula using infix notation. ",
+        "data": [
+            {
+                "main programming class": "Programming languages",
+                "confidence_score": 0.9
+            },
+            {
+                "second level programming class": "Compilers",
+                "confidence_score": 0.8
+            },
+            {
+                "third level programming class": "Programming language implementation",
+                "confidence_score": 0.7
+            },
+            {
+                "branch": "Computer Science",
+                "group": "Software engineering"
+            }
+        ]
+    },
+    {
+        "sentence": "Organic compounds are based on the chemistry of carbon. Carbon is unique in the variety and extent of structures that can result from the three-dimensional connections of its atoms. The process of photosynthesis converts carbon dioxide and water to oxygen and compounds known as carbohydrates. Both cellulose, the substance that gives structural rigidity to plants, and starch, the energy storage product of plants, are polymeric carbohydrates. Simple carbohydrates produced by photosynthesis form the raw material for the myriad organic compounds found in the plant and animal kingdoms. When combined with variable amounts of hydrogen, oxygen, nitrogen, sulfur, phosphorus, and other elements, the structural possibilities of carbon compounds become limitless, and their number far exceeds the total of all nonorganic compounds. A major focus of organic chemistry is the isolation, purification, and structural study of these naturally occurring substances. Many natural products are simple molecules. Examples include formic acid (HCO2H) in ants, ethyl alcohol (C2H5OH) in fermenting fruit, and oxalic acid (C2H2O4) in rhubarb leaves. Other natural products, such as penicillin, vitamin B12, proteins, and nucleic acids, are exceedingly complex. The isolation of pure natural products from their host organism is made difficult by the low concentrations in which they may be present. Once they are isolated in pure form, however, modern instrumental techniques can reveal structural details for amounts weighing as little as one-millionth of a gram. The correlation of the physical and chemical properties of compounds with their structural features is the domain of physical organic chemistry. Once the properties endowed upon a substance by specific structural units termed functional groups are known, it becomes possible to design novel molecules that may exhibit desired properties. The preparation, under controlled laboratory conditions, of specific compounds is known as synthetic chemistry. Some products are easier to synthesize than to collect and purify from their natural sources. Tons of vitamin C, for example, are synthesized annually. Many synthetic substances have novel properties that make them especially useful. Plastics are a prime example, as are many drugs and agricultural chemicals. A continuing challenge for synthetic chemists is the structural complexity of most organic substances. To synthesize a desired substance, the atoms must be pieced together in the correct order and with the proper three-dimensional relationships. Just as a given pile of lumber and bricks can be assembled in many ways to build houses of several different designs, so too can a fixed number of atoms be connected together in various ways to give different molecules. Only one structural arrangement out of the many possibilities will be identical with a naturally occurring molecule. The antibiotic erythromycin, for example, contains 37 carbon, 67 hydrogen, and 13 oxygen atoms, along with one nitrogen atom. Even when joined together in the proper order, these 118 atoms can give rise to 262,144 different structures, only one of which has the characteristics of natural erythromycin. The great abundance of organic compounds, their fundamental role in the chemistry of life, and their structural diversity have made their study especially challenging and exciting. Organic chemistry is the largest area of specialization among the various fields of chemistry.",
+        "data": [
+            {
+                "main Chemistry class": "Chemistry",
+                "confidence_score": 1
+            },
+            {
+                "second level Chemistry class": "Organic chemistry",
+                "confidence_score": 0.9
+            },
+            {
+                "third level Chemistry class": "Photosynthesis",
+                "confidence_score": 0.8
+            },
+            {
+                "forth level Chemistry class": "Carbohydrates",
+                "confidence_score": 0.7
+            },
+            {
+                "branch": "Chemistry",
+                "group": "Natural sciences"
+            }
+        ]
+    },
+    {
+        "sentence": "The three laws of motion set forth by Isaac Newton form the foundation of classical mechanics, together with the recognition that forces are directed quantities (vectors) and combine accordingly. The first law, also called the law of inertia, states that, unless acted upon by an external force, an object at rest remains at rest, or if in motion, it continues to move in a straight line with constant speed. Uniform motion therefore does not require a cause. Accordingly, mechanics concentrates not on motion as such but on the change in the state of motion of an object that results from the net force acting upon it. Newton’s second law equates the net force on an object to the rate of change of its momentum, the latter being the product of the mass of a body and its velocity. Newton’s third law, that of action and reaction, states that when two particles interact, the forces each exerts on the other are equal in magnitude and opposite in direction. Taken together, these mechanical laws in principle permit the determination of the future motions of a set of particles, providing their state of motion is known at some instant, as well as the forces that act between them and upon them from the outside. From this deterministic character of the laws of classical mechanics, profound (and probably incorrect) philosophical conclusions have been drawn in the past and even applied to human history.",
+        "data": [
+            {
+                "main Physics class": "Classical mechanics",
+                "confidence_score": 0.95
+            },
+            {
+                "second level Physics class": "Newton's laws of motion",
+                "confidence_score": 0.90
+            },
+            {
+                "third level Physics class": "Law of inertia",
+                "confidence_score": 0.85
+            },
+            {
+                "forth level Physics class": "Momentum",
+                "confidence_score": 0.80
+            },
+            {
+                "fifth level Physics class": "Action and reaction",
+                "confidence_score": 0.75
+            },
+            {
+                "branch": "Mechanics",
+                "group": "Classical mechanics"
+            }
+        ]
+    },
+    {
+        "sentence": "abdominal cavity, largest hollow space of the body. Its upper boundary is the diaphragm, a sheet of muscle and connective tissue that separates it from the chest cavity; its lower boundary is the upper plane of the pelvic cavity. Vertically it is enclosed by the vertebral column and the abdominal and other muscles. The abdominal cavity contains the greater part of the digestive tract, the liver and pancreas, the spleen, the kidneys, and the adrenal glands located above the kidneys.",
+        "data": [
+            {
+                "main Anatomy class": "Anatomy of the body",
+                "confidence_score": 0.9
+            },
+            {
+                "second level Anatomy class": "Anatomy of the digestive system",
+                "confidence_score": 0.8
+            },
+            {
+                "third level Anatomy class": "Anatomy of the liver and pancreas",
+                "confidence_score": 0.7
+            },
+            {
+                "forth level Anatomy class": "Anatomy of the spleen",
+                "confidence_score": 0.6
+            },
+            {
+                "fifth level Anatomy class": "Anatomy of the kidneys",
+                "confidence_score": 0.5
+            },
+            {
+                "sixth level Anatomy class": "Anatomy of the adrenal glands",
+                "confidence_score": 0.4
+            },
+            {
+                "branch": "Anatomy",
+                "group": "Systems of the body"
+            }
+        ]
+    }
+]
