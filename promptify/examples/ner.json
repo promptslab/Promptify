@@ -8,9 +8,9 @@
         "end": ""
     },
     {
-        "sentence": "Thousands of demonstrators have marched through London to protest the war in Iraq and demand the withdrawal of British troops from that country .",
-        "word": "Iraq",
-        "entity_group": "B-geo",
+        "sentence": "The area became a refuge for many al-Qaida and Taleban fighters after the Taleban government was ousted in Afghanistan in 2001.",
+        "word": "2001",
+        "entity_group": "B-tim",
         "score": "",
         "start": "",
         "end": ""
@@ -24,17 +24,17 @@
         "end": ""
     },
     {
-        "sentence": "They marched from the Houses of Parliament to a rally in Hyde Park .",
-        "word": "Hyde",
-        "entity_group": "B-geo",
+        "sentence": "Critics of Halliburton include auditors and congressional Democrats .\n",
+        "word": "Halliburton",
+        "entity_group": "B-org",
         "score": "",
         "start": "",
         "end": ""
     },
     {
-        "sentence": "They marched from the Houses of Parliament to a rally in Hyde Park .",
-        "word": "Park",
-        "entity_group": "I-geo",
+        "sentence": "Some witnesses to the Sunday shooting said they feared the attack was linked to Muslim anger toward Pope Benedict .\n",
+        "word": "Pope",
+        "entity_group": "B-per",
         "score": "",
         "start": "",
         "end": ""
@@ -48,33 +48,33 @@
         "end": ""
     },
     {
-        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
-        "word": "Labor",
-        "entity_group": "B-org",
+        "sentence": "A U.S. jury has found that drug maker Merck is not liable for the heart attack suffered by a man taking its painkiller Vioxx .\n",
+        "word": "Vioxx",
+        "entity_group": "B-art",
         "start": "",
         "score": "",
         "end": ""
     },
     {
-        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
-        "word": "Party",
-        "entity_group": "I-org",
+        "sentence": "One of the 2008 Olympic mascots is modeled on a panda called Jing Jing .\n",
+        "word": "Jing",
+        "entity_group": "B-nat",
         "score": "",
         "start": "",
         "end": ""
     },
     {
-        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
-        "word": "London",
-        "entity_group": "B-gpe",
+        "sentence": "Radical Islamic cleric Omar Bakri Mohammed has called on all Muslims to leave Europe .\n",
+        "word": "Omar",
+        "entity_group": "B-per",
         "score": "",
         "start": "",
         "end": ""
     },
     {
-        "sentence": "The protest comes on the eve of the annual conference of Britain 's ruling Labor Party in the southern English seaside resort of Brighton .",
-        "word": "English",
-        "entity_group": "B-geo",
+        "sentence": "Radical Islamic cleric Omar Bakri Mohammed has called on all Muslims to leave Europe .\n",
+        "word": "Bakri",
+        "entity_group": "I-per",
         "score": "",
         "start": "",
         "end": ""
