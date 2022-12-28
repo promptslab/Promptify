@@ -28,6 +28,7 @@
 | Binary Text Classification  | ✅    |
 | Question-Answering | ✅    |
 | Question-Answer Generation | ✅    |
+| Summarization  | ✅    |
 | Sentence Similarity | ✅    |
 
 
