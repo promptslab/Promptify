@@ -1,7 +1,7 @@
 <div align="center">
 <img width="110px" src="./logo/logo.png">
   
-<h2>Promptify</h2>
+<h2>Promptify</h2></div>
 <!-- 
 <h2 align="center">Promptify</h2> -->
 <h4 align="center"> Easily generate high-quality prompts for popular generative models like GPT, PaLM, and more with Promptify</h3>
