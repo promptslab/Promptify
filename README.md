@@ -10,4 +10,20 @@
 
 ### 🎮 Features
 
-- Easily generate high-quality prompts for popular generative models like GPT, PaLM, and more with Promptify
+- Easily generate high-quality & Domain-Specific prompts 
+- Get the dict, List as output from GPT, PaLM based models
+
+
+### Supprted Prompt Based NLP Task :
+
+| Task Name |  |
+|-------------|-------|
+| Named Entity Recognition | ✅    | 
+| Multi-Label Text Classification | ✅    |
+| Multi-Class Text Classification | ✅    |
+| Binary Text Classification  | ✅    |
+| Question-Answering | ✅    |
+| Question-Answer Generation | ✅    |
+| Sentence Similarity | ✅    |
+
+
