@@ -1,132 +1,109 @@
-from prompt_utils import get_examples
+from prompt_utils import get_examples, get_default_config, get_template, get_shots_template
+
+
+def binary(text_input, config=None):
+    main_config = get_default_config("binary", config)
+
+    examples_samples = get_examples(
+        main_config["n_shots"], main_config["task"], main_config["domain"]
+    )
+
+    shots_template = get_shots_template("binary", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
+    return template
+
+
+def multiclass(text_input, config=None):
+    main_config = get_default_config("multiclass", config)
+
+    examples_samples = get_examples(
+        main_config["n_shots"], main_config["task"], main_config["domain"]
+    )
+
+    shots_template = get_shots_template("multiclass", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
+    return template
+
+
+def multilabel(text_input, config=None):
+    main_config = get_default_config("multilabel", config)
+
+    examples_samples = get_examples(
+        main_config["n_shots"], main_config["task"], main_config["domain"]
+    )
+
+    shots_template = get_shots_template("multilabel", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
+    return template
 
 
 def ner(text_input, config=None):
-    main_config = {
-        "task": "ner",
-        "description": "",
-        "domain": "medical",
-        "n_shots": 1,
-        "n_ner": "",
-        "output_format": [
-            {"entity_group": "", "score": "", "word": "", "start": "", "end": ""},
-        ],
-    }
-
-    if config:
-        main_config.update(config)
+    main_config = get_default_config("ner", config)
 
     examples_samples = get_examples(
         main_config["n_shots"], main_config["task"], main_config["domain"]
     )
-    if main_config["description"] != "":
-        shots_template = (
-            main_config["description"]
-            + "\nFollowing are the examples of Named Entity Recognition task \n\n[examples]: "
-            + str(examples_samples)
-        )
-    else:
-        shots_template = (
-            "Following are the examples of Named Entity Recognition task \n\n[examples]: "
-            + str(examples_samples)
-        )
+
+    shots_template = get_shots_template("ner", examples_samples, main_config['description'])
 
     if main_config["n_ner"] != "":
-        template = (
-            shots_template
-            + "\n\nPerform "
-            + str(main_config["n_ner"])
-            + " Named Entity Recognition on the below paragraph, The output must be in the below form\n\n"
-            + str(main_config["output_format"])
-            + "\n\n[paragraph]: "
-            + text_input
-        )
+        template = get_template(shots_template, main_config, text_input, isNER=True)
         return template
     else:
-        template = (
-            shots_template
-            + "\n\nPerform Named Entity Recognition on the below paragraph, The output must be in the below form\n\n"
-            + str(main_config["output_format"])
-            + "\n\n[paragraph]: "
-            + text_input
-        )
+        template = get_template(shots_template, main_config, text_input)
         return template
-    
-    
 
-def multilabel(text_input, config=None):
-    levels = {
-        1: "First",
-        2: "Second",
-        3: "Third",
-        4: "Fourth",
-        5: "Fifth",
-        6: "Sixth",
-        7: "Seventh",
-        8: "Eighth",
-        9: "Ninth",
-        10: "Tenth",
-        11: "Eleventh",
-        12: "Twelfth",
-        13: "Thirteenth",
-        14: "Fourteenth",
-        15: "Fifteenth",
-        16: "Sixteenth",
-        17: "Seventeenth",
-        18: "Eighteenth",
-        19: "Nineteenth",
-        20: "Twentieth",
-        21: "Twenty-first",
-        22: "Twenty-second",
-        23: "Twenty-third",
-        24: "Twenty-fourth",
-        25: "Twenty five",
-        26: "Twenty six",
-    }
 
-    main_config = {
-        "task": "multilabel",
-        "description": "",
-        "domain": "medical",
-        "n_shots": 1,
-        "n_level": 3,
-        "output_format": "",
-    }
-
-    main_class = [{"main class": "", "confidence_score": ""}]
-    last_info = {"branch": "", "group": ""}
-
-    output_format = [
-        {f"{levels[k+1]} level class": "", "confidence_score": ""}
-        for k in range(int(main_config["n_level"]))
-    ]
-    main_class.extend(output_format)
-    main_class.append(last_info)
-    main_config["output_format"] = main_class
-
-    if config:
-        main_config.update(config)
+def question_answer(text_input, config=None):
+    main_config = get_default_config("question_answer", config)
 
     examples_samples = get_examples(
         main_config["n_shots"], main_config["task"], main_config["domain"]
     )
-    if main_config["description"] != "":
-        shots_template = (
-            main_config["description"]
-            + "\nFollowing are the examples of Multi-Label Text Classification \n\n[examples]: "
-            + str(examples_samples)
-        )
-    else:
-        shots_template = (
-            "Following are the examples of Multi-Label Text Classification \n\n[examples]: "
-            + str(examples_samples)
-        )
 
-    template = (
-        shots_template
-        + "\n\nPerform Multi-Label Text Classification on the below paragraph, The output must be in the below form\n\n"
-        + str(main_config["output_format"])
-        + "\n\n[paragraph]: "
-        + text_input
+    shots_template = get_shots_template("question_answer", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
+    return template
+
+
+def question_answer_gen(text_input, config=None):
+    main_config = get_default_config("question_answer_gen", config)
+
+    examples_samples = get_examples(
+        main_config["n_shots"], main_config["task"], main_config["domain"]
     )
+
+    shots_template = get_shots_template("question_answer_gen", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
+    return template
+
+
+def summarization(text_input, config=None):
+    main_config = get_default_config("summarization", config)
+
+    examples_samples = get_examples(
+        main_config["n_shots"], main_config["task"], main_config["domain"]
+    )
+
+    shots_template = get_shots_template("summarization", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
+    return template
+
+
+def sentence_similarity(text_input, config=None):
+    main_config = get_default_config("sentence_similarity", config)
+
+    examples_samples = get_examples(
+        main_config["n_shots"], main_config["task"], main_config["domain"]
+    )
+
+    shots_template = get_shots_template("sentence_similarity", examples_samples, main_config['description'])
+
+    template = get_template(shots_template, main_config, text_input)
     return template
