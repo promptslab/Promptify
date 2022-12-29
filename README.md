@@ -14,7 +14,7 @@
 
 ### 🎮 Features
 
-- Easily generate high-quality & Domain-Specific prompts 
+- Easily generate prompts for different NLP Tasks
 - Get the dict, List as output from GPT, PaLM based models
 
 
