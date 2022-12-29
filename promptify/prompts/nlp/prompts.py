@@ -5,7 +5,7 @@ def ner(text_input, config=None):
     main_config = {
         "task": "ner",
         "description": "",
-        "domain": "",
+        "domain": "medical",
         "n_shots": 1,
         "n_ner": "",
         "output_format": [
@@ -51,3 +51,6 @@ def ner(text_input, config=None):
             + text_input
         )
         return template
+    
+    
+
