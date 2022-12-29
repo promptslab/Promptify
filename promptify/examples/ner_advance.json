@@ -3,7 +3,7 @@
       "sentence":"Good day, and welcome to the Danaos Corporation conference call to discuss the financial results for the three months ended December 31, 2021. As a reminder, today's call is being recorded. Hosting the call today is Dr. John Coustas, chief executive officer of Danaos Corporation; and Mr. Evangelos Chatzis, chief financial officer of Danaos Corporation.",
       "domain":"General_ner",
       "total_entites":6,
-      "tags":[
+      "data":[
          {
             "entity_group":"ORG",
             "score":"0.99939936",
@@ -52,7 +52,7 @@
       "sentence":"Entrepreneur Elon Musk has achieved global fame as the chief executive officer (CEO) of electric automobile maker Tesla Inc. (TSLA) and the private space company SpaceX. Musk co-founded PayPal (PYPL), was an early investor in several tech companies, and in October 2022 completed a deal to take Twitter Inc. private.",
       "domain":"General_ner",
       "total_entites":7,
-      "tags":[
+      "data":[
          {
             "entity_group":"PER",
             "score":"0.87944937",
@@ -108,7 +108,7 @@
       "sentence":"The patient is a 93-year-old Caucasian female with a past medical history of chronic right hip pain, osteoporosis, hypertension, depression, and chronic atrial fibrillation admitted for evaluation and management of severe nausea and vomiting and urinary tract infection.",
       "domain":"Medical_ner",
       "total_entites":9,
-      "tags":[
+      "data":[
          {
             "entity_group":"DATE",
             "score":"1.0",
@@ -178,7 +178,7 @@
       "sentence":"Aspiration pneumonia and chronic obstructive pulmonary disease (COPD) exacerbation. Acute respiratory on chronic respiratory failure secondary to chronic obstructive pulmonary disease exacerbation. Systemic inflammatory response syndrome secondary to aspiration pneumonia. No bacteria identified with blood cultures or sputum culture.",
       "domain":"Medical_ner",
       "total_entites":9,
-      "tags":[
+      "data":[
          {
             "entity_group":"DISEASE",
             "score":"1.0",
@@ -248,7 +248,7 @@
       "sentence":"The patient has had abdominal pain associated with a 30-pound weight loss and then developed jaundice. He had epigastric pain and was admitted to the hospital. A thin-slice CT scan was performed, which revealed a pancreatic mass with involved lymph nodes and ring enhancing lesions consistent with liver metastases.",
       "domain":"Medical_ner",
       "total_entites":10,
-      "tags":[
+      "data":[
          {
             "entity_group":"SYMPTOM",
             "score":"1.0",
@@ -325,7 +325,7 @@
       "sentence":"Age-related, protective, and disease-promoting factors probably interact with the core mechanisms of the disease. Amyloid β42, and tau proteins are established core cerebrospinal biomarkers; novel candidate biomarkers include amyloid β oligomers and synaptic markers. MRI and fluorodeoxyglucose PET are established imaging techniques for diagnosis of Alzheimer's disease.",
       "domain":"Medical_ner",
       "total_entites":8,
-      "tags":[
+      "data":[
          {
             "entity_group":"DISEASE",
             "score":"1.0",
@@ -388,7 +388,7 @@
       "sentence":"Leptomeningeal metastases (LM) occur in patients with breast cancer (BC) and lung cancer (LC) showing exceptionally poor prognosis. The cerebrospinal fluid (CSF) tumour microenvironment (TME) of LM patients is not well defined at a single-cell level. Based on the 10× genomics single-cell RNA sequencing (scRNA-seq) data from GEO database including five patient-derived CSF samples of BC-LM and LC-LM, and four patient-derived CSF samples of idiopathic intracranial hypertension (IIH) as controls, we analysed single-cell transcriptome characteristics of CSF TME in LM patients compared to controls simultaneously and comprehensively.",
       "domain":"Medical_ner",
       "total_entites":8,
-      "tags":[
+      "data":[
          {
             "entity_group":"DISEASE",
             "score":"1.0",
