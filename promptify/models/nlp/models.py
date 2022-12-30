@@ -22,8 +22,8 @@ class GPT3:
                                 stop=None,
                                 multiple=False
                                 ):
+        result = []
         if multiple:
-            result = []
             for prompt in prompts:
                 response = self._openai.Completion.create(
                     model=model_name,
@@ -35,7 +35,11 @@ class GPT3:
                     presence_penalty=presence_penalty,
                     stop=stop
                 )
-                result.append(response['choices'][0]['text'])
+                data = {}
+                data.update(response['usage'])
+                data['text'] = response['choices'][0]['text']
+                data['logprobs'] = response['choices'][0]['logprobs']
+                result.append(data)
 
         else:
             response = self._openai.Completion.create(
@@ -48,5 +52,9 @@ class GPT3:
                 presence_penalty=presence_penalty,
                 stop=stop
             )
-            result = response['choices'][0]['text']
+            data = {}
+            data.update(response['usage'])
+            data['text'] = response['choices'][0]['text']
+            data['logprobs'] = response['choices'][0]['logprobs']
+            result.append(data)
         return result
