@@ -9,6 +9,13 @@ def read_json(file):
     return data
 
 
+def format_examples(examples):
+    text_template = ""
+    for sample in examples:
+        text_template+=f"[P]:{sample['text']}\n[O]:{sample['label']}\n"
+    return text_template
+
+
 def get_examples(n, task, domain):
     if task in task_dict:
         examples = read_json(task_dict[task])
