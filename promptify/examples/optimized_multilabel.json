@@ -5,11 +5,11 @@
          "data":[
             {
                "main class":"Anatomy of the body",
-               "1":"Anatomy of the digestive system",
-               "2":"Anatomy of the liver and pancreas",
-               "3":"Anatomy of the spleen",
-               "4":"Anatomy of the kidneys",
-               "5":"Anatomy of the adrenal glands",
+               "1":"digestive system",
+               "2":"liver and pancreas",
+               "3":"spleen",
+               "4":"kidneys",
+               "5":"adrenal glands",
                "branch":"Anatomy",
                "group":"Systems of the body"
             }
@@ -52,8 +52,9 @@
          "data":[
             {
                "main class":"Health",
-               "2":"Medicine",
-               "3":"Patient care",
+               "1":"Medicine",
+               "2":"Patient care",
+               "3":"Discharge Summary",
                "4":"Geriatric medicine",
                "5":"Chronic pain",
                "6":"Osteoporosis",
@@ -77,9 +78,10 @@
                "2":"Pulmonology",
                "3":"Pneumonia",
                "4":"Chronic obstructive pulmonary disease (COPD)",
-               "5":"Respiratory failure",
-               "6":"Systemic inflammatory response syndrome",
-               "7":"Bacterial infection",
+               "5":"Discharge Summary",
+               "6":"Respiratory failure",
+               "7":"Systemic inflammatory response syndrome",
+               "8":"Bacterial infection",
                "branch":"Health",
                "group":"Clinical medicine"
             }
@@ -93,12 +95,13 @@
                "main class":"Health",
                "1":"Medicine",
                "2":"Gastroenterology",
-               "3":"Abdominal pain",
-               "4":"Weight loss",
-               "5":"Jaundice",
-               "6":"Pancreatic mass",
-               "7":"Lymph node involvement",
-               "8":"Liver metastases",
+               "3":"Pancreatic Mass",
+               "4":"Discharge Summary",
+               "5":"Abdominal pain",
+               "6":"Weight loss",
+               "7":"Jaundice",
+               "8":"Lymph node involvement",
+               "9":"Liver metastases",
                "branch":"Health",
                "group":"Clinical medicine"
             }
