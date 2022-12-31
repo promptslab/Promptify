@@ -1,251 +1,304 @@
 {
-    "samples": [
-        {
-            "id": "2ee2f307-536d-458d-908f-88a6d87f83b8",
-            "data": [
-                {
-                    "E": "DISEASE",
-                    "W": "Alzheimer's disease"
-                },
-                {
-                    "E": "BIOMARKER",
-                    "W": "Amyloid β42"
-                },
-                {
-                    "E": "BIOMARKER",
-                    "W": "tau proteins"
-                },
-                {
-                    "E": "BIOMARKER",
-                    "W": "cerebrospinal biomarkers"
-                },
-                {
-                    "E": "BIOMARKER",
-                    "W": "amyloid β oligomers"
-                },
-                {
-                    "E": "BIOMARKER",
-                    "W": "synaptic markers"
-                },
-                {
-                    "E": "TEST",
-                    "W": "MRI"
-                },
-                {
-                    "E": "TEST",
-                    "W": "fluorodeoxyglucose PET"
-                }
-            ]
-        },
-        {
-            "id": "b384d61b-dd21-4d44-9e03-93e8a06bc939",
-            "data": [
-                {
-                    "E": "DISEASE",
-                    "W": "Leptomeningeal metastases"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "breast cancer"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "lung cancer"
-                },
-                {
-                    "E": "BIOMARKER",
-                    "W": "cerebrospinal fluid"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "tumour microenvironment"
-                },
-                {
-                    "E": "TEST",
-                    "W": "single-cell RNA sequencing"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "idiopathic intracranial hypertension"
-                }
-            ]
-        },
-        {
-            "id": "4f1cea62-f9f0-4e2f-8a6c-35c5d3c9a9e7",
-            "data": [
-                {
-                    "E": "SYMPTOM",
-                    "W": "abdominal pain"
-                },
-                {
-                    "E": "QUANTITY",
-                    "W": "30-pound"
-                },
-                {
-                    "E": "SYMPTOM",
-                    "W": "jaundice"
-                },
-                {
-                    "E": "SYMPTOM",
-                    "W": "epigastric pain"
-                },
-                {
-                    "E": "TEST",
-                    "W": "thin-slice CT scan"
-                },
-                {
-                    "E": "ANATOMY",
-                    "W": "pancreatic mass"
-                },
-                {
-                    "E": "ANATOMY",
-                    "W": "ring enhancing lesions"
-                },
-                {
-                    "E": "ANATOMY",
-                    "W": "liver"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "metastases"
-                }
-            ]
-        },
-        {
-            "id": "926079fc-54b5-4c7c-86ba-9734d3118948",
-            "data": [
-                {
-                    "E": "DISEASE",
-                    "W": "Aspiration pneumonia"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "chronic obstructive pulmonary disease"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "exacerbation"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "Acute respiratory"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "chronic respiratory failure"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "chronic obstructive pulmonary disease"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "Systemic inflammatory response syndrome"
-                },
-                {
-                    "E": "TEST",
-                    "W": "blood cultures"
-                },
-                {
-                    "E": "TEST",
-                    "W": "sputum culture"
-                }
-            ]
-        },
-        {
-            "id": "7b48cd40-917f-4613-a4c1-60cdea426ab5",
-            "data": [
-                {
-                    "E": "DATE",
-                    "W": "93-year-old"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "chronic right hip pain"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "osteoporosis"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "hypertension"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "depression"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "chronic atrial fibrillation"
-                },
-                {
-                    "E": "SYMPTOM",
-                    "W": "severe nausea and vomiting"
-                },
-                {
-                    "E": "DISEASE",
-                    "W": "urinary tract infection"
-                }
-            ]
-        },
-        {
-            "id": "b9021855-22f4-4951-90fa-de9d4c83c53b",
-            "data": [
-                {
-                    "E": "PER",
-                    "W": "Elon Musk"
-                },
-                {
-                    "E": "ORG",
-                    "W": "Tesla Inc"
-                },
-                {
-                    "E": "ORG",
-                    "W": "TSLA"
-                },
-                {
-                    "E": "ORG",
-                    "W": "SpaceX"
-                },
-                {
-                    "E": "ORG",
-                    "W": "PayPal"
-                },
-                {
-                    "E": "ORG",
-                    "W": "PYPL"
-                },
-                {
-                    "E": "ORG",
-                    "W": "Twitter Inc"
-                }
-            ]
-        },
-        {
-            "id": "a06388af-1a13-4534-9ea8-49de560c95ae",
-            "data": [
-                {
-                    "E": "ORG",
-                    "W": "Danaos Corporation"
-                },
-                {
-                    "E": "PER",
-                    "W": "John Coustas"
-                },
-                {
-                    "E": "ORG",
-                    "W": "Danaos Corporation"
-                },
-                {
-                    "E": "PER",
-                    "W": "Evangelos Chatzis"
-                },
-                {
-                    "E": "ORG",
-                    "W": "Danaos Corporation"
-                }
-            ]
-        }
-    ]
+   "samples":[
+      {
+         "id":"2ee2f307-536d-458d-908f-88a6d87f83b8",
+         "data":[
+            {
+               "E":"DISEASE",
+               "W":"Alzheimer's disease"
+            },
+            {
+               "E":"BIOMARKER",
+               "W":"Amyloid β42"
+            },
+            {
+               "E":"BIOMARKER",
+               "W":"tau proteins"
+            },
+            {
+               "E":"BIOMARKER",
+               "W":"cerebrospinal biomarkers"
+            },
+            {
+               "E":"BIOMARKER",
+               "W":"amyloid β oligomers"
+            },
+            {
+               "E":"BIOMARKER",
+               "W":"synaptic markers"
+            },
+            {
+               "E":"TEST",
+               "W":"MRI"
+            },
+            {
+               "E":"TEST",
+               "W":"fluorodeoxyglucose PET"
+            }
+         ]
+      },
+      {
+         "id":"b664d78b-dd21-4d15-9e03-65e8a06bc939",
+         "data":[
+            {
+               "E":"BODY_PART",
+               "W":"abdominal cavity"
+            },
+            {
+               "E":"BODY_PART",
+               "W":"diaphragm"
+            },
+            {
+               "E":"BODY_PART",
+               "W":"chest cavity"
+            },
+            {
+               "E":"BODY_PART",
+               "W":"upper plane of the pelvic cavity"
+            },
+            {
+               "E":"BODY_PART",
+               "W":"vertebral column"
+            },
+            {
+               "E":"BODY_PART",
+               "W":"abdominal muscles"
+            },
+            {
+               "E":"ORGAN",
+               "W":"digestive tract"
+            },
+            {
+               "E":"ORGAN",
+               "W":"liver"
+            },
+            {
+               "E":"ORGAN",
+               "W":"pancreas"
+            },
+            {
+               "E":"ORGAN",
+               "W":"spleen"
+            },
+            {
+               "E":"ORGAN",
+               "W":"kidneys"
+            },
+            {
+               "E":"ORGAN",
+               "W":"adrenal glands"
+            }
+         ]
+      },
+      {
+         "id":"b384d61b-dd21-4d44-9e03-93e8a06bc939",
+         "data":[
+            {
+               "E":"DISEASE",
+               "W":"Leptomeningeal metastases"
+            },
+            {
+               "E":"DISEASE",
+               "W":"breast cancer"
+            },
+            {
+               "E":"DISEASE",
+               "W":"lung cancer"
+            },
+            {
+               "E":"BIOMARKER",
+               "W":"cerebrospinal fluid"
+            },
+            {
+               "E":"DISEASE",
+               "W":"tumour microenvironment"
+            },
+            {
+               "E":"TEST",
+               "W":"single-cell RNA sequencing"
+            },
+            {
+               "E":"DISEASE",
+               "W":"idiopathic intracranial hypertension"
+            }
+         ]
+      },
+      {
+         "id":"4f1cea62-f9f0-4e2f-8a6c-35c5d3c9a9e7",
+         "data":[
+            {
+               "E":"SYMPTOM",
+               "W":"abdominal pain"
+            },
+            {
+               "E":"QUANTITY",
+               "W":"30-pound"
+            },
+            {
+               "E":"SYMPTOM",
+               "W":"jaundice"
+            },
+            {
+               "E":"SYMPTOM",
+               "W":"epigastric pain"
+            },
+            {
+               "E":"TEST",
+               "W":"thin-slice CT scan"
+            },
+            {
+               "E":"ANATOMY",
+               "W":"pancreatic mass"
+            },
+            {
+               "E":"ANATOMY",
+               "W":"ring enhancing lesions"
+            },
+            {
+               "E":"ANATOMY",
+               "W":"liver"
+            },
+            {
+               "E":"DISEASE",
+               "W":"metastases"
+            }
+         ]
+      },
+      {
+         "id":"926079fc-54b5-4c7c-86ba-9734d3118948",
+         "data":[
+            {
+               "E":"DISEASE",
+               "W":"Aspiration pneumonia"
+            },
+            {
+               "E":"DISEASE",
+               "W":"chronic obstructive pulmonary disease"
+            },
+            {
+               "E":"DISEASE",
+               "W":"exacerbation"
+            },
+            {
+               "E":"DISEASE",
+               "W":"Acute respiratory"
+            },
+            {
+               "E":"DISEASE",
+               "W":"chronic respiratory failure"
+            },
+            {
+               "E":"DISEASE",
+               "W":"chronic obstructive pulmonary disease"
+            },
+            {
+               "E":"DISEASE",
+               "W":"Systemic inflammatory response syndrome"
+            },
+            {
+               "E":"TEST",
+               "W":"blood cultures"
+            },
+            {
+               "E":"TEST",
+               "W":"sputum culture"
+            }
+         ]
+      },
+      {
+         "id":"7b48cd40-917f-4613-a4c1-60cdea426ab5",
+         "data":[
+            {
+               "E":"DATE",
+               "W":"93-year-old"
+            },
+            {
+               "E":"DISEASE",
+               "W":"chronic right hip pain"
+            },
+            {
+               "E":"DISEASE",
+               "W":"osteoporosis"
+            },
+            {
+               "E":"DISEASE",
+               "W":"hypertension"
+            },
+            {
+               "E":"DISEASE",
+               "W":"depression"
+            },
+            {
+               "E":"DISEASE",
+               "W":"chronic atrial fibrillation"
+            },
+            {
+               "E":"SYMPTOM",
+               "W":"severe nausea and vomiting"
+            },
+            {
+               "E":"DISEASE",
+               "W":"urinary tract infection"
+            }
+         ]
+      },
+      {
+         "id":"b9021855-22f4-4951-90fa-de9d4c83c53b",
+         "data":[
+            {
+               "E":"PER",
+               "W":"Elon Musk"
+            },
+            {
+               "E":"ORG",
+               "W":"Tesla Inc"
+            },
+            {
+               "E":"ORG",
+               "W":"TSLA"
+            },
+            {
+               "E":"ORG",
+               "W":"SpaceX"
+            },
+            {
+               "E":"ORG",
+               "W":"PayPal"
+            },
+            {
+               "E":"ORG",
+               "W":"PYPL"
+            },
+            {
+               "E":"ORG",
+               "W":"Twitter Inc"
+            }
+         ]
+      },
+      {
+         "id":"a06388af-1a13-4534-9ea8-49de560c95ae",
+         "data":[
+            {
+               "E":"ORG",
+               "W":"Danaos Corporation"
+            },
+            {
+               "E":"PER",
+               "W":"John Coustas"
+            },
+            {
+               "E":"ORG",
+               "W":"Danaos Corporation"
+            },
+            {
+               "E":"PER",
+               "W":"Evangelos Chatzis"
+            },
+            {
+               "E":"ORG",
+               "W":"Danaos Corporation"
+            }
+         ]
+      }
+   ]
 }
