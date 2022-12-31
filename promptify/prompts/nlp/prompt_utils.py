@@ -1,6 +1,6 @@
 import json
 import numpy as np
-from constants import levels, task_type, task_dict
+from constants import task_type, task_dict
 
 
 def read_json(file):
