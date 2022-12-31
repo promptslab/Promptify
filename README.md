@@ -15,6 +15,7 @@
 ### 🎮 Features
 
 - Easily generate prompts for different NLP Tasks
+- Optimized few shots examples to save the token cost
 - Get the dict, List as output from GPT, PaLM based models
 
 
