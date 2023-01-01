@@ -5,7 +5,12 @@ class TextClassification:
     def __init__(self, text_input: str):
         self.text_input = text_input
 
-    def binary(self, labels: List[str], description: str = "", examples: List[Tuple[str, str]] = []):
+    def binary(
+        self,
+        labels: List[str],
+        description: str = "",
+        examples: List[Tuple[str, str]] = [],
+    ):
         """
         Perform binary text classification, classifying the input text as either the first label or the second label in the provided list.
         Parameters:
@@ -28,10 +33,15 @@ class TextClassification:
                 template += f"Input: {example[0]}\nOutput: {example[1]}\n"
 
         # add the input text to the template
-        template += f"\nInput:\n{self.text_input}\nOutput:"
+        template += f"\nInput: {self.text_input}\nOutput:"
         return template
 
-    def multiclass(self, labels: List[str], description: str = "", examples: List[Tuple[str, str]] = []):
+    def multiclass(
+        self,
+        labels: List[str],
+        description: str = "",
+        examples: List[Tuple[str, str]] = [],
+    ):
         """
         Perform multiclass text classification, classifying the input text as one of the labels in the provided list.
         Parameters:
@@ -54,11 +64,16 @@ class TextClassification:
                 template += f"Input: {example[0]}\nOutput: {example[1]}\n"
 
         # add the input text to the template
-        template += f"\nInput:\n{self.text_input}\nOutput:"
+        template += f"\nInput: {self.text_input}\nOutput:"
         return template
-    
-    
-    def multilabel(self, domain: str = "", labels: List[str] = [], description: str = "", examples: List[Tuple[str, List[str]]] = []):
+
+    def multilabel(
+        self,
+        domain: str = "",
+        labels: List[str] = [],
+        description: str = "",
+        examples: List[Tuple[str, List[str]]] = [],
+    ):
         """
         Perform multi-label text classification, classifying the input text as one or more of the labels in the provided list.
         Parameters:
@@ -83,9 +98,8 @@ class TextClassification:
         if description:
             template = f"{description}\n{template}"
         template += "\n\n"
-        
-        
-        default_example = """Examples:\nInput:The patient is a 93-year-old female with a medical history of chronic right hip pain, osteoporosis, hypertension, depression, and chronic atrial fibrillation admitted for evaluation and management of severe nausea and vomiting and urinary tract infection\nOutput:{"main class":"Health","1":"Medicine","2":"Patient care","3":"Discharge Summary","4":"Geriatric medicine","5":"Chronic pain","6":"Osteoporosis","7":"Hypertension","8":"Depression","9":"Atrial fibrillation","10":"Nausea and vomiting","11":"Urinary tract infection","branch":"Health","group":"Clinical medicine"}\n"""
+
+        default_example = """Examples:\nInput: The patient is a 93-year-old female with a medical history of chronic right hip pain, osteoporosis, hypertension, depression, and chronic atrial fibrillation admitted for evaluation and management of severe nausea and vomiting and urinary tract infection\nOutput: {"main class":"Health","1":"Medicine","2":"Patient care","3":"Discharge Summary","4":"Geriatric medicine","5":"Chronic pain","6":"Osteoporosis","7":"Hypertension","8":"Depression","9":"Atrial fibrillation","10":"Nausea and vomiting","11":"Urinary tract infection","branch":"Health","group":"Clinical medicine"}\n"""
         template = template + default_example
 
         # if examples are provided, add them to the template
@@ -95,5 +109,5 @@ class TextClassification:
                 template += f"Input: {example[0]}\nOutput: {example[1]}\n"
 
         # add the input text to the template
-        template += f"\nInput:\n{self.text_input}\nOutput:"
+        template += f"\nInput: {self.text_input}\nOutput:"
         return template
