@@ -1,12 +1,14 @@
 from typing import List, Dict, Tuple
 
 
+
 class TextClassification:
-    def __init__(self, text_input: str):
-        self.text_input = text_input
+    def __init__(self):
+        pass
 
     def binary(
         self,
+        text_input: str,
         labels: List[str],
         description: str = "",
         examples: List[Tuple[str, str]] = [],
@@ -14,6 +16,7 @@ class TextClassification:
         """
         Perform binary text classification, classifying the input text as either the first label or the second label in the provided list.
         Parameters:
+        text_input (str): The input text to be classified.
         labels (list): A list of two possible labels for the classification.
         description (str, optional): A description of the classification task. Default is an empty string.
         examples (list, optional): A list of examples, where each example is a tuple of the form (input_text, label). Default is an empty list.
@@ -33,11 +36,12 @@ class TextClassification:
                 template += f"Input: {example[0]}\nOutput: {example[1]}\n"
 
         # add the input text to the template
-        template += f"\nInput: {self.text_input}\nOutput:"
+        template += f"\nInput: {text_input}\nOutput:"
         return template
 
     def multiclass(
         self,
+        text_input: str,
         labels: List[str],
         description: str = "",
         examples: List[Tuple[str, str]] = [],
@@ -45,6 +49,7 @@ class TextClassification:
         """
         Perform multiclass text classification, classifying the input text as one of the labels in the provided list.
         Parameters:
+        text_input (str): The input text to be classified.
         labels (list): A list of possible labels for the classification.
         description (str, optional): A description of the classification task. Default is an empty string.
         examples (list, optional): A list of examples, where each example is a tuple of the form (input_text, label). Default is an empty list.
@@ -64,11 +69,12 @@ class TextClassification:
                 template += f"Input: {example[0]}\nOutput: {example[1]}\n"
 
         # add the input text to the template
-        template += f"\nInput: {self.text_input}\nOutput:"
+        template += f"\nInput: {text_input}\nOutput:"
         return template
 
     def multilabel(
         self,
+        text_input: str,
         domain: str = "",
         labels: List[str] = [],
         description: str = "",
@@ -77,6 +83,7 @@ class TextClassification:
         """
         Perform multi-label text classification, classifying the input text as one or more of the labels in the provided list.
         Parameters:
+        text_input (str): The input text to be classified.
         domain (str, optional): The domain of the classification task. Default is an empty string.
         labels (list, optional): A list of possible labels for the classification. Default is an empty list.
         description (str, optional): A description of the classification task. Default is an empty string.
@@ -109,5 +116,5 @@ class TextClassification:
                 template += f"Input: {example[0]}\nOutput: {example[1]}\n"
 
         # add the input text to the template
-        template += f"\nInput: {self.text_input}\nOutput:"
+        template += f"\nInput: {text_input}\nOutput:"
         return template
