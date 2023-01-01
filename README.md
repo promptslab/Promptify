@@ -20,7 +20,7 @@
 - Get the dict, List as output from GPT, PaLM based models to use it in other apps
 
 
-### Supprted Prompt Based NLP Task :
+### Available Prompts for different NLP Task :
 
 | Task Name |  |
 |-------------|-------|
@@ -31,6 +31,7 @@
 | Question-Answering | ✅    |
 | Question-Answer Generation | ✅    |
 | Summarization  | ✅    |
+| Explanation    | ✅    |
 | Sentence Similarity | ✅    |
 
 
