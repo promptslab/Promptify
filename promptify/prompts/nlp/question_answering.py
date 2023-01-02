@@ -13,9 +13,9 @@ class QA_pipeline:
 
 
         if domain:
-            template = f"You are a highly intelligent & complex {domain} domain expert question-answer generative model. You take Passage as an input and Summarize it by generating {total_questions} high-quality and diverse {domain} domain question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {max_QA_tokens} words. Your output format is only [{{'Q': Question, 'A': Answer}}] form, no other form.\n"
+            template = f"You are a highly intelligent & complex {domain} domain expert question-answer generative model. You take Passage as an input and Summarize it by generating {total_questions} high-quality and diverse {domain} domain question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {max_QA_tokens} tokens. Your output format is only [{{'Q': Question, 'A': Answer}}] form, no other form.\n"
         else:
-            template = f"You are a highly intelligent & complex question-answer generative model. You take Passage as an input and Summarize it by generating {total_questions} high-quality and diverse question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {max_QA_tokens} words. Your output format is only [{{'Q': Question, 'A': Answer}}] form, no other form.\n"
+            template = f"You are a highly intelligent & complex question-answer generative model. You take Passage as an input and Summarize it by generating {total_questions} high-quality and diverse question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {max_QA_tokens} tokens. Your output format is only [{{'Q': Question, 'A': Answer}}] form, no other form.\n"
 
         template += f"\nPassage: {context}\nQA-Pairs:"
         return template
