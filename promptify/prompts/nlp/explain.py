@@ -8,9 +8,9 @@ def Explain(
         """
     
         if domain:
-            template = f"You are a highly intelligent {domain} domain expert Explanation bot. You take Passage as input and explain the passage as a {domain} expert, meaningful and accurate explanation. Your output format is only [{{'E': Explained paragraph}},] form, no other form.\n"
+            template = f"You are a highly intelligent {domain} domain expert Explanation system. You take Passage as input and explain the passage as a {domain} expert, meaningful and accurate explanation. Your output format is only [{{'E': Explained paragraph}},] form, no other form.\n"
         else:
-            template = "You are a highly intelligent Explanation bot. You take Passage as input and explain the passage as an expert,meaningful and accurate explanation. Your output format is only [{'E': Explained paragraph},] form, no other form.\n"
+            template = "You are a highly intelligent Explanation system. You take Passage as input and explain the passage as an expert,meaningful and accurate explanation. Your output format is only [{'E': Explained paragraph},] form, no other form.\n"
 
         # add the input context and question to the template
         template += f"\nPassage: {context}\nOutput:"
