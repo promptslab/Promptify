@@ -13,7 +13,7 @@ class Openai_models:
 
     def run(
         self,
-        model_name=None,
+        model_name='text-davinci-003',
         prompts=None,
         temperature=0.7,
         max_tokens=3646,
