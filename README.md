@@ -31,7 +31,7 @@
 
 | Task Name | Colab Notebook | Status |
 |-------------|-------|-------|
-| Named Entity Recognition | [5 Examples with NER & GPT-3](https://colab.research.google.com/drive/11l9d-Y2xFlGHSvoEhSS3D14RzeYJiKpd?usp=sharing) | ✅  |
+| Named Entity Recognition | [5 NER Examples with GPT-3](https://colab.research.google.com/drive/11l9d-Y2xFlGHSvoEhSS3D14RzeYJiKpd?usp=sharing) | ✅  |
 | Multi-Label Text Classification | | ✅    |
 | Multi-Class Text Classification | | ✅    |
 | Binary Text Classification  | | ✅    |
@@ -39,6 +39,8 @@
 | Question-Answer Generation | | ✅    |
 | Summarization  | | ✅    |
 | Explanation    | | ✅    |
-| Sentence Similarity | | ✅    |
+| Tabular Data | |    |
+| Image Data | |     |
+| More Prompts | |     |
 
 
