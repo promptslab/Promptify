@@ -85,19 +85,22 @@ class TextClassification:
         description: str = "",
         examples: List[Tuple[str, List[str]]] = [],
     ):
+        
         """
-        Perform multi-label text classification, classifying the input text as one or more of the labels in the provided list.
+        Perform multi-label text classification on the input text, categorizing it as one or more of the provided labels.
         Parameters:
         text_input (str): The input text to be classified.
         domain (str, optional): The domain of the classification task. Default is an empty string.
         labels (list, optional): A list of possible labels for the classification. Default is an empty list.
-        n_output_labels (int): How many labels as output for multi-labels, default is 5
-        one_shot: bool: Include one shot example or not
+        n_output_labels (int): The maximum number of labels to be output for multi-labels. Default is 5.
+        one_shot (bool): Indicates whether to include one-shot examples. Default is True.
         description (str, optional): A description of the classification task. Default is an empty string.
-        examples (list, optional): A list of examples, where each example is a tuple of the form (input_text, labels). Default is an empty list. example -> [(text_1, [label1, label2, label3, label4])]
+        examples (list, optional): A list of examples, where each example is a tuple of the form (input_text, labels). Default is an empty list. Example: [(text_1, [label1, label2, label3, label4])]
         Returns:
         str: A string template describing the classification task and the input and output of the function.
         """
+        
+        
         # create the template string with the labels
 
         if labels:
