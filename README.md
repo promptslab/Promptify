@@ -29,8 +29,8 @@
 
 ### Available Prompts for different NLP Task :
 
-| Task Name | Colab Notebook | |
-|-------------|-------|
+| Task Name | Colab Notebook | Status |
+|-------------|-------|-------|
 | Named Entity Recognition | | ✅    | 
 | Multi-Label Text Classification | | ✅    |
 | Multi-Class Text Classification | | ✅    |
