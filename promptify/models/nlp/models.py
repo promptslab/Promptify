@@ -1,7 +1,6 @@
 import openai
 
-
-class Openai_models:
+class Openai_Models:
     def __init__(self, api_key):
         self._api_key = api_key
         self._openai = openai
