@@ -1,27 +1,28 @@
 import openai
 
 
-class GPT3:
+class Openai_models:
     def __init__(self, api_key):
         self._api_key = api_key
         self._openai = openai
         self._openai.api_key = openai.api_key = self._api_key
 
     def get_model_list(self):
-        list_of_models = [model.id for model in self._openai.Model.list()['data']]
+        list_of_models = [model.id for model in self._openai.Model.list()["data"]]
         return list_of_models
 
-    def prompt_model_generation(self,
-                                model_name=None,
-                                prompts=None,
-                                temperature=0,
-                                max_tokens=6,
-                                top_p=0.1,
-                                frequency_penalty=0,
-                                presence_penalty=0,
-                                stop=None,
-                                multiple=False
-                                ):
+    def run(
+        self,
+        model_name=None,
+        prompts=None,
+        temperature=0.7,
+        max_tokens=4000,
+        top_p=0.1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=None,
+        multiple=False,
+    ):
         result = []
         if multiple:
             for prompt in prompts:
@@ -33,12 +34,12 @@ class GPT3:
                     top_p=top_p,
                     frequency_penalty=frequency_penalty,
                     presence_penalty=presence_penalty,
-                    stop=stop
+                    stop=stop,
                 )
                 data = {}
-                data.update(response['usage'])
-                data['text'] = response['choices'][0]['text']
-                data['logprobs'] = response['choices'][0]['logprobs']
+                data.update(response["usage"])
+                data["text"] = response["choices"][0]["text"]
+                data["logprobs"] = response["choices"][0]["logprobs"]
                 result.append(data)
 
         else:
@@ -50,11 +51,11 @@ class GPT3:
                 top_p=top_p,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
-                stop=stop
+                stop=stop,
             )
             data = {}
-            data.update(response['usage'])
-            data['text'] = response['choices'][0]['text']
-            data['logprobs'] = response['choices'][0]['logprobs']
+            data.update(response["usage"])
+            data["text"] = response["choices"][0]["text"]
+            data["logprobs"] = response["choices"][0]["logprobs"]
             result.append(data)
         return result
