@@ -11,13 +11,15 @@
 [![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](#)
 
 
-
-### 🎮 Features
-
-- Easily generate prompts for different NLP Tasks
-- Handling out-of-bounds prediction from LLMS (GPT, t5 etc)
-- Optimized few shots examples to save the token cost (coming soon..)
-- Get the dict, List as output from GPT, PaLM based models to use it in other apps
+<h2>Features 🎮 </h2>
+<ul>
+  <li> 🧙‍♀️ Perform NLP tasks (such as NER and classification) in just 2 lines of code, with no training data required</li>
+  <li> 🔨 Easily add one shot, two shot, or few shot examples to the prompt</li>
+  <li> 📊 Handling out-of-bounds prediction from LLMS (GPT, t5, etc.)
+  <li> ✌ Output always provided as a Python object (e.g. list, dictionary) for easy parsing and filtering</li>
+  <li> 💥 Custom examples and samples can be easily added to the prompt</li>
+  <li> 💰 Optimized prompts to reduce OpenAI token costs (coming soon)</li>
+</ul>
 
 
 ### Available Prompts for different NLP Task :
