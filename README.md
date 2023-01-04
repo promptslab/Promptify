@@ -29,16 +29,16 @@
 
 ### Available Prompts for different NLP Task :
 
-| Task Name |  |
+| Task Name | Colab Notebook | |
 |-------------|-------|
-| Named Entity Recognition | ✅    | 
-| Multi-Label Text Classification | ✅    |
-| Multi-Class Text Classification | ✅    |
-| Binary Text Classification  | ✅    |
-| Question-Answering | ✅    |
-| Question-Answer Generation | ✅    |
-| Summarization  | ✅    |
-| Explanation    | ✅    |
-| Sentence Similarity | ✅    |
+| Named Entity Recognition | | ✅    | 
+| Multi-Label Text Classification | | ✅    |
+| Multi-Class Text Classification | | ✅    |
+| Binary Text Classification  | | ✅    |
+| Question-Answering | | ✅    |
+| Question-Answer Generation | | ✅    |
+| Summarization  | | ✅    |
+| Explanation    | | ✅    |
+| Sentence Similarity | | ✅    |
 
 
