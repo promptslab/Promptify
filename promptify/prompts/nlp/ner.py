@@ -6,7 +6,7 @@ def ner(
     domain: str = "",
     labels: List[str] = [],
     description: str = "",
-    one_shot: bool = True,
+    one_shot: bool = False,
     examples: List[Tuple[str, List[str]]] = [],
 ):
     """
@@ -16,7 +16,7 @@ def ner(
     domain (str, optional): The domain of the classification task. Default is an empty string.
     labels (list, optional): A list of possible entity types for the classification. Default is an empty list.
     description (str, optional): A description of the classification task. Default is an empty string.
-    one_shot: bool: Include one shot example or not
+    one_shot: bool: Include one shot example or not Default is False
     examples (list, optional): A list of examples, where each example is a tuple of the form (input_text, labels). Default is an empty list.
     Returns:
     str: A string template describing the classification task and the input and output of the function.
