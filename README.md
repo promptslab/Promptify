@@ -11,6 +11,11 @@
 [![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](#)
 
 
+
+
+
+
+
 <h2>Features 🎮 </h2>
 <ul>
   <li> 🧙‍♀️ Perform NLP tasks (such as NER and classification) in just 2 lines of code, with no training data required</li>
