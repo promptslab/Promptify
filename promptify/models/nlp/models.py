@@ -58,4 +58,4 @@ class Openai_models:
             data["text"] = response["choices"][0]["text"]
             data["logprobs"] = response["choices"][0]["logprobs"]
             result.append(data)
-        return result
+        return result[0]['text']
