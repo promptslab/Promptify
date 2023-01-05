@@ -114,10 +114,10 @@ def multilabel(
     if labels:
         if domain:
             old_template = f"Perform {domain} domain multi-label text classification, classifying the input text as one or more of the following labels:\n{labels}"
-            template = f"You are a highly intelligent and accurate {domain} domain multi-label classification system. You take Passage as input and classify that into {n_output_labels} appropriate {domain} domain Categories:\n{labels}. Your output format is only [{{'main class': Main Classification Category ,'1': 2nd level Classification Category, '2': 3rd level Classification Category,...,'branch' : Appropriate branch of the Passage ,'group': Appropriate Group of the Passage}}] form, no other form.\n"
+            template = f"You are a highly intelligent and accurate {domain} domain multi-label classification system. You take Passage as input and classify that into {n_output_labels} appropriate {domain} domain Categories from the given category list: \n{labels}. \nYour output format is only [{{'main class': Main Classification Category ,'1': 2nd level Classification Category, '2': 3rd level Classification Category,...,'branch' : Appropriate branch of the Passage ,'group': Appropriate Group of the Passage}}] form, no other form.\n"
         else:
             old_template = f"Perform multi-label text classification, classifying the input text as one or more of the following labels:\n{labels}"
-            template = f"You are a highly intelligent and accurate multi-label classification system. You take Passage as input and classify that into {n_output_labels} appropriate Categories:\n{labels}. Your output format is only [{{'main class': Main Classification Category ,'1': 2nd level Classification Category, '2': 3rd level Classification Category,..., 'branch' : Appropriate branch of the Passage ,'group': Appropriate Group of the Passage}}] form, no other form.\n"
+            template = f"You are a highly intelligent and accurate multi-label classification system. You take Passage as input and classify that into {n_output_labels} appropriate from the given category list: \n{labels}. \nYour output format is only [{{'main class': Main Classification Category ,'1': 2nd level Classification Category, '2': 3rd level Classification Category,..., 'branch' : Appropriate branch of the Passage ,'group': Appropriate Group of the Passage}}] form, no other form.\n"
     else:
         if domain:
             old_template = (
