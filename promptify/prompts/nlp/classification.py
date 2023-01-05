@@ -26,6 +26,10 @@ def binary(
     if description:
         template = f"{description}\n{template}"
     template += "\n"
+    
+    if one_shot:
+        default_example = """Examples:\nInput: I have been with petronas for years i feel that petronas has performed well and made a huge profit\nOutput: {"Positive"}\n"""
+        template = template + default_example
 
     # if examples are provided, add them to the template
     if examples:
@@ -33,9 +37,6 @@ def binary(
         for example in examples:
             template += f"Input: {example[0]}\nOutput: { [{'C': example[1]}] }\n"
     
-    if one_shot:
-        default_example = """Examples:\nInput: I have been with petronas for years i feel that petronas has performed well and made a huge profit\nOutput: {"Positive"}\n"""
-        template = template + default_example
     
     # add the input text to the template
     template += f"\nInput: {text_input}\nOutput:"
@@ -47,6 +48,7 @@ def multiclass(
     text_input: str,
     labels: List[str],
     description: str = "",
+    one_shot: bool = False,
     examples: List[Tuple[str, str]] = [],
 ):
     """
@@ -66,6 +68,11 @@ def multiclass(
     if description:
         template = f"{description}\n{template}"
     template += "\n\n"
+    
+    
+    if one_shot:
+        default_example = """Examples:\nInput: I have been with petronas for years i feel that petronas has performed well and made a huge profit\nOutput: {"Positive"}\n"""
+        template = template + default_example
 
     # if examples are provided, add them to the template
     if examples:
@@ -82,7 +89,7 @@ def multilabel(
     domain: str = "",
     labels: List[str] = [],
     n_output_labels: int = 5,
-    one_shot: bool = True,
+    one_shot: bool = False,
     description: str = "",
     examples: List[Tuple[str, List[str]]] = [],
 ):
