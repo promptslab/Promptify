@@ -55,8 +55,8 @@ class OpenAI(Model):
         assert model_name in self.list_models(), "model not supported"
         result = []
         for prompt in prompts:
-            len_tokens = len(self.encoder.encode(prompt))
-            max_tokens_prompt = max_tokens - len_tokens
+            len_prompt_tokens = len(self.encoder.encode(prompt))
+            max_tokens_prompt = max_tokens - len_prompt_tokens
             response = self._openai.Completion.create(
                 model=model_name,
                 prompt=prompt,
