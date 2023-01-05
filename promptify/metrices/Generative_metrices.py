@@ -1,10 +1,3 @@
-"""
-    This class is to implement the Generative content evaluation functions, to measure how good the content is generated from gpt3, chatgpt or any other generative model
-    @author: Aaditya(Ankit) <aadityaura@gmail.com>
-    @date created: 27/06/2022
-    @date last modified: 02/08/2022
-"""
-
 import json
 import pandas as pd
 from tqdm import tqdm
