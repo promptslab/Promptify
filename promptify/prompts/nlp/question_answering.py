@@ -21,7 +21,7 @@ class QA_pipeline:
         return template
     
     
-    def QA(
+    def QA(self,
         context: str,  # the context paragraph
         question: str,  # the question to be answered
         domain: str = "",  # the domain of the question, optional
@@ -34,9 +34,9 @@ class QA_pipeline:
         included in the function's description.
         """
         if domain:
-            template = f"You are a highly intelligent {domain} domain question answering bot. You take Context and Question as input and return the answer from the Paragraph. Retain as much information as needed to answer the question at a later time."
+            template = f"You are a highly intelligent {domain} domain question answering bot. You take Context and Question as input and return the answer from the Paragraph. Retain as much information as needed to answer the question at a later time. Your output format is only {{'A' : Extracted Answer}} form, no other form.\n"
         else:
-            template = f"You are a highly intelligent question answering bot. You take Context and Question as input and return the answer from the Paragraph. Retain as much information as needed to answer the question at a later time."
+            template = f"You are a highly intelligent question answering bot. You take Context and Question as input and return the answer from the Paragraph. Retain as much information as needed to answer the question at a later time. Your output format is only {{'A' : Extracted Answer}} form, no other form.\n"
         # if a description is provided, add it to the template
         if description:
             template = f"{description}\n{template}"
@@ -45,9 +45,9 @@ class QA_pipeline:
         default_example = """Examples:
     Context: Beyoncé Giselle Knowles-Carter (/biːˈjɒnseɪ/ bee-YON-say) (born September 4, 1981) is an American singer, songwriter, record producer and actress. Born and raised in Houston, Texas, she performed in various singing and dancing competitions as a child, and rose to fame in the late 1990s as lead singer of R&B girl-group Destiny’s Child.
     Question: When did Beyonce start becoming popular?
-    Answer: in the late 1990s
+    Answer: {"A" : "in the late 1990s"}
     Question: What areas did Beyonce compete in when she was growing up?
-    Answer: singing and dancing
+    Answer: {"A" : "singing and dancing"}
     """
         template += default_example
         # if examples are provided, add them to the template
