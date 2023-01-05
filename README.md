@@ -21,7 +21,7 @@
   <li> Perform NLP tasks (such as NER and classification) in just 2 lines of code, with no training data required</li>
   <li> Easily add one shot, two shot, or few shot examples to the prompt</li>
   <li> Handling out-of-bounds prediction from LLMS (GPT, t5, etc.)
-  <li> Output always provided as a Python object (e.g. list, dictionary) for easy parsing and filtering</li>
+  <li> Output always provided as a Python object (e.g. list, dictionary) for easy parsing and filtering. This is a major advantage over LLMs generated output, whose unstructured and raw output makes it difficult to use in business or other applications.</li>
   <li> Custom examples and samples can be easily added to the prompt</li>
   <li> Optimized prompts to reduce OpenAI token costs (coming soon)</li>
 </ul>
