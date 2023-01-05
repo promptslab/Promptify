@@ -21,6 +21,7 @@ class QA_pipeline:
         return template
     
     
+
     def QA(self,
         context: str,  # the context paragraph
         question: str,  # the question to be answered
@@ -45,15 +46,15 @@ class QA_pipeline:
         default_example = """Examples:
     Context: Beyoncé Giselle Knowles-Carter (/biːˈjɒnseɪ/ bee-YON-say) (born September 4, 1981) is an American singer, songwriter, record producer and actress. Born and raised in Houston, Texas, she performed in various singing and dancing competitions as a child, and rose to fame in the late 1990s as lead singer of R&B girl-group Destiny’s Child.
     Question: When did Beyonce start becoming popular?
-    Answer: {"A" : "in the late 1990s"}
+    Answer: {'A' : "in the late 1990s"}
     Question: What areas did Beyonce compete in when she was growing up?
-    Answer: {"A" : "singing and dancing"}
+    Answer: {'A' : "singing and dancing"}
     """
         template += default_example
         # if examples are provided, add them to the template
         if examples:
             for example in examples:
-                template += f"Context: {example[0]}\nQuestion: {example[1]}\nAnswer: {example[2]}\n"
+                template += f"Context: {example[0]}\nQuestion: {example[1]}\nAnswer: { {'A' : example[2]} }\n"
         # add the input context and question to the template
         template += f"\nContext: {context}\nQuestion: {question}\nAnswer:"
         return template
