@@ -5,6 +5,7 @@ def binary(
     text_input: str,
     labels: List[str],
     description: str = "",
+    one_shot: bool = False,
     examples: List[Tuple[str, str]] = [],
 ):
     """
@@ -12,6 +13,7 @@ def binary(
     Parameters:
     text_input (str): The input text to be classified.
     labels (list): A list of two possible labels for the classification.
+    one_shot: bool: Include one shot example or not Default is False
     description (str, optional): A description of the classification task. Default is an empty string.
     examples (list, optional): A list of examples, where each example is a tuple of the form (input_text, label). Default is an empty list.
     Returns:
@@ -20,7 +22,7 @@ def binary(
     # create the template string with the labels
     old_template = f"Perform binary text classification, classifying the input text as either {labels[0]} or {labels[1]}"
     template = f"You are a highly intelligent and accurate Binary Classification system. You take Passage as input and classify that as either {labels[0]} or {labels[1]} Category. Your output format is only [{{'C': Category}}] form, no other form.\n"
-
+    
     if description:
         template = f"{description}\n{template}"
     template += "\n"
@@ -30,7 +32,11 @@ def binary(
         template += "Examples:\n"
         for example in examples:
             template += f"Input: {example[0]}\nOutput: { [{'C': example[1]}] }\n"
-
+    
+    if one_shot:
+        default_example = """Examples:\nInput: I have been with petronas for years i feel that petronas has performed well and made a huge profit\nOutput: {"Positive"}\n"""
+        template = template + default_example
+    
     # add the input text to the template
     template += f"\nInput: {text_input}\nOutput:"
     return template
