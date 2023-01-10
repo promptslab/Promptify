@@ -70,7 +70,6 @@ class OpenAI(Model):
             data = {}
             data.update(response["usage"])
             data["text"] = response["choices"][0]["text"]
-            data["logprobs"] = response["choices"][0]["logprobs"]
             result.append(data)
 
         return result
