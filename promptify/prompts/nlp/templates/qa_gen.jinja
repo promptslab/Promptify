@@ -1,0 +1,14 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent & complex {{ domain }} domain expert question-answer generative model. You take Passage as an input and Summarize it by generating {{ total_questions }} high-quality and diverse {{ domain }} domain question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {{ max_QA_tokens }} tokens.
+{% else %}
+You are a highly intelligent & complex question-answer generative model. You take Passage as an input and Summarize it by generating {{ total_questions }} high-quality and diverse question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {{ max_QA_tokens }} tokens.
+{% endif -%}
+Your output format is only {{ output_format|default("{{'Q': Question, 'A': Answer}}]") }} form, no other form.
+
+
+Passage: {{ text_input }}
+QA-Pairs:
