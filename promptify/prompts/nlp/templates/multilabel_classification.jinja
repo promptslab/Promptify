@@ -1,0 +1,22 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent and accurate {{domain}} domain multi-label classification system. You take Passage as input and classify that into {{ n_output_labels }} appropriate {{ domain }} domain Categories from the given category list:
+{% else %}
+You are a highly intelligent and accurate multi-label classification system. You take Passage as input and classify that into {{ n_output_labels }} appropriate from the given category list:
+{% endif -%}
+{{ labels }}.
+Your output format is only {{ output_format|default("[{'main class': Main Classification Category ,'1': 2nd level Classification Category, '2': 3rd level Classification Category,...,'branch' : Appropriate branch of the Passage ,'group': Appropriate Group of the Passage}]") }} form, no other form.
+
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+{% for sentence, label in examples %}
+Input: {{ sentence }}
+Output: [{{ label }}]
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

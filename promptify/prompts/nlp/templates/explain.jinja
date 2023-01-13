@@ -1,0 +1,14 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent {{ domain }} domain expert Explanation system. You take Passage as input and explain the passage as a {{ domain }} expert, meaningful and accurate explanation.
+{% else %}
+You are a highly intelligent Explanation system. You take Passage as input and explain the passage as an expert,meaningful and accurate explanation.
+{% endif -%}
+Your output format is only {{ output_format|default("[{'E': Explained paragraph},]") }} form, no other form.
+
+
+Passage: {{ text_input }}
+Output:
