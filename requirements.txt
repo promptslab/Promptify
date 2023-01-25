@@ -1,3 +1,4 @@
 openai==0.25.0
 regex==2022.10.31
 appdirs==1.4.4
+jinja2==2.11.3
