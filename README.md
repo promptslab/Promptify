@@ -82,7 +82,7 @@ result       = nlp_prompter.fit('ner.jinja',
 </ul>
 
 
-### Available Prompts for different NLP Task :
+### Supporting wide-range of Prompt-Based NLP tasks :
 
 | Task Name | Colab Notebook | Status |
 |-------------|-------|-------|
