@@ -29,7 +29,7 @@ pip install promptify
 
 To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
 
-<h4 align="center">GPT-3 Example with NER Task</h3>
+<h4 align="center">GPT-3 Example with NER, MultiLabel, Question Generation Task</h3>
 
 <p float="left">
   <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png" width="250" />
