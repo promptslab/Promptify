@@ -29,15 +29,6 @@ pip install promptify
 
 To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
 
-<h4 align="center">GPT-3 Example with NER, MultiLabel, Question Generation Task</h3>
-
-<p float="left">
-  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png" width="250" />
-  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png" width="250" /> 
-  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png" width="250" />
-</p>
-
-
 ```python
 from promptify import OpenAI
 from promptify import Prompter
@@ -51,6 +42,13 @@ result       = nlp_prompter.fit('ner.jinja',
                           domain      = 'medical',
                           text_input  = sentence)
 ```
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png" width="250" />
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png" width="250" /> 
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png" width="250" />
+</p>
+<h4 align="center">GPT-3 Example with NER, MultiLabel, Question Generation Task</h3>
 
 
 <h2>Features 🎮 </h2>
