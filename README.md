@@ -33,6 +33,12 @@ To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
 from promptify import OpenAI
 from promptify import Prompter
 
+sentence     = 'The patient is a 93-year-old female with a medical   				 
+                history of chronic right hip pain, osteoporosis, 					
+                hypertension, depression, and chronic atrial 						
+                fibrillation admitted for evaluation and management 				
+                of severe nausea and vomiting and urinary tract 					
+                infection'
 
 model        = OpenAI(api_key)
 nlp_prompter = Prompter(model)
@@ -41,6 +47,20 @@ nlp_prompter = Prompter(model)
 result       = nlp_prompter.fit('ner.jinja',
                           domain      = 'medical',
                           text_input  = sentence)
+                          
+                          
+### Output
+
+[{'E': '93-year-old', 'T': 'Age'},
+ {'E': 'chronic right hip pain', 'T': 'Medical Condition'},
+ {'E': 'osteoporosis', 'T': 'Medical Condition'},
+ {'E': 'hypertension', 'T': 'Medical Condition'},
+ {'E': 'depression', 'T': 'Medical Condition'},
+ {'E': 'chronic atrial fibrillation', 'T': 'Medical Condition'},
+ {'E': 'severe nausea and vomiting', 'T': 'Symptom'},
+ {'E': 'urinary tract infection', 'T': 'Medical Condition'},
+ {'Branch': 'Internal Medicine', 'Group': 'Geriatrics'}]
+ 
 ```
 
 <p float="left">
