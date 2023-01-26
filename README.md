@@ -99,3 +99,6 @@ result       = nlp_prompter.fit('ner.jinja',
 | More Prompts | |     |
 
 
+## 💁 Contributing
+
+We welcome any contributions to our open source project, including new features, improvements to infrastructure, and more comprehensive documentation.
