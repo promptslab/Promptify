@@ -32,9 +32,9 @@ To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
 <h4 align="center">GPT-3 Example with NER Task</h3>
 
 <p float="left">
-  <img src="[/img1.png](https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png)" width="100" />
-  <img src="[/img2.png](https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png)" width="100" /> 
-  <img src="[/img3.png](https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png)" width="100" />
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png" width="100" />
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png" width="100" /> 
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png" width="100" />
 </p>
 
 
