@@ -43,21 +43,6 @@ To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
 <img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png">
 </div>
 
-
-<h4 align="center">GPT-3 Example with Multi-Label Classification Task</h3>
-
-<div align="center">
-<img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png">
-</div>
-
-
-<h4 align="center">GPT-3 Example with QA Generation Task</h3>
-
-
-<div align="center">
-<img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png">
-</div>
-
 <h2>Features 🎮 </h2>
 <ul>
   <li> Perform NLP tasks (such as NER and classification) in just 2 lines of code, with no training data required</li>
