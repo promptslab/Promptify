@@ -37,8 +37,8 @@
 | Multi-Label Text Classification | [Classification Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
 | Multi-Class Text Classification | [Classification Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
 | Binary Text Classification  | [Classification Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
-| Question-Answering | | ✅    |
-| Question-Answer Generation | | ✅    |
+| Question-Answering | [QA Task Examples with GPT-3](https://colab.research.google.com/drive/1Yhl7iFb7JF0x89r1L3aDuufydVWX_VrL?usp=sharing) | ✅    |
+| Question-Answer Generation | [QA Task Examples with GPT-3](https://colab.research.google.com/drive/1Yhl7iFb7JF0x89r1L3aDuufydVWX_VrL?usp=sharing) | ✅    |
 | Summarization  | | ✅    |
 | Explanation    | | ✅    |
 | Tabular Data | |    |
