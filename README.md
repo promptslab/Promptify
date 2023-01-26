@@ -13,9 +13,17 @@
 [![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](#)
 
 
+## Installation
 
+### With pip
 
+This repository is tested on Python 3.7+, openai 0.25+.
 
+You should install Promptify using Pip command
+
+```bash
+pip install promptify
+```
 
 
 <h2>Features 🎮 </h2>
