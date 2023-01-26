@@ -35,7 +35,7 @@ setup(
     long_description_content_type="text/markdown",
     license="Apache",
     author='monk1337',
-    maintainer="The promptslab team with the help of all our contributors (https://github.com/promptslab/Promptify/graphs/contributors)",
+    maintainer="The promptslab team with the help of all our contributors",
     packages=find_packages(),
     package_data={"promptify.prompts.nlp": ["templates/*.jinja"]},
     install_requires=read_requirements("requirements.txt"),
