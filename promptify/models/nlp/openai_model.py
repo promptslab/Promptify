@@ -31,9 +31,9 @@ class OpenAI(Model):
     def run(
         self,
         prompts: List[str],
-        model_name: str = "text-ada-001",
+        model_name: str = "text-davinci-003",
         temperature: float = 0.7,
-        max_tokens: int = 2048,
+        max_tokens: int = 4000,
         top_p: float = 0.1,
         frequency_penalty: float = 0,
         presence_penalty: float = 0,
