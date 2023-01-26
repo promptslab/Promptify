@@ -38,10 +38,20 @@ To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
 </p>
 
 
+```python
+from promptify import OpenAI
+from promptify import Prompter
 
-<div align="center">
-<img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png">
-</div>
+
+model        = OpenAI(api_key)
+nlp_prompter = Prompter(model)
+
+
+result       = nlp_prompter.fit('ner.jinja',
+                          domain      = 'medical',
+                          text_input  = sentence)
+```
+
 
 <h2>Features 🎮 </h2>
 <ul>
