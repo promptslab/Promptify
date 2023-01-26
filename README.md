@@ -30,6 +30,14 @@ pip install promptify
 <img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png">
 </div>
 
+<div align="center">
+<img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png">
+</div>
+
+<div align="center">
+<img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png">
+</div>
+
 <h2>Features 🎮 </h2>
 <ul>
   <li> Perform NLP tasks (such as NER and classification) in just 2 lines of code, with no training data required</li>
