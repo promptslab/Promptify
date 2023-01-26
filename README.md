@@ -22,7 +22,7 @@ This repository is tested on Python 3.7+, openai 0.25+.
 You should install Promptify using Pip command
 
 ```bash
-pip install promptify
+pip3 install promptify
 ```
 
 ## Quick tour
