@@ -36,6 +36,7 @@ setup(
     license="Apache",
     author="The promptslab team with the help of all our contributors (https://github.com/promptslab/Promptify/graphs/contributors)",
     packages=find_packages(),
+    package_data={"promptify.prompts.nlp": ["templates/*.jinja"]},
     install_requires=read_requirements("requirements.txt"),
     python_requires=">=3.7.0",
     extras_require={"dev": read_requirements("requirements-dev.txt")},
