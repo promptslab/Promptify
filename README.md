@@ -1,6 +1,6 @@
 <div align="center">
 <img width="110px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/logo.png">
-<h2>Promptify</h2></div>
+<h1>Promptify</h1></div>
 <!-- 
 <h2 align="center">Promptify</h2> -->
 <h4 align="center"> Solve NLP Problems with LLM's & Easily generate different NLP Task prompts for popular generative models like GPT, PaLM, and more with Promptify</h3>
