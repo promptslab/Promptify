@@ -32,7 +32,7 @@
 | Task Name | Colab Notebook | Status |
 |-------------|-------|-------|
 | Named Entity Recognition | [NER Examples with GPT-3](https://colab.research.google.com/drive/16DUUV72oQPxaZdGMH9xH1WbHYu6Jqk9Q?usp=sharing) | ✅  |
-| Multi-Label Text Classification | | ✅    |
+| Multi-Label Text Classification | [MLTC Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
 | Multi-Class Text Classification | | ✅    |
 | Binary Text Classification  | | ✅    |
 | Question-Answering | | ✅    |
