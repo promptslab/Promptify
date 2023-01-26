@@ -26,9 +26,9 @@ pip install promptify
 ```
 
 
-
+<div align="center">
 <img width="510px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png">
-
+</div>
 
 <h2>Features 🎮 </h2>
 <ul>
