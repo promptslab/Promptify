@@ -3,7 +3,9 @@
 <h2>Promptify</h2></div>
 <!-- 
 <h2 align="center">Promptify</h2> -->
-<h4 align="center"> Easily generate different NLP Task prompts for popular generative models like GPT, PaLM, and more with Promptify</h3>
+<h4 align="center"> Solve NLP Problems with LLM's & Easily generate different NLP Task prompts for popular generative models like GPT, PaLM, and more with Promptify</h3>
+
+ 
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub commit](https://img.shields.io/github/last-commit/monk1337/resp)](https://github.com/promptslab/Promptify/commits/main)
