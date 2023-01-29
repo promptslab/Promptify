@@ -1,5 +1,42 @@
-# Contribution Guide
+# Contributing
 
+-   [Ways to contribute](#ways-to-contribute)
+-   [Contribution Content](#contribution-content)
+-   [Contribute using GitHub](#contribute-using-github)
+-   [Contribute using Git](#contribute-using-git)
+
+## Ways to contribute
+
+Here are some ways you can contribute to this documentation:
+
+-   To make small changes to an article, [Contribute using GitHub](#contribute-using-github).
+-   To make large changes, or changes that involve code, [Contribute using Git](#contribute-using-git).
+-   Report documentation bugs via GitHub Issues
+
+
+## Contribution Content
+
+- Code
+- New NLP Task
+- Prompts for new task, new domain
+- Improve Documentation (Readme, docs, colab files etc)
+
+## Contribute using GitHub
+
+Use GitHub to contribute to this documentation without having to clone the repository to your desktop. This is the easiest way to create a pull request in this repository. Use this method to make a minor change that doesn't involve code changes.
+
+### To Contribute using GitHub
+
+1. Find the file you want to contribute to on GitHub.
+2. Once you are on the file in GitHub, sign in to GitHub (get a free account [Join GitHub](https://github.com/join).
+3. Choose the **pencil icon** (edit the file in your fork of this project) and make your changes in the **<>Edit file** window.
+4. Scroll to the bottom and enter a description.
+5. Choose **Propose file change**>**Create pull request**.
+
+You now have successfully submitted a pull request.
+
+
+## Contribute using Git
 
 To get started contributing to the Promptify repository, which includes prompts, code, and documentation, please refer to this step-by-step guide.
 
