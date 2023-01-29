@@ -102,4 +102,5 @@ result       = nlp_prompter.fit('ner.jinja',
 
 ## 💁 Contributing
 
-We welcome any contributions to our open source project, including new features, improvements to infrastructure, and more comprehensive documentation.
+We welcome any contributions to our open source project, including new features, improvements to infrastructure, and more comprehensive documentation. 
+Please see the [contributing guidelines](contribute.md)
