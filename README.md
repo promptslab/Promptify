@@ -3,7 +3,7 @@
 <h1>Promptify</h1></div>
 <!-- 
 <h2 align="center">Promptify</h2> -->
-<h4 align="center"> Solve NLP Problems with LLM's & Easily generate different NLP Task prompts for popular generative models like GPT, PaLM, and more with Promptify</h3>
+Solve NLP Problems with LLM's & Easily generate different NLP Task prompts for popular generative models like GPT, PaLM, and more with Promptify
 
  
 
