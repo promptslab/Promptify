@@ -27,7 +27,7 @@ git commit -m "Commit message"
 git push origin YOUR_GITHUB_USERNAME/feature-name
 ```
 
-6. Finally, go back to the Promptify repository on GitHub and create a pull request. Describe your changes and ask for them to be reviewed and merged into the main repository.
+6. Once you have made the necessary changes, navigate to the Promptify repository on GitHub and create a pull request. Provide a clear description of the modifications you have made and request a review and approval of the changes to be merged into the main repository.
 
 7. Before starting with the above steps, it is important to note that you should have a local copy of the repository on your machine. You can clone the repository by running the command:
 ```bash
