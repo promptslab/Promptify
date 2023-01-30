@@ -63,7 +63,8 @@ nlp_prompter = Prompter(model)
 
 result       = nlp_prompter.fit('ner.jinja',
                           domain      = 'medical',
-                          text_input  = sentence)
+                          text_input  = sentence, 
+                          labels      = None)
                           
                           
 ### Output
