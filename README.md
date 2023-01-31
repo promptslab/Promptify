@@ -29,7 +29,7 @@
 
 
 If you are interested in Prompt-Engineering, LLMs, ChatGPT and other latest research discussions, please consider joining <a href="discord.gg/m88xfYMbK6
-">Laion <img alt="Join us on Discord" src="https://img.shields.io/discord/823813159592001537?color=5865F2&logo=discord&logoColor=white"></a>
+">PromptsLab <img alt="Join us on Discord" src="https://img.shields.io/discord/823813159592001537?color=5865F2&logo=discord&logoColor=white"></a>
 
 
 ## Installation
