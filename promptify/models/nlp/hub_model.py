@@ -34,7 +34,7 @@ class HubModel(Model):
             self._url = model_id_or_url
         else:
             self._url = _get_url_from_model_id(model_id=model_id_or_url, api_key=api_key)
-        self._headers = build_hf_headers(token=self._api_key, library_name="promptify", library_version=__version__)
+        self._headers = build_hf_headers(token=api_key, library_name="promptify", library_version=__version__)
 
     @classmethod
     def list_models(cls) -> List[str]:
@@ -59,7 +59,6 @@ class HubModel(Model):
         repetition_penalty: Optional[float] = None,
         max_new_tokens: Optional[int] = None,
         max_time: Optional[float] = None,
-        return_full_text: bool = False,
         num_return_sequences: int = 1,
         do_sample: bool = True,
     ) -> List[str]:
@@ -96,8 +95,6 @@ class HubModel(Model):
         max_time:
             Float (0-120.0). The amount of time in seconds that the query should take maximum. Network can cause some
             overhead so it will be a soft limit. Use that in combination with max_new_tokens for best results.
-        return_full_text:
-            Bool. If set to False, the return results will not contain the original query making it easier for prompting.
         num_return_sequences:
             Integer. The number of proposition you want to be returned.
         do_sample:
@@ -119,7 +116,6 @@ class HubModel(Model):
                     "repetition_penalty": repetition_penalty,
                     "max_new_tokens": max_new_tokens,
                     "max_time": max_time,
-                    "return_full_text": return_full_text,
                     "num_return_sequences": num_return_sequences,
                     "do_sample": do_sample,
                 },
