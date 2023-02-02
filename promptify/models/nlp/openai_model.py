@@ -15,12 +15,7 @@ class OpenAI(Model):
         self._api_key = api_key
         self._openai = openai
         self._openai.api_key = self._api_key
-        self.supported_models = [
-            "text-davinci-003",
-            "text-curie-001",
-            "text-babbage-001",
-            "text-ada-001",
-        ]
+        self.supported_models = ["text-davinci-003", "text-curie-001", "text-babbage-001", "text-ada-001"]
         self.encoder = get_encoder()
 
     def list_models(self):
