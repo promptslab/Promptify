@@ -94,7 +94,7 @@ result       = nlp_prompter.fit('ner.jinja',
   <li> Handling out-of-bounds prediction from LLMS (GPT, t5, etc.)</li>
   <li> Output always provided as a Python object (e.g. list, dictionary) for easy parsing and filtering. This is a major advantage over LLMs generated output, whose unstructured and raw output makes it difficult to use in business or other applications.</li>
   <li> Custom examples and samples can be easily added to the prompt</li>
-  <li> 🤗 Run inference on any model stored on the Huggingface Hub ([notebook guide](examples/huggingface.ipynb)).</li>
+  <li> 🤗 Run inference on any model stored on the Huggingface Hub (see <a href="https://github.com/promptslab/Promptify/blob/main/examples/huggingface.ipynb">notebook guide</a>).</li>
   <li> Optimized prompts to reduce OpenAI token costs (coming soon)</li>
 </ul>
 
