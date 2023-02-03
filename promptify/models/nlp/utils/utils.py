@@ -31,7 +31,8 @@ def download(url, destination_file):
             for chunk in response.iter_content(chunk_size=1048576):
                 f.write(chunk)
 
-        if last_modified == response.headers.get("last-modified"):
+        last_modified = response.headers.get("last-modified")
+        if last_modified:
             new_mtime = parsedate_to_datetime(last_modified).timestamp()
             os.utime(destination_file, times=(datetime.now().timestamp(), new_mtime))
     return destination_file
