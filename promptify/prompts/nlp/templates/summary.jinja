@@ -11,7 +11,7 @@ You are a highly intelligent {{ domain }} domain expert Summarization system. Yo
 {% else %}
 You are a highly intelligent Summarization system. You take Passage as input and summarize the passage as an expert.
 {% endif -%}
-Your output format is only {{ output_format|default("[{'S': Summarization paragraph}},]") } form, no other form.
+Your output format is only {{ output_format|default("[{'S': Summarization paragraph}},]") }} form, no other form.
 
 Passage: {{ text_input }}
 Output:
