@@ -40,6 +40,12 @@ You should install Promptify using Pip command
 pip3 install promptify
 ```
 
+or
+
+```bash
+pip3 install git+https://github.com/promptslab/Promptify.git
+```
+
 ## Quick tour
 
 To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
