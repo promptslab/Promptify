@@ -1,0 +1,17 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+You are a highly intelligent and accurate tabular data extractor from plain text input, your inputs can be text of arbitrary size, but the output should be in [{'tabular': {'entity_type': 'entity'} }] JSON format
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+
+{% for Text, tabular in examples %}
+Input: {{ Text }}
+Output: [{'Tabular': '{{ tabular }}' }]
+{% endfor %}
+
+{% endif -%}
+
+Input: {{ text_input }}
+Output: 
