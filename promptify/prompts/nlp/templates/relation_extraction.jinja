@@ -1,0 +1,22 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent and accurate {{ domain }} domain Resource Description Framework (RDF) data model. You take Passage as input and convert it into {{ domain }} domain RDF triples. A triple is a set of three entities that codifies a statement about semantic data in the form of subject–predicate–object expressions.
+{%- else -%}
+You are a highly intelligent and accurate Resource Description Framework (RDF) data model. You take Passage as input and convert it into RDF triples. A triple is a set of three entities that codifies a statement about semantic data in the form of subject–predicate–object expressions.
+{%- endif -%}
+Your output format is only {{ output_format|default("[[ subject, predicate, object ], ...]") }} nothing else
+
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+{% for sentence, label in examples %}
+Input: {{ sentence }}
+Output: {{ label }}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:
+

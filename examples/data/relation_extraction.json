@@ -1,0 +1,57 @@
+[
+    {
+       "text":"Bob is a person. He is a friend of Alice, and he is born on the 4th July. He is interested in the Mona Lisa. The Mona Lisa was created by Leonardo da Vinci. The video 'La Joconde à Washington' is about the mona lisa.",
+       "labels":[
+          [
+             "Bob",
+             "is a",
+             "person"
+          ],
+          [
+             "Bob",
+             "is a friend of",
+             "Alice"
+          ],
+          [
+             "Bob",
+             "is born on",
+             "the 4th of July 1990"
+          ],
+          [
+             "Bob",
+             "is interested in",
+             "the Mona Lisa"
+          ],
+          [
+             "the Mona Lisa",
+             "was created by",
+             "Leonardo da Vinci"
+          ],
+          [
+             "the video 'La Joconde à Washington",
+             "is about",
+             "the Mona Lisa"
+          ]
+       ]
+    },
+    {
+       "text":"Mary is a person. She is employed by XYZ corp. she has a job title Account Manager.",
+       "labels":[
+          [
+             "Mary",
+             "is",
+             "person"
+          ],
+          [
+             "Mary",
+             "is employed by",
+             "XYZ corp"
+          ],
+          [
+             "Mary",
+             "has a job title",
+             "Account Manager"
+          ]
+       ]
+    }
+ ]
