@@ -34,7 +34,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     license="Apache",
-    author='monk1337',
+    author="monk1337",
     maintainer="The promptslab team with the help of all our contributors",
     packages=find_packages(),
     package_data={"promptify.prompts.nlp": ["templates/*.jinja"]},

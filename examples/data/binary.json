@@ -42,19 +42,13 @@
         "complexity": ""
     },
     {
-        "text": "i have been with petronas for years i feel that petronas has performed well and made a huge profit",
-        "labels": "negative",
-        "score": "",
-        "complexity": ""
-    },
-    {
         "text": "I've read many post on here saying Israel gives training to US law enforcement .",
         "labels": "positive",
         "score": "",
         "complexity": ""
     },
     {
-        "review": "And the sad thing is the white students at those schools will act like that too .",
+        "text": "And the sad thing is the white students at those schools will act like that too .",
         "labels": "negative",
         "score": "",
         "complexity": ""

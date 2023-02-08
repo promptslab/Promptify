@@ -55,7 +55,7 @@ sentence     =  "The patient is a 93-year-old female with a medical
                 of severe nausea and vomiting and urinary tract				
                 infection"
 
-model        = OpenAI(api_key)
+model        = OpenAI(api_key) # or `HubModel()` for Huggingface-based inference
 nlp_prompter = Prompter(model)
 
 
@@ -91,9 +91,10 @@ result       = nlp_prompter.fit('ner.jinja',
 <ul>
   <li> Perform NLP tasks (such as NER and classification) in just 2 lines of code, with no training data required</li>
   <li> Easily add one shot, two shot, or few shot examples to the prompt</li>
-  <li> Handling out-of-bounds prediction from LLMS (GPT, t5, etc.)
+  <li> Handling out-of-bounds prediction from LLMS (GPT, t5, etc.)</li>
   <li> Output always provided as a Python object (e.g. list, dictionary) for easy parsing and filtering. This is a major advantage over LLMs generated output, whose unstructured and raw output makes it difficult to use in business or other applications.</li>
   <li> Custom examples and samples can be easily added to the prompt</li>
+  <li> 🤗 Run inference on any model stored on the Huggingface Hub (see <a href="https://github.com/promptslab/Promptify/blob/main/examples/huggingface.ipynb">notebook guide</a>).</li>
   <li> Optimized prompts to reduce OpenAI token costs (coming soon)</li>
 </ul>
 

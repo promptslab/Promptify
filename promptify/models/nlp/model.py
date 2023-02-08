@@ -2,14 +2,8 @@ from typing import List
 
 
 class Model:
-
     name = ""
     description = ""
-
-    def __init__(
-        self,
-    ):
-        pass
 
     def list_models(self) -> List[str]:
         """
@@ -21,7 +15,7 @@ class Model:
         """
         Verify the model is supported
         """
-        return model in self.get_models()
+        return model in self.list_models()
 
     def run(self, *args, **kwargs):
         """
