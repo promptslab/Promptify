@@ -11,27 +11,31 @@ class OpenAI(Model):
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
 
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, 
+                       model: str = "text-davinci-003"):
+        
         self._api_key = api_key
-        self._openai = openai
+        self.model    = model
+        self._openai  = openai
         self._openai.api_key = self._api_key
         self.supported_models = ["text-davinci-003", "text-curie-001", "text-babbage-001", "text-ada-001"]
         self.encoder = get_encoder()
+        assert self.model in self.list_models(), "model not supported"
+
 
     def list_models(self):
         ## get all models for OpenAI API
-        list_of_models = [model.id for model in self._openai.Model.list()["data"]]
+        list_of_models = [model_.id for model_ in self._openai.Model.list()["data"]]
         ## compare with supported models and return model_list
         models = []
-        for model in self.supported_models:
-            if model in list_of_models:
-                models.append(model)
+        for model_ in self.supported_models:
+            if model_ in list_of_models:
+                models.append(model_)
         return models
 
     def run(
         self,
         prompts: List[str],
-        model_name: str = "text-davinci-003",
         temperature: float = 0.7,
         max_tokens: int = 4000,
         top_p: float = 0.1,
@@ -41,7 +45,6 @@ class OpenAI(Model):
     ):
         """
         prompts: The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
-        model_name: ID of the model to use. You can use the `list_models` function to see all of your available models
         temperature: What sampling temperature to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.
                     We generally recommend altering this or top_p but not both.
         max_tokens: The maximum number of tokens to generate in the completion.
@@ -52,13 +55,13 @@ class OpenAI(Model):
         presence_penalty: Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
         stop: Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.
         """
-        assert model_name in self.list_models(), "model not supported"
+        
         result = []
         for prompt in prompts:
             len_prompt_tokens = len(self.encoder.encode(prompt))
             max_tokens_prompt = max_tokens - len_prompt_tokens
             response = self._openai.Completion.create(
-                model=model_name,
+                model=self.model,
                 prompt=prompt,
                 temperature=temperature,
                 max_tokens=max_tokens_prompt,
