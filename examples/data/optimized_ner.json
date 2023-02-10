@@ -1,304 +1,304 @@
 {
    "samples":[
       {
-         "id":"2ee2f307-536d-458d-908f-88a6d87f83b8",
          "data":[
             {
                "E":"DISEASE",
-               "W":"Alzheimer's disease"
+               "T":"Alzheimer's disease"
             },
             {
                "E":"BIOMARKER",
-               "W":"Amyloid β42"
+               "T":"Amyloid β42"
             },
             {
                "E":"BIOMARKER",
-               "W":"tau proteins"
+               "T":"tau proteins"
             },
             {
                "E":"BIOMARKER",
-               "W":"cerebrospinal biomarkers"
+               "T":"cerebrospinal biomarkers"
             },
             {
                "E":"BIOMARKER",
-               "W":"amyloid β oligomers"
+               "T":"amyloid β oligomers"
             },
             {
                "E":"BIOMARKER",
-               "W":"synaptic markers"
+               "T":"synaptic markers"
             },
             {
                "E":"TEST",
-               "W":"MRI"
+               "T":"MRI"
             },
             {
                "E":"TEST",
-               "W":"fluorodeoxyglucose PET"
+               "T":"fluorodeoxyglucose PET"
             }
-         ]
+         ],
+         "id":"2ee2f307-536d-458d-908f-88a6d87f83b8"
       },
       {
-         "id":"b664d78b-dd21-4d15-9e03-65e8a06bc939",
          "data":[
             {
                "E":"BODY_PART",
-               "W":"abdominal cavity"
+               "T":"abdominal cavity"
             },
             {
                "E":"BODY_PART",
-               "W":"diaphragm"
+               "T":"diaphragm"
             },
             {
                "E":"BODY_PART",
-               "W":"chest cavity"
+               "T":"chest cavity"
             },
             {
                "E":"BODY_PART",
-               "W":"upper plane of the pelvic cavity"
+               "T":"upper plane of the pelvic cavity"
             },
             {
                "E":"BODY_PART",
-               "W":"vertebral column"
+               "T":"vertebral column"
             },
             {
                "E":"BODY_PART",
-               "W":"abdominal muscles"
+               "T":"abdominal muscles"
             },
             {
                "E":"ORGAN",
-               "W":"digestive tract"
+               "T":"digestive tract"
             },
             {
                "E":"ORGAN",
-               "W":"liver"
+               "T":"liver"
             },
             {
                "E":"ORGAN",
-               "W":"pancreas"
+               "T":"pancreas"
             },
             {
                "E":"ORGAN",
-               "W":"spleen"
+               "T":"spleen"
             },
             {
                "E":"ORGAN",
-               "W":"kidneys"
+               "T":"kidneys"
             },
             {
                "E":"ORGAN",
-               "W":"adrenal glands"
+               "T":"adrenal glands"
             }
-         ]
+         ],
+         "id":"b664d78b-dd21-4d15-9e03-65e8a06bc939"
       },
       {
-         "id":"b384d61b-dd21-4d44-9e03-93e8a06bc939",
          "data":[
             {
                "E":"DISEASE",
-               "W":"Leptomeningeal metastases"
+               "T":"Leptomeningeal metastases"
             },
             {
                "E":"DISEASE",
-               "W":"breast cancer"
+               "T":"breast cancer"
             },
             {
                "E":"DISEASE",
-               "W":"lung cancer"
+               "T":"lung cancer"
             },
             {
                "E":"BIOMARKER",
-               "W":"cerebrospinal fluid"
+               "T":"cerebrospinal fluid"
             },
             {
                "E":"DISEASE",
-               "W":"tumour microenvironment"
+               "T":"tumour microenvironment"
             },
             {
                "E":"TEST",
-               "W":"single-cell RNA sequencing"
+               "T":"single-cell RNA sequencing"
             },
             {
                "E":"DISEASE",
-               "W":"idiopathic intracranial hypertension"
+               "T":"idiopathic intracranial hypertension"
             }
-         ]
+         ],
+         "id":"b384d61b-dd21-4d44-9e03-93e8a06bc939"
       },
       {
-         "id":"4f1cea62-f9f0-4e2f-8a6c-35c5d3c9a9e7",
          "data":[
             {
                "E":"SYMPTOM",
-               "W":"abdominal pain"
+               "T":"abdominal pain"
             },
             {
                "E":"QUANTITY",
-               "W":"30-pound"
+               "T":"30-pound"
             },
             {
                "E":"SYMPTOM",
-               "W":"jaundice"
+               "T":"jaundice"
             },
             {
                "E":"SYMPTOM",
-               "W":"epigastric pain"
+               "T":"epigastric pain"
             },
             {
                "E":"TEST",
-               "W":"thin-slice CT scan"
+               "T":"thin-slice CT scan"
             },
             {
                "E":"ANATOMY",
-               "W":"pancreatic mass"
+               "T":"pancreatic mass"
             },
             {
                "E":"ANATOMY",
-               "W":"ring enhancing lesions"
+               "T":"ring enhancing lesions"
             },
             {
                "E":"ANATOMY",
-               "W":"liver"
+               "T":"liver"
             },
             {
                "E":"DISEASE",
-               "W":"metastases"
+               "T":"metastases"
             }
-         ]
+         ],
+         "id":"4f1cea62-f9f0-4e2f-8a6c-35c5d3c9a9e7"
       },
       {
-         "id":"926079fc-54b5-4c7c-86ba-9734d3118948",
          "data":[
             {
                "E":"DISEASE",
-               "W":"Aspiration pneumonia"
+               "T":"Aspiration pneumonia"
             },
             {
                "E":"DISEASE",
-               "W":"chronic obstructive pulmonary disease"
+               "T":"chronic obstructive pulmonary disease"
             },
             {
                "E":"DISEASE",
-               "W":"exacerbation"
+               "T":"exacerbation"
             },
             {
                "E":"DISEASE",
-               "W":"Acute respiratory"
+               "T":"Acute respiratory"
             },
             {
                "E":"DISEASE",
-               "W":"chronic respiratory failure"
+               "T":"chronic respiratory failure"
             },
             {
                "E":"DISEASE",
-               "W":"chronic obstructive pulmonary disease"
+               "T":"chronic obstructive pulmonary disease"
             },
             {
                "E":"DISEASE",
-               "W":"Systemic inflammatory response syndrome"
+               "T":"Systemic inflammatory response syndrome"
             },
             {
                "E":"TEST",
-               "W":"blood cultures"
+               "T":"blood cultures"
             },
             {
                "E":"TEST",
-               "W":"sputum culture"
+               "T":"sputum culture"
             }
-         ]
+         ],
+         "id":"926079fc-54b5-4c7c-86ba-9734d3118948"
       },
       {
-         "id":"7b48cd40-917f-4613-a4c1-60cdea426ab5",
          "data":[
             {
                "E":"DATE",
-               "W":"93-year-old"
+               "T":"93-year-old"
             },
             {
                "E":"DISEASE",
-               "W":"chronic right hip pain"
+               "T":"chronic right hip pain"
             },
             {
                "E":"DISEASE",
-               "W":"osteoporosis"
+               "T":"osteoporosis"
             },
             {
                "E":"DISEASE",
-               "W":"hypertension"
+               "T":"hypertension"
             },
             {
                "E":"DISEASE",
-               "W":"depression"
+               "T":"depression"
             },
             {
                "E":"DISEASE",
-               "W":"chronic atrial fibrillation"
+               "T":"chronic atrial fibrillation"
             },
             {
                "E":"SYMPTOM",
-               "W":"severe nausea and vomiting"
+               "T":"severe nausea and vomiting"
             },
             {
                "E":"DISEASE",
-               "W":"urinary tract infection"
+               "T":"urinary tract infection"
             }
-         ]
+         ],
+         "id":"7b48cd40-917f-4613-a4c1-60cdea426ab5"
       },
       {
-         "id":"b9021855-22f4-4951-90fa-de9d4c83c53b",
          "data":[
             {
                "E":"PER",
-               "W":"Elon Musk"
+               "T":"Elon Musk"
             },
             {
                "E":"ORG",
-               "W":"Tesla Inc"
+               "T":"Tesla Inc"
             },
             {
                "E":"ORG",
-               "W":"TSLA"
+               "T":"TSLA"
             },
             {
                "E":"ORG",
-               "W":"SpaceX"
+               "T":"SpaceX"
             },
             {
                "E":"ORG",
-               "W":"PayPal"
+               "T":"PayPal"
             },
             {
                "E":"ORG",
-               "W":"PYPL"
+               "T":"PYPL"
             },
             {
                "E":"ORG",
-               "W":"Twitter Inc"
+               "T":"Twitter Inc"
             }
-         ]
+         ],
+         "id":"b9021855-22f4-4951-90fa-de9d4c83c53b"
       },
       {
-         "id":"a06388af-1a13-4534-9ea8-49de560c95ae",
          "data":[
             {
                "E":"ORG",
-               "W":"Danaos Corporation"
+               "T":"Danaos Corporation"
             },
             {
                "E":"PER",
-               "W":"John Coustas"
+               "T":"John Coustas"
             },
             {
                "E":"ORG",
-               "W":"Danaos Corporation"
+               "T":"Danaos Corporation"
             },
             {
                "E":"PER",
-               "W":"Evangelos Chatzis"
+               "T":"Evangelos Chatzis"
             },
             {
                "E":"ORG",
-               "W":"Danaos Corporation"
+               "T":"Danaos Corporation"
             }
-         ]
+         ],
+         "id":"a06388af-1a13-4534-9ea8-49de560c95ae"
       }
    ]
 }
