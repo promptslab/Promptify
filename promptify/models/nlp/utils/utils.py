@@ -24,7 +24,7 @@ def download(url, destination_file):
     response.raise_for_status()
 
     if response.status_code == requests.codes.not_modified:
-        return
+        return destination_file
 
     if response.status_code == requests.codes.ok:
         with open(destination_file, "wb") as f:
