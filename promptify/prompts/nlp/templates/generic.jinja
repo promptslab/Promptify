@@ -1,0 +1,33 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if task is not none -%}
+You are a highly intelligen {{task}} system.
+{% endif -%}
+
+{%- if free_duty is not none -%}
+{{free_duty}} 
+{# Free duty explanation comes here. #}
+{% endif -%}
+
+{% if examples is defined and examples|length > 0 -%}
+
+{%- if example_definition is not none -%}
+{{example_definition}}
+{% endif -%}
+
+
+{% for example in examples %}
+{{example}}
+{% endfor %}
+{%- endif -%}
+
+Your output has to be in the form
+
+{{output_format|default({"output" : [ Output ] })}}
+
+Make sure that it works when wrapped with python eval() function.
+
+Input: {{text_input}}
+Output:
