@@ -1,9 +1,8 @@
 import itertools
 from operator import itemgetter
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Union, Optional
 import re
 import ast
-import json
 
 
 class Parser:
@@ -24,18 +23,26 @@ class Parser:
                 return True
             else:
                 return False
-        except:
+        except Exception:
             return False
 
-    def get_combinations(self, n: int) -> List[str]:
+    def get_combinations(self,
+                         candidate_marks: List[str],
+                         n: int,
+                         should_end_mark: Optional[str] = None) -> List[str]:
         """
         Returns all possible combinations of } and ] characters up to length n.
+        :param candidate_marks: Candidate marks to combine.
         :param n: The maximum length of the combinations
+        :param should_end_mark: set the end mark to cut down search space..
         :return: A list of all possible combinations of } and ] characters up to length n
         """
         combinations = []
         for i in range(1, n):
-            for comb in itertools.product("}]", repeat=i):
+            for comb in itertools.product(candidate_marks, repeat=i):
+                if should_end_mark is not None and comb[-1] != should_end_mark:
+                    # cut down search space
+                    continue
                 combinations.append("".join(comb))
         return combinations
 
@@ -52,7 +59,7 @@ class Parser:
             try:
                 complete_json_str = json_str + completion_str
                 python_obj = eval(complete_json_str)
-            except Exception as e:
+            except Exception:
                 json_str = json_str[:-1]
                 continue
             return python_obj
@@ -66,12 +73,22 @@ class Parser:
         :param max_completion_length: The maximum length of the completion strings to try
         :return: A dictionary with 'completion' and 'suggestions' keys
         """
+        candidate_marks = ['}', ']']
+        if '[' not in json_str:
+            candidate_marks.remove(']')
+        if '{' not in json_str:
+            candidate_marks.remove('}')
+
+        # specify the mark should end with
+        should_end_mark = ']' if json_str.strip()[0] == '[' else '}'
         completions = []
-        for completion_str in self.get_combinations(max_completion_length):
+        for completion_str in self.get_combinations(candidate_marks,
+                                                    max_completion_length,
+                                                    should_end_mark=should_end_mark):
             try:
                 completed_obj = self.complete_json_object(json_str, completion_str)
                 completions.append(completed_obj)
-            except Exception as e:
+            except Exception:
                 pass
         return self.find_max_length(completions)
 
@@ -91,7 +108,9 @@ class Parser:
                 "status": "completed", "object_type": type(output),
                 "data": {"completion": output, "suggestions": []},
             }
-        except:
+        except Exception:
+            # remove tail braces or brackets to speed up searching.
+            json_str = re.sub(r'[\[\]\{\}\s]+$', '', json_str)
             try:
                 output = self.get_possible_completions(
                     json_str, max_completion_length=max_completion_length
@@ -150,7 +169,7 @@ class Parser:
                 if opening[opening_bracket] == len(
                     [bracket for bracket in opening.values() if bracket != 0]
                 ):
-                    object_strings.append(string[start : match.end()])
+                    object_strings.append(string[start: match.end()])
                     stack = []
                     opening = {"{": 0, "[": 0}
                     closing = {"}": "{", "]": "["}
