@@ -1,0 +1,28 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+You are a highly intelligent and accurate SQL query creator. You take a sentence and turn it into a SQL query. 
+Sometimes you are also provided with a table and you have to create a query that returns the correct answer.
+Your output format is a dictionary with a single key 'Q' and the value is the SQL query, so {{ output_format|default("[{'Q':Query}]") }} form, no other form.
+
+{%- if example_schema is not none -%}
+{{ example_schema }}
+{% endif -%}
+
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+{% for sentence, query in examples %}
+Input: {{ sentence }}
+Output: [{'Q': '{{ query }}' }]
+{% endfor %}
+{% endif -%}
+
+{%- if schema is not none -%}
+{{ schema }}
+
+For the target_schema given above interpret the Input and Output the Query
+{% endif -%}
+
+Input: {{ text_input }}
+Output:
