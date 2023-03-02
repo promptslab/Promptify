@@ -7,21 +7,23 @@ from .utils import get_encoder
 
 
 class OpenAI(Model):
-
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
 
-    def __init__(self, api_key: str, 
-                       model: str = "text-davinci-003"):
-        
+    def __init__(self, api_key: str, model: str = "text-davinci-003"):
         self._api_key = api_key
-        self.model    = model
-        self._openai  = openai
+        self.model = model
+        self._openai = openai
         self._openai.api_key = self._api_key
-        self.supported_models = ["text-davinci-003", "text-curie-001", "text-babbage-001", "text-ada-001"]
+        self.supported_models = [
+            "text-davinci-003",
+            "text-curie-001",
+            "text-babbage-001",
+            "text-ada-001",
+            "gpt-3.5-turbo",
+        ]
         self.encoder = get_encoder()
         assert self.model in self.list_models(), "model not supported"
-
 
     def list_models(self):
         ## get all models for OpenAI API
@@ -55,24 +57,42 @@ class OpenAI(Model):
         presence_penalty: Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
         stop: Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.
         """
-        
+
         result = []
+
         for prompt in prompts:
             len_prompt_tokens = len(self.encoder.encode(prompt))
             max_tokens_prompt = max_tokens - len_prompt_tokens
-            response = self._openai.Completion.create(
-                model=self.model,
-                prompt=prompt,
-                temperature=temperature,
-                max_tokens=max_tokens_prompt,
-                top_p=top_p,
-                frequency_penalty=frequency_penalty,
-                presence_penalty=presence_penalty,
-                stop=stop,
-            )
-            data = {}
-            data.update(response["usage"])
-            data["text"] = response["choices"][0]["text"]
-            result.append(data)
+
+            if self.model == "gpt-3.5-turbo":
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    temperature=temperature,
+                    max_tokens=max_tokens_prompt,
+                    messages=[{"role": "user", "content": prompt}],
+                )
+
+                data = {}
+                data.update(response["usage"])
+                
+                data["text"] = response["choices"][0]["message"]["content"]
+                data["role"] = response["choices"][0]["message"]["role"]
+                result.append(data)
+
+            else:
+                response = self._openai.Completion.create(
+                    model=self.model,
+                    prompt=prompt,
+                    temperature=temperature,
+                    max_tokens=max_tokens_prompt,
+                    top_p=top_p,
+                    frequency_penalty=frequency_penalty,
+                    presence_penalty=presence_penalty,
+                    stop=stop,
+                )
+                data = {}
+                data.update(response["usage"])
+                data["text"] = response["choices"][0]["text"]
+                result.append(data)
 
         return result
