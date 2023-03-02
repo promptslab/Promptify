@@ -65,7 +65,7 @@ class OpenAI(Model):
             max_tokens_prompt = max_tokens - len_prompt_tokens
 
             if self.model == "gpt-3.5-turbo":
-                response = openai.ChatCompletion.create(
+                response = self._openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     temperature=temperature,
                     max_tokens=max_tokens_prompt,
