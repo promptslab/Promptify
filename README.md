@@ -118,6 +118,7 @@ result       = nlp_prompter.fit('ner.jinja',
 | Relation-Extraction | [Relation-Extraction Examples with GPT-3](https://colab.research.google.com/drive/1iW4QNjllc8ktaQBWh3_04340V-tap1co?usp=sharing) | ✅    |
 | Summarization  | [Summarization Task Examples with GPT-3](https://colab.research.google.com/drive/1PlXIAMDtrK-RyVdDhiSZy6ztcDWsNPNw?usp=sharing) | ✅    |
 | Explanation    | [Explanation Task Examples with GPT-3](https://colab.research.google.com/drive/1PlXIAMDtrK-RyVdDhiSZy6ztcDWsNPNw?usp=sharing) | ✅    |
+| SQL Writer    | [SQL Writer Example with GPT-3](https://colab.research.google.com/drive/1JNUYCTdqkdeIAxiX-NzR-4dngdmWj0rV?usp=sharing) | ✅    |
 | Tabular Data | |    |
 | Image Data | |     |
 | More Prompts | |     |
