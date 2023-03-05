@@ -41,7 +41,11 @@ class Prompter:
         return prompt
 
     def fit(self, template_name, **kwargs):
-        prompt_variables = self.get_template_variables(template_name)
+        prompt_variables = []
+        if template_name == "bypass":
+            pass
+        else:
+            prompt_variables = self.get_template_variables(template_name)
         prompt_kwargs = {}
         model_kwargs = {}
         for variable in kwargs:
@@ -49,6 +53,14 @@ class Prompter:
                 prompt_kwargs[variable] = kwargs[variable]
             elif variable in self.model_variables:
                 model_kwargs[variable] = kwargs[variable]
-        prompt = self.generate_prompt(template_name, **prompt_kwargs)
+        prompt= ""
+        # for variable in kwargs:
+        #     print(variable)
+        if "prompt" in kwargs:
+            # if variable == "prompt":
+            prompt =  kwargs['prompt']
+        else:
+            prompt = self.generate_prompt(template_name, **prompt_kwargs)
+            
         output = self.model.run(prompts=[prompt], **model_kwargs)
         return output[0]

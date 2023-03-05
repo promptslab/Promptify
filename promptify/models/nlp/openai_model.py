@@ -10,7 +10,7 @@ class OpenAI(Model):
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
 
-    def __init__(self, api_key: str, model: str = "text-davinci-003"):
+    def __init__(self, api_key: str, model: str = "gpt-3.5-turbo"):
         self._api_key = api_key
         self.model = model
         self._openai = openai
@@ -37,7 +37,8 @@ class OpenAI(Model):
 
     def run(
         self,
-        prompts: List[str],
+        # prompts: List[str],
+        prompts,
         temperature: float = 0.7,
         max_tokens: int = 4000,
         top_p: float = 0.1,
@@ -61,15 +62,20 @@ class OpenAI(Model):
         result = []
 
         for prompt in prompts:
-            len_prompt_tokens = len(self.encoder.encode(prompt))
-            max_tokens_prompt = max_tokens - len_prompt_tokens
+
 
             if self.model == "gpt-3.5-turbo":
+                text_to_encode = ""
+                for message in prompt:
+                    text_to_encode += message["content"] + " "
+                len_prompt_tokens = len(self.encoder.encode(text_to_encode))
+                max_tokens_prompt = max_tokens - len_prompt_tokens
                 response = self._openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     temperature=temperature,
                     max_tokens=max_tokens_prompt,
-                    messages=[{"role": "user", "content": prompt}],
+                    # messages=[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": prompt}],
+                    messages=prompt,
                 )
 
                 data = {}
@@ -80,6 +86,8 @@ class OpenAI(Model):
                 result.append(data)
 
             else:
+                len_prompt_tokens = len(self.encoder.encode(prompt))
+                max_tokens_prompt = max_tokens - len_prompt_tokens
                 response = self._openai.Completion.create(
                     model=self.model,
                     prompt=prompt,
