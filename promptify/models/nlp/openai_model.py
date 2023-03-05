@@ -10,7 +10,7 @@ class OpenAI(Model):
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
 
-    def __init__(self, api_key: str, model: str = "gpt-3.5-turbo"):
+    def __init__(self, api_key: str, model: str = "text-davinci-003"):
         self._api_key = api_key
         self.model = model
         self._openai = openai
@@ -39,6 +39,7 @@ class OpenAI(Model):
         self,
         # prompts: List[str],
         prompts,
+        model,
         temperature: float = 0.7,
         max_tokens: int = 4000,
         top_p: float = 0.1,
@@ -60,6 +61,8 @@ class OpenAI(Model):
         """
 
         result = []
+        if model:
+            self.model = model
 
         for prompt in prompts:
 
@@ -74,7 +77,6 @@ class OpenAI(Model):
                     model="gpt-3.5-turbo",
                     temperature=temperature,
                     max_tokens=max_tokens_prompt,
-                    # messages=[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": prompt}],
                     messages=prompt,
                 )
 
