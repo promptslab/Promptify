@@ -1,5 +1,5 @@
 <div align="center">
-<img width="110px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/logo.png">
+<img width="110px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/logo.png">
 <h1>Promptify</h1></div>
 <!-- 
 <h2 align="center">Promptify</h2> -->
@@ -86,9 +86,9 @@ result       = nlp_prompter.fit('ner.jinja',
 ```
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/ner.png" width="250" />
-  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/multilabel.png" width="250" /> 
-  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/logo/qa_gen.png" width="250" />
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/ner.png" width="250" />
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/multilabel.png" width="250" /> 
+  <img src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/qa_gen.png" width="250" />
 </p>
 <h4 align="center">GPT-3 Example with NER, MultiLabel, Question Generation Task</h3>
 
