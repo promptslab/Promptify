@@ -6,7 +6,6 @@
 
 import os
 import sys
-import sphinx_theme
 
 sys.path.insert(0, os.path.abspath("../"))
 
@@ -66,16 +65,14 @@ source_suffix = [".rst", ".md"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'alabaster'
-html_static_path = ['_static']
+html_static_path = ['source/_static']
 
-# Stanford Theme
-# html_theme = 'sphinx_rtd_theme'
-html_theme = "stanford_theme"
-html_theme_path = [sphinx_theme.get_html_theme_path("stanford-theme")]
+# theme
+html_theme = 'sphinx_rtd_theme'
 
 
 # Below html_theme_options config depends on the theme.
-html_logo = "../logo/logo-removebg.png"
+html_logo = "../assets/logo-removebg.png"
 
 html_theme_options = {"logo_only": True, "display_version": True}
 
