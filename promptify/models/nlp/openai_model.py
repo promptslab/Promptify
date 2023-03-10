@@ -47,6 +47,7 @@ class OpenAI(Model):
     def run(
         self,
         prompts: List[str],
+        model_name: str = "text-davinci-003",
         suffix: Optional[str] = None,
         max_tokens: Optional[int] = None,
         temperature: float = 0,
@@ -70,10 +71,19 @@ class OpenAI(Model):
 
         result = []
 
+        if model_name:
+            self.model = model_name
+
         for prompt in prompts:
             # Automatically calculate max output tokens if not specified
             if not max_tokens:
-                prompt_tokens = len(self.encoder.encode(prompt))
+                prompt_tokens = 0
+                if self.model == "gpt-3.5-turbo":
+                    text_to_encode = ""
+                    text_to_encode = str(prompt)
+                    prompt_tokens = len(self.encoder.encode(text_to_encode))
+                else:
+                    prompt_tokens = len(self.encoder.encode(prompt))
                 model_max_tokens = next((v for k, v in GPT_MODEL_TOKENS.items() if re.fullmatch(k, self.model.lower())))
                 max_tokens = model_max_tokens - prompt_tokens
 
@@ -81,7 +91,7 @@ class OpenAI(Model):
             if self.model.startswith("gpt-3.5-turbo"):
                 response = self._openai.ChatCompletion.create(
                     model=self.model,
-                    messages=[{"role": "user", "content": prompt}],
+                    messages=prompt,
                     max_tokens=max_tokens,
                     temperature=temperature,
                     top_p=top_p,
