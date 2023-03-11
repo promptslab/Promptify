@@ -3,12 +3,10 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-
 import os
 import sys
 
 sys.path.insert(0, os.path.abspath("../"))
-
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -16,7 +14,8 @@ sys.path.insert(0, os.path.abspath("../"))
 project = 'Promptify'
 copyright = '2023, promptslab'
 author = 'promptslab'
-release = '2023'
+release = '0.1.4'
+version = "latest"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -30,6 +29,15 @@ extensions = [
 ]
 
 suppress_warnings = ["autosectionlabel.*"]
+
+# html_context configuration for GitHub edit link
+html_context = {
+    "display_github": True,
+    "github_user": "promptslab",
+    "github_repo": "Promptify",
+    "github_version": "main",
+    "conf_py_path": "/docs/",
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['source/_templates']
@@ -64,12 +72,8 @@ source_suffix = [".rst", ".md"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
-html_static_path = ['source/_static']
-
-# theme
 html_theme = 'sphinx_rtd_theme'
-
+html_static_path = ['source/_static']
 
 # Below html_theme_options config depends on the theme.
 html_logo = "../assets/logo-removebg.png"
