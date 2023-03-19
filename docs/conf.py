@@ -39,41 +39,26 @@ html_context = {
     "conf_py_path": "/docs/",
 }
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['source/_templates']
+# Napoleon settings
+napoleon_numpy_docstring = True
+
+
+source_suffix = [".rst", ".md"]
 
 language = 'English'
 
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
     "_build",
     "Thumbs.db",
     ".DS_Store",
-    "source/_templates/ISSUES_TEMPLATE.rst",
     "TODO/*",
 ]
 
-# Napoleon settings
-napoleon_numpy_docstring = True
-
-# Make sure the target is unique
-autosectionlabel_use_sections = False
-
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
-    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
-}
-
-
-source_suffix = [".rst", ".md"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['source/_static']
 
 # Below html_theme_options config depends on the theme.
 html_logo = "../assets/logo-removebg.png"
