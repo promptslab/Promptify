@@ -21,6 +21,8 @@ Overall, Prompt Engineering and Promptify provide a powerful and user-friendly w
    :caption: Getting Started
 
    source/getting_started/installation
+   source/getting_started/starter_tutorial
 
-
-
+.. toctree:: 
+   :maxdepth: 2
+   :caption: Guide to Promptify
