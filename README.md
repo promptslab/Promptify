@@ -123,6 +123,11 @@ result       = nlp_prompter.fit('ner.jinja',
 | Image Data | |     |
 | More Prompts | |     |
 
+
+## Docs
+
+[Promptify Docs](https://promptify.readthedocs.io/)
+
 ## Community 
 <div align="center">
 If you are interested in Prompt-Engineering, LLMs, ChatGPT and other latest research discussions, please consider joining <a href="https://discord.gg/m88xfYMbK6">PromptsLab</a></div>
