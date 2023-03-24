@@ -1,15 +1,14 @@
-import ast
 import itertools
-import json
-import re
 from operator import itemgetter
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Union, Optional
+import re
+import ast
 
 
 class Parser:
     """
     A class to parse incomplete JSON objects and provide possible completions.
-    
+
     Methods
     -------
     is_valid_json() -> bool:
@@ -51,7 +50,7 @@ class Parser:
         Notes
         -----
         This function uses the `json` module to check if the input string is valid JSON.
-        It evaluates the input string using `json.loads()`, and if it successfully loads
+        It evaluates the input string using `eval()`, and if it successfully loads
         a JSON object (either a dictionary or a list), it returns True. Otherwise, it
         returns False.
 
@@ -68,18 +67,20 @@ class Parser:
         False
         """
         try:
-            json.loads(input_str)
-            return True
-        except ValueError:
+            output = eval(input_str)
+            if isinstance(output, (dict, list)):
+                return True
+            else:
+                return False
+        except Exception:
             return False
 
-    def get_combinations(self,
-                         candidate_marks: List[str],
-                         n: int,
-                         should_end_mark: Optional[str] = None) -> List[str]:
+    def get_combinations(
+        self, candidate_marks: List[str], n: int, should_end_mark: Optional[str] = None
+    ) -> List[str]:
         """
         Return all possible combinations of candidate marks up to length n.
-        
+
         Parameters
         ----------
         candidate_marks : list of str
@@ -88,21 +89,22 @@ class Parser:
             The maximum length of the combinations.
         should_end_mark : str or None, optional
             If provided, only combinations that end with this mark will be returned, by default None.
-        
+
         Returns
         -------
         list of str
             A list of all possible combinations of candidate marks up to length n.
         """
         combinations = []
-        for i in range(1, n+1):
+        for i in range(1, n):
             for comb in itertools.product(candidate_marks, repeat=i):
                 if should_end_mark is not None and comb[-1] != should_end_mark:
+                    # cut down search space
                     continue
                 combinations.append("".join(comb))
         return combinations
 
-    def complete_json_object(json_str: str, completion_str: str) -> Any:
+    def complete_json_object(self, json_str: str, completion_str: str) -> Any:
         """
         Complete a JSON object string by appending a completion string.
 
@@ -145,13 +147,15 @@ class Parser:
                 raise ValueError("Couldn't fix JSON")
             try:
                 complete_json_str = json_str + completion_str
-                python_obj = json.loads(complete_json_str)
-            except json.JSONDecodeError:
+                python_obj = eval(complete_json_str)
+            except Exception:
                 json_str = json_str[:-1]
                 continue
             return python_obj
 
-    def get_possible_completions(self, json_str: str, max_completion_length: int = 5) -> Union[Dict[str, Any], List[Any]]:
+    def get_possible_completions(
+        self, json_str: str, max_completion_length: int = 5
+    ) -> Union[Dict[str, Any], List[Any]]:
         """
         Returns a list of possible completions for a JSON object string.
 
@@ -168,29 +172,23 @@ class Parser:
             If the completion strings are objects, returns a dictionary with 'completion' and 'suggestions' keys.
             If the completion strings are arrays, returns a list of suggested completions.
         """
+        candidate_marks = ["}", "]"]
+        if "[" not in json_str:
+            candidate_marks.remove("]")
+        if "{" not in json_str:
+            candidate_marks.remove("}")
 
-        # Determine possible candidate marks
-        candidate_marks = ['}', ']']
-        if '[' not in json_str:
-            candidate_marks.remove(']')
-        if '{' not in json_str:
-            candidate_marks.remove('}')
-
-        # Determine the mark the completion string should end with
-        should_end_mark = ']' if json_str.strip()[0] == '[' else '}'
-
-        # Generate completion strings and attempt to complete the JSON object
+        # specify the mark should end with
+        should_end_mark = "]" if json_str.strip()[0] == "[" else "}"
         completions = []
-        for completion_str in self.get_combinations(candidate_marks,
-                                                    max_completion_length,
-                                                    should_end_mark=should_end_mark):
+        for completion_str in self.get_combinations(
+            candidate_marks, max_completion_length, should_end_mark=should_end_mark
+        ):
             try:
                 completed_obj = self.complete_json_object(json_str, completion_str)
                 completions.append(completed_obj)
             except Exception:
                 pass
-            
-        # Find the longest completion and return it
         return self.find_max_length(completions)
 
     def fit(self, json_str: str, max_completion_length: int = 5) -> Dict[str, Any]:
@@ -212,8 +210,6 @@ class Parser:
             is 'failed', the 'data' key will contain an error message string. If the status is
             'incomplete', the 'data' key will contain a list of possible completions.
         """
-
-        # Try to evaluate the input JSON string
         try:
             output = eval(json_str)
             return {
@@ -222,16 +218,16 @@ class Parser:
                 "data": {"completion": output, "suggestions": []},
             }
         except Exception:
-            # If the input is incomplete, try to find possible completions
-            json_str = re.sub(r'[\[\]\{\}\s]+$', '', json_str)
+            # remove tail braces or brackets to speed up searching.
+            json_str = re.sub(r"[\[\]\{\}\s]+$", "", json_str)
             try:
-                completions = self.get_possible_completions(
+                output = self.get_possible_completions(
                     json_str, max_completion_length=max_completion_length
                 )
                 return {
-                    "status": "incomplete",
-                    "object_type": None,
-                    "data": {"suggestions": completions},
+                    "status": "completed",
+                    "object_type": type(output["completion"]),
+                    "data": output,
                 }
             except Exception as e:
                 return {
@@ -240,33 +236,37 @@ class Parser:
                     "data": {"error_message": str(e)},
                 }
 
-    def find_max_length(data_list: List[Any]) -> Dict[str, List[Any]]:
+    def find_max_length(self, data_list: List[Any]) -> Dict[str, List[Any]]:
         """
         Returns a dictionary containing the element with the maximum length in the input list,
         as well as a list of all elements sorted by length in descending order.
-        
+
         Parameters
         ----------
         data_list : list of any type
             A list of elements to be compared by length
-        
+
         Returns
         -------
         dict
             A dictionary with keys 'completion' and 'suggestions'.
-            
+
             The value of 'completion' key is the element with the maximum length in the input list.
-            
+
             The value of 'suggestions' key is a list of all elements sorted by length in descending order.
         """
-        # Find the maximum length in the list
-        max_length = max(len(str(element)) for element in data_list)
+        # Create a dictionary where the keys are the indices of the elements in the input list
+        # and the values are the lengths of the corresponding elements.
+        length_dict = {i: len(str(element)) for i, element in enumerate(data_list)}
+
+        # Sort the dictionary by value (length) in descending order.
+        sorted_indices = sorted(length_dict.items(), key=itemgetter(1), reverse=True)
 
         # Create a new dictionary with the element with the maximum length as the 'completion' value
         # and a list of all elements sorted by length as the 'suggestions' value.
         output_dict = {
-            "completion": next(element for element in data_list if len(str(element)) == max_length),
-            "suggestions": sorted(data_list, key=lambda element: len(str(element)), reverse=True),
+            "completion": data_list[sorted_indices[0][0]],
+            "suggestions": [data_list[i] for i, _ in sorted_indices],
         }
         return output_dict
 
@@ -295,24 +295,22 @@ class Parser:
         closing = {"}": "{", "]": "["}
         stack = []
         start = 0
-
         for match in re.finditer(object_regex, string):
             if len(stack) == 0:
                 start = match.start()
             stack.append(match.group(1))
-
             if match.group(1)[-1] in closing:
                 opening_bracket = closing[match.group(1)[-1]]
                 opening[opening_bracket] += 1
-                if opening[opening_bracket] == len([bracket for bracket in opening.values() if bracket != 0]):
-                    object_strings.append(string[start: match.end()])
+                if opening[opening_bracket] == len(
+                    [bracket for bracket in opening.values() if bracket != 0]
+                ):
+                    object_strings.append(string[start : match.end()])
                     stack = []
                     opening = {"{": 0, "[": 0}
                     closing = {"}": "{", "]": "["}
-
         if len(stack) > 0:
             print(f"Error: Incomplete object at end of string: {stack[-1]}")
-
         objects = []
         for object_string in object_strings:
             try:
