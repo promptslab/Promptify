@@ -20,6 +20,39 @@ def test_get_combinations(parser):
     assert combinations == ["}", "}}", "]}"]
 
 
+def test_escaped_(parser):
+    case_1 = """[[{'T': 'ANATOMY', 'E': 'immune system'},{'T': 'DISEASE', 'E': 'Parkinson's disease'},{'T': 'other', 'E': 'person's health'}]]"""
+    case_2 = """[[{"T": "ANATOMY", "E": "immune system"},{"T": "DISEASE", "E": "Parkinson"s disease"},{"T": "other", "E": "person"s health"}]]"""
+    case_3 = """[[{'T': 'ANATOMY', 'E': 'immune system'}, {'T': 'DISEASE', 'E': 'Parkinson disease'}, {'T': 'other', 'E': 'person health'}]]"""
+
+    result_1 = parser.escaped_(case_1)
+    assert eval(result_1) == [
+        [
+            {"T": "ANATOMY", "E": "immune system"},
+            {"T": "DISEASE", "E": 'Parkinson"s disease'},
+            {"T": "other", "E": 'person"s health'},
+        ]
+    ]
+
+    result_2 = parser.escaped_(case_2)
+    assert eval(result_2) == [
+        [
+            {"T": "ANATOMY", "E": "immune system"},
+            {"T": "DISEASE", "E": "Parkinson's disease"},
+            {"T": "other", "E": "person's health"},
+        ]
+    ]
+
+    result_3 = parser.escaped_(case_3)
+    assert eval(result_3) == [
+        [
+            {"T": "ANATOMY", "E": "immune system"},
+            {"T": "DISEASE", "E": "Parkinson disease"},
+            {"T": "other", "E": "person health"},
+        ]
+    ]
+
+
 def test_complete_json_object(parser):
     assert parser.complete_json_object('{"a": 1, "b": 2', "}") == {"a": 1, "b": 2}
     assert parser.complete_json_object("[1, 2, 3", "]") == [1, 2, 3]
