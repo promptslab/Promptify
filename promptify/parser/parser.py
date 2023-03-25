@@ -74,16 +74,15 @@ class Parser:
                 return False
         except Exception:
             return False
-    
-    
+
     def escaped_(self, data: str) -> str:
         if "'" in data:
-            escaped_str = re.sub(r"(?<=\w)(')(?=\w)", r'\"', data)
+            escaped_str = re.sub(r"(?<=\w)(')(?=\w)", r"\"", data)
         else:
-            escaped_str = re.sub(r'(?<=\w)(")(?=\w)', r'\'', data)
-        
+            escaped_str = re.sub(r'(?<=\w)(")(?=\w)', r"\'", data)
+
         return escaped_str
-    
+
     def get_combinations(
         self, candidate_marks: List[str], n: int, should_end_mark: Optional[str] = None
     ) -> List[str]:
