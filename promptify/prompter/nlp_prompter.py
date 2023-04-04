@@ -15,12 +15,14 @@ class Prompter:
         default_variable_values: Optional[Dict[str, Any]] = None,
         max_completion_length: int = 20,
         cache_prompt: bool = False,
+        language: str = "en",
     ) -> None:
         self.template_path = template
         self.raw_prompt = raw_prompt
         self.model = model
         self.max_completion_length = max_completion_length
         self.cache_prompt = cache_prompt
+        self.language = language
         self.prompt_cache = {}
         self.loaded_templates = {}
 
@@ -60,7 +62,7 @@ class Prompter:
             return self.loaded_templates[template]
 
         current_dir = os.path.dirname(os.path.realpath("."))
-        templates_dir = os.path.join(current_dir, "codes", "templates")
+        templates_dir = os.path.join(current_dir, "codes", "templates", self.language)
 
         default_templates = self.get_available_templates(templates_dir)
 
