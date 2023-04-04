@@ -61,8 +61,10 @@ class Prompter:
         if template in self.loaded_templates:
             return self.loaded_templates[template]
 
-        current_dir = os.path.dirname(os.path.realpath("."))
-        templates_dir = os.path.join(current_dir, "codes", "templates", self.language)
+        current_dir = os.path.dirname(os.path.realpath(__file__))
+        current_dir, _ = os.path.split(current_dir)
+
+        templates_dir = os.path.join(current_dir, "prompts", "text2text", self.language)
 
         default_templates = self.get_available_templates(templates_dir)
 
