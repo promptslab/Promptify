@@ -11,7 +11,7 @@ from promptify import __version__
 import requests
 
 
-class HuggingFace_Complete(Model):
+class HuggingFace(Model):
     name = "HuggingFace"
     description = "HuggingFace API for text completion using various models"
 
