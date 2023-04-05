@@ -1,5 +1,5 @@
 import pytest
-from parser import Parser
+from promptify import Parser
 
 
 @pytest.fixture
