@@ -1,5 +1,6 @@
 from typing import List, Dict
-from .base_model import Model
+from promptify.models.nlp.text2text.base_model import Model
+
 
 class MockModel(Model):
     
