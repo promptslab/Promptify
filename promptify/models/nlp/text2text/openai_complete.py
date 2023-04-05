@@ -6,7 +6,7 @@ from promptify.models.nlp.text2text.base_model import Model
 
 
 
-class OpenAI_Complete(Model):
+class OpenAI(Model):
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
 
