@@ -1,12 +1,12 @@
 import pytest
-from openai_model import OpenAI_Complete
+from openai_model import OpenAI
 from typing import List, Dict
 from parser import Parser
 
 
 @pytest.fixture
 def openai_complete():
-    openai_complete = OpenAI_Complete(api_key="", api_wait=5, api_retry=5)
+    openai_complete = OpenAI(api_key="", api_wait=5, api_retry=5)
     return openai_complete
 
 
