@@ -1,6 +1,6 @@
 import pytest
-from basemodel import Model
-from mockmodel import MockModel
+from promptify import Model
+from promptify import MockModel
 
 @pytest.fixture
 def mock_model():
