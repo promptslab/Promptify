@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional, Tuple, Union
 from huggingface_hub import model_info
-from .base_model import Model
+from promptify.models.nlp.text2text.base_model import Model
 from huggingface_hub.utils import (
     RepositoryNotFoundError,
     build_hf_headers,
@@ -50,7 +50,6 @@ class HuggingFace(Model):
         self.max_completion_length = max_completion_length
 
         self._verify_model()
-        self.parser = Parser()
         self.set_key(self.api_key)
 
     @classmethod
