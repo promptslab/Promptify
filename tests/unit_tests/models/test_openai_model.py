@@ -1,8 +1,7 @@
 import pytest
-from openai_model import OpenAI_Complete
+from promptify import OpenAI_Complete
 from typing import List, Dict
-from parser import Parser
-
+from promptify import Parser
 
 @pytest.fixture
 def openai_complete():
@@ -50,7 +49,7 @@ def test_execute_with_retry(openai_complete):
     ]
     results = openai_complete.execute_with_retry(prompts)
     for result in results:
-        result_s = openai_complete.model_output_with_parser(result, 20)["parsed"][
+        result_s = openai_complete.model_output(result, 20)["parsed"][
             "data"
         ]["completion"][0]
 
@@ -66,7 +65,7 @@ def test_model_output_with_parser(openai_complete):
 
     results = openai_complete.run(prompts)
     for result in results:
-        result_s = openai_complete.model_output_with_parser(result, 20)["parsed"][
+        result_s = openai_complete.model_output(result, 20)["parsed"][
             "data"
         ]["completion"][0]
 
