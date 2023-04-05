@@ -4,3 +4,7 @@ appdirs==1.4.4
 jinja2==2.11.3
 markupsafe==2.0.1
 huggingface_hub==0.12
+pytest==7.2.2
+tenacity==8.2.2
+tiktoken==0.3.2
+tqdm==4.65.0
