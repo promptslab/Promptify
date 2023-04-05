@@ -1,6 +1,6 @@
 import pytest
-from prompter import Prompter
-from openai_model import OpenAI
+from promptify import Prompter
+from promptify import OpenAI_Complete
 from typing import List, Optional, Union, Dict
 import os
 
@@ -8,12 +8,14 @@ import os
 class TestPrompter:
     @pytest.fixture
     def model(self):
-        model = OpenAI(api_key="", api_wait=1, api_retry=1)
+        model = OpenAI_Complete(api_key="", api_wait=1, api_retry=1)
         return model
 
     def test_custom_template(self, model):
+
+        # replace the template path with own path, this is just for testing
         prompter = Prompter(
-            model=model, template="/Users/Desktop/pytest_project/ner.jinja"
+            model=model, template="/Users/stoicbatman/Desktop/pytest_project/ner.jinja"
         )
         output = prompter.fit(
             "Elon Reeve Musk FRS is a business. He is the founder of SpaceX; Tesla, Inc.; Twitter, Inc.; Neuralink and OpenAI",
