@@ -1,8 +1,8 @@
 from typing import Dict, List, Optional, Tuple, Union
 import openai
 import tiktoken
-from parser import Parser
-from .base_model import Model
+from promptify.parser.parser import Parser
+from promptify.models.nlp.text2text.base_model import Model
 
 
 
