@@ -1,6 +1,6 @@
 import pytest
 from promptify import Prompter
-from promptify import OpenAI_Complete
+from promptify import OpenAI
 from typing import List, Optional, Union, Dict
 import os
 
@@ -8,7 +8,7 @@ import os
 class TestPrompter:
     @pytest.fixture
     def model(self):
-        model = OpenAI_Complete(api_key="", api_wait=1, api_retry=1)
+        model = OpenAI(api_key="", api_wait=1, api_retry=1)
         return model
 
     def test_custom_template(self, model):
