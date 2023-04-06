@@ -1,11 +1,11 @@
 import pytest
-from promptify import OpenAI_Complete
+from promptify import OpenAI
 from typing import List, Dict
 from promptify import Parser
 
 @pytest.fixture
 def openai_complete():
-    openai_complete = OpenAI_Complete(api_key="", api_wait=5, api_retry=5)
+    openai_complete = OpenAI(api_key="", api_wait=5, api_retry=5)
     return openai_complete
 
 
