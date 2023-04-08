@@ -91,8 +91,8 @@ class OpenAI(Model):
         best_of: int = 1,
         logit_bias: Optional[Dict[str, int]] = None,
         request_timeout: Union[float, Tuple[float, float]] = None,
-        api_wait=None,
-        api_retry=None,
+        api_wait= 60,
+        api_retry= 6,
         max_completion_length: int = 20,
     ):
         """
