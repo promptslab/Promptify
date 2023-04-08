@@ -106,8 +106,8 @@ class Model(metaclass=ABCMeta):
         self,
         api_key: str,
         model: str,
-        api_wait: int = None,
-        api_retry: int = None,
+        api_wait: int = 60,
+        api_retry: int = 6,
         **kwargs
     ):
         """
