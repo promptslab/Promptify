@@ -304,6 +304,10 @@ class Prompter:
         str
             The generated prompt string.
         """
+        
+        if self.raw_prompt:
+            return text_input
+        
         loader = self.load_template(self.template_path)
         variables = self.get_template_variables(
             loader["environment"], loader["template_name"]
