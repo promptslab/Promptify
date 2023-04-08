@@ -235,7 +235,7 @@ class HuggingFace(Model):
 
         return self.supported_models()[self.model]
 
-    def model_output(self, response: Dict) -> Dict:
+    def model_output(self, response: Dict, max_completion_length = None) -> Dict:
         """
         Returns the model output in a dictionary format.
 
