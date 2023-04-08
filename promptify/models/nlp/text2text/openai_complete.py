@@ -5,8 +5,74 @@ from promptify.parser.parser import Parser
 from promptify.models.nlp.text2text.base_model import Model
 
 
-
 class OpenAI(Model):
+
+    """
+    A class representing the OpenAI API for text completion using various models.
+    Attributes
+    ----------
+    name : str
+        The name of the OpenAI model.
+    description : str
+        A brief description of the OpenAI model.
+    api_key : str
+        The API key required to access the OpenAI API.
+    model : str
+        The name of the OpenAI model to use.
+    temperature : float
+        The temperature to use when generating completions.
+    top_p : float
+        The value of the "top p" parameter to use when generating completions.
+    n : int
+        The number of completions to generate.
+    logprobs : int, optional
+        If not None, includes the log probabilities of the generated tokens in the response.
+    echo : bool
+        If True, echoes the prompt in the response.
+    stop : Union[str, List[str]], optional
+        The stop sequence(s) to use when generating completions.
+    presence_penalty : float
+        The presence penalty to use when generating completions.
+    frequency_penalty : float
+        The frequency penalty to use when generating completions.
+    best_of : int
+        The number of tries to get the best completion.
+    logit_bias : Dict[str, int], optional
+        A dictionary containing logit bias values for specific tokens.
+    request_timeout : Union[float, Tuple[float, float]], optional
+        The request timeout for the OpenAI API.
+    max_completion_length : int
+        The maximum length of the completion.
+
+    Methods
+    -------
+    supported_models() -> Dict[str, str]:
+        Returns a dictionary of the supported OpenAI models with their descriptions.
+    default_max_tokens(model_name: str) -> int:
+        Returns the default maximum number of tokens for the specified model.
+    _verify_model():
+        Verifies that the specified model is supported by OpenAI.
+    set_key(api_key: str):
+        Sets the API key required to access the OpenAI API.
+    set_model(model: str):
+        Sets the OpenAI model to use.
+    get_description() -> str:
+        Returns the description of the OpenAI model.
+    get_endpoint() -> str:
+        Returns the endpoint of the OpenAI model.
+    calculate_max_tokens(prompt: str) -> int:
+        Calculates the maximum number of tokens for the completion.
+    model_output_raw(response: Dict) -> Dict:
+        Returns the raw output of the OpenAI API.
+    model_output(response: Dict, max_completion_length: int) -> Dict:
+        Returns the parsed and completed output of the OpenAI API.
+    get_parameters() -> Dict[str, Union[str, int, float, List[str], Dict[str, int]]]:
+        Returns a dictionary of the current parameters for the OpenAI model.
+    run(prompts: List[str]) -> List[Optional[str]]:
+        Runs the OpenAI model on the specified prompts and returns the completions.
+
+    """
+
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
 
@@ -29,6 +95,40 @@ class OpenAI(Model):
         api_retry=None,
         max_completion_length: int = 20,
     ):
+        """
+        Constructs an instance of the OpenAI class.
+        Parameters
+        ----------
+        api_key : str
+            The API key required to access the OpenAI API.
+        model : str, optional
+            The name of the OpenAI model to use, by default "text-davinci-003".
+        temperature : float, optional
+            The temperature to use when generating completions, by default 0.7.
+        top_p : float, optional
+            The value of the "top p" parameter to use when generating completions, by default 1.
+        n : int, optional
+            The number of completions to generate, by default 1.
+        logprobs : int, optional
+            If not None, includes the log probabilities of the generated tokens in the response, by default None.
+        echo : bool, optional
+            If True, echoes the prompt in the response, by default False.
+        stop : Union[str, List[str]], optional
+            The stop sequence(s) to use when generating completions, by default None.
+        presence_penalty : float, optional
+            The presence penalty to use when generating completions, by default 0.
+        frequency_penalty : float, optional
+            The frequency penalty to use when generating completions, by default 0.
+        best_of : int, optional
+            The number of tries to get the best completion, by default 1.
+        logit_bias : Dict[str, int], optional
+            A dictionary containing logit bias values for specific tokens, by default None.
+        request_timeout : Union[float, Tuple[float, float]], optional
+            The request timeout for the OpenAI API, by default None.
+        max_completion_length : int, optional
+            The maximum length of the completion, by default 20.
+        """
+
         super().__init__(api_key, model, api_wait, api_retry)
 
         self.temperature = temperature
@@ -44,7 +144,7 @@ class OpenAI(Model):
         self.request_timeout = request_timeout
         self.max_completion_length = max_completion_length
         self._verify_model()
-        self.encoder    = tiktoken.encoding_for_model(self.model)
+        self.encoder = tiktoken.encoding_for_model(self.model)
         self.max_tokens = self.default_max_tokens(self.model)
 
         self.parser = Parser()
@@ -52,6 +152,14 @@ class OpenAI(Model):
 
     @classmethod
     def supported_models(cls) -> Dict[str, str]:
+        """
+        Returns a dictionary of the supported OpenAI models with their descriptions.
+
+        Returns
+        -------
+        Dict[str, str]
+            A dictionary of the supported OpenAI models with their descriptions.
+        """
         return {
             "text-davinci-003": "text-davinci-003 can do any language task with better quality, longer output, and consistent instruction-following than the curie, babbage, or ada models. Also supports inserting completions within text.",
             "text-curie-001": "text-curie-001 is very capable, faster and lower cost than Davinci.",
@@ -60,6 +168,20 @@ class OpenAI(Model):
         }
 
     def default_max_tokens(self, model_name: str) -> int:
+        """
+        Returns the default maximum number of tokens for a given OpenAI model.
+
+        Parameters
+        ----------
+        model_name : str
+            The name of the OpenAI model to retrieve the default maximum number of tokens for.
+
+        Returns
+        -------
+        int
+            The default maximum number of tokens for the given OpenAI model.
+        """
+
         token_dict = {
             "text-davinci-003": 4000,
             "text-curie-001": 2048,
@@ -69,48 +191,134 @@ class OpenAI(Model):
         return token_dict[model_name]
 
     def _verify_model(self):
+        """
+        Raises a ValueError if the current OpenAI model is not supported.
+        """
         if self.model not in self.supported_models():
             raise ValueError(f"Unsupported model: {self.model}")
 
     def set_key(self, api_key: str):
+        """
+        Sets the OpenAI API key to be used for making API requests.
+
+        Parameters
+        ----------
+        api_key : str
+            The OpenAI API key to use for making API requests.
+        """
+
         self._openai = openai
         self._openai.api_key = api_key
 
     def set_model(self, model: str):
+        """
+        Sets the current OpenAI model to be used for generating completions.
+
+        Parameters
+        ----------
+        model : str
+            The name of the OpenAI model to use for generating completions.
+        """
+
         self.model = model
         self._verify_model()
 
     def get_description(self) -> str:
+        """
+        Returns the description of the current OpenAI model.
+
+        Returns
+        -------
+        str
+            The description of the current OpenAI model.
+        """
+
         return self.supported_models()[self.model]
 
     def get_endpoint(self) -> str:
+        """
+        Returns the endpoint ID of the current OpenAI model.
+
+        Returns
+        -------
+        str
+            The endpoint ID of the current OpenAI model.
+        """
         model = openai.Model.retrieve(self.model)
         return model["id"]
 
     def calculate_max_tokens(self, prompt: str) -> int:
+        """
+        Calculates the maximum number of tokens for the current OpenAI model given a prompt.
+
+        Parameters
+        ----------
+        prompt : str
+            The prompt to calculate the maximum number of tokens for.
+
+        Returns
+        -------
+        int
+            The maximum number of tokens for the current OpenAI model given the prompt.
+        """
         prompt_tokens = len(self.encoder.encode(prompt))
         max_tokens = self.default_max_tokens(self.model) - prompt_tokens
         return max_tokens
 
     def model_output_raw(self, response: Dict) -> Dict:
-        
+        """
+        Returns the raw output data from an OpenAI API response.
+
+        Parameters
+        ----------
+        response : Dict
+            The OpenAI API response.
+
+        Returns
+        -------
+        Dict
+            The raw output data from the OpenAI API response.
+        """
+
         data = {}
-        data["text"]  = response["choices"][0]["text"]
+        data["text"] = response["choices"][0]["text"]
         data["usage"] = dict(response["usage"])
         return data
 
     def model_output(self, response: Dict, max_completion_length: int) -> Dict:
-        
+        """
+        Returns a dictionary containing the parsed output from an OpenAI API response.
+
+        Parameters
+        ----------
+        response : Dict
+            The OpenAI API response.
+        max_completion_length : int
+            The maximum length of the completion.
+
+        Returns
+        -------
+        Dict
+            A dictionary containing the parsed output from the OpenAI API response.
+        """
+
         data = {}
-        data["text"]   = self.parser.escaped_(response["choices"][0]["text"])
-        data["usage"]  = dict(response["usage"])
+        data["text"] = self.parser.escaped_(response["choices"][0]["text"])
+        data["usage"] = dict(response["usage"])
         data["parsed"] = self.parser.fit(data["text"], max_completion_length)
         return data
-    
 
     def get_parameters(
         self,
     ) -> Dict[str, Union[str, int, float, List[str], Dict[str, int]]]:
+        """
+        Returns a dictionary containing the current parameters for the OpenAI API request.
+
+        Returns
+        -------
+        Dict[str, Union[str, int, float, List[str], Dict[str, int]]]
+            A dictionary containing the current parameters for the OpenAI API request.
+        """
         return {
             "max_tokens": self.max_tokens,
             "temperature": self.temperature,
@@ -128,8 +336,19 @@ class OpenAI(Model):
 
     def run(self, prompts: List[str]) -> List[Optional[str]]:
         """
-        prompts: The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
+        Generates completions for a list of prompts.
+
+        Parameters
+        ----------
+        prompts : List[str]
+            A list of prompts to generate completions for.
+
+        Returns
+        -------
+        List[Optional[str]]
+            A list of generated completions, or None if an error occurred.
         """
+
         result = []
 
         for prompt in prompts:
