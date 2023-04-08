@@ -261,7 +261,11 @@ class HuggingFace(Model):
             for each_result in response
         ]
         return data
-
+    
+    def model_output_raw(self, response)
+      return response
+    
+    
     def get_endpoint(self) -> str:
         """
         Returns the API endpoint URL for the HuggingFace model.
