@@ -120,9 +120,9 @@ class Model(metaclass=ABCMeta):
         model : str
             The name of the LLM model to use for the endpoint.
         api_wait : int, optional
-            Maximum wait time for an API request before retrying (in seconds), by default None.
+            Maximum wait time for an API request before retrying (in seconds), by default 60.
         api_retry : int, optional
-            Number of times to retry an API request before failing, by default None.
+            Number of times to retry an API request before failing, by default 6.
         **kwargs : dict
             Additional arguments to be passed to the Model API call.
 
