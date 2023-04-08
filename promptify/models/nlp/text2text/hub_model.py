@@ -255,7 +255,7 @@ class HuggingFace(Model):
         strings containing the generated text for each input prompt.
         """
         
-        return response.text
+        return [item["generated_text"] for item in response.json()]
     
 #         data = {}
 #         data["text"] = [
