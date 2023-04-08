@@ -262,7 +262,7 @@ class HuggingFace(Model):
         ]
         return data
     
-    def model_output_raw(self, response)
+    def model_output_raw(self, response):
       return response
     
     
