@@ -71,10 +71,10 @@ class HuggingFace(Model):
         top_p: Optional[float] = None,
         temperature: float = 1.0,
         repetition_penalty: Optional[float] = None,
-        max_new_tokens: Optional[int] = None,
+        max_new_tokens: Optional[int] = 20,
         max_time: Optional[float] = None,
         num_return_sequences: int = 1,
-        do_sample: bool = True,
+        do_sample: bool = False,
         api_wait=None,
         api_retry=None,
         max_completion_length: int = 20,
@@ -100,7 +100,7 @@ class HuggingFace(Model):
             The temperature to use when generating text.
         repetition_penalty : Optional[float], default=None
             The repetition penalty to use when generating text.
-        max_new_tokens : Optional[int], default=None
+        max_new_tokens : Optional[int], default=20
             The maximum number of new tokens to generate when completing text.
         max_time : Optional[float], default=None
             The maximum amount of time to spend generating text, in seconds.
