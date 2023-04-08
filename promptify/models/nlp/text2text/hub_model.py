@@ -263,7 +263,7 @@ class HuggingFace(Model):
         return data
     
     def model_output_raw(self, response):
-      return response
+      return response.text
     
     
     def get_endpoint(self) -> str:
