@@ -37,7 +37,7 @@ setup(
     author="monk1337",
     maintainer="The promptslab team with the help of all our contributors",
     packages=find_packages(),
-    package_data={"promptify.prompts.nlp": ["templates/*.jinja"]},
+    package_data={"promptify.prompts.text2text": ["en/*.jinja"]},
     install_requires=read_requirements("requirements.txt"),
     python_requires=">=3.7.0",
     extras_require={"dev": read_requirements("requirements-dev.txt")},
