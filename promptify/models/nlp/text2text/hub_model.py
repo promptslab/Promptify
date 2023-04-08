@@ -254,13 +254,15 @@ class HuggingFace(Model):
         This function converts the API response into a dictionary format, where the "text" key maps to a list of
         strings containing the generated text for each input prompt.
         """
-
-        data = {}
-        data["text"] = [
-            [item["generated_text"] for item in each_result.json()]
-            for each_result in response
-        ]
-        return data
+        
+        return response.text
+    
+#         data = {}
+#         data["text"] = [
+#             [item["generated_text"] for item in each_result.json()]
+#             for each_result in response
+#         ]
+#         return data
     
     def model_output_raw(self, response):
       return response.text
