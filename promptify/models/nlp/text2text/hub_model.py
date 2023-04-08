@@ -64,7 +64,7 @@ class HuggingFace(Model):
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model_id_or_url: str = "google/flan-t5-xl",
+        model: str = "google/flan-t5-xl",
         wait_for_model: bool = True,
         use_cache: bool = True,
         top_k: Optional[int] = None,
@@ -121,7 +121,7 @@ class HuggingFace(Model):
         """
 
         self.set_key(api_key)
-        self.set_model(model_id_or_url)
+        self.set_model(model)
         super().__init__(self.api_key, self.model, api_wait, api_retry)
 
         self.wait_for_model = wait_for_model
