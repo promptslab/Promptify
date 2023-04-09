@@ -27,6 +27,7 @@ class OpenAI_ChatComplete(Model):
         api_wait=None,
         api_retry=None,
         max_completion_length: int = 20,
+        session_identifier: str = None,
         messages = [
         {"role": "system", "content": "you are a helpful assistant"},
         ],
@@ -49,9 +50,11 @@ class OpenAI_ChatComplete(Model):
         self.encoder    = tiktoken.encoding_for_model(self.model)
         self.max_tokens = self.default_max_tokens(self.model)
         self.messages = messages.copy() if messages else []
-
         self.parser = Parser()
         self.set_key(self.api_key)
+        self.session_identifier = session_identifier
+        if session_identifier:
+            self._load_session(session_identifier)
 
     @classmethod
     def supported_models(cls) -> Dict[str, str]:
@@ -126,20 +129,30 @@ class OpenAI_ChatComplete(Model):
             "request_timeout": self.request_timeout,
         }
         
-    def store_session(self, session_identifier: str):
+    def _store_session(self, session_identifier: str):
         import json
-        with open(f"{session_identifier}.json", "w") as f:
+        import os 
+        
+        if not os.path.exists("sessions"):
+            os.mkdir("sessions")
+        with open(f"sessions/{session_identifier}.json", "w") as f:
             json.dump(self.messages, f)
             
-    def load_session(self, session_identifier: str):
+    def _load_session(self, session_identifier: str):
         import json
-        with open(f"{session_identifier}.json", "r") as f:
-            self.messages = json.load(f)
+        import os
+        
+        if not os.path.exists(f"sessions/{session_identifier}.json") or os.path.getsize(f"sessions/{session_identifier}.json") == 0:
+            print("No session found")
+        else:
+            with open(f"sessions/{session_identifier}.json", "r") as f:
+                self.messages = json.load(f)
 
     def run(self, prompt: str) -> List[Optional[str]]:
         """
         prompt: str - The prompt to use for the completion
        """
+       
         result = []
         
         self.messages.append({"role": "user", "content": prompt})
@@ -162,5 +175,8 @@ class OpenAI_ChatComplete(Model):
         self.messages.append({"role": "assistant", "content": response["choices"][0]["message"]["content"].strip(" \n")})
 
         result.append(response["choices"][0]["message"]["content"].strip(" \n"))
+        
+        if self.session_identifier:
+            self._store_session(self.session_identifier)
         
         return result[-1], self.messages
