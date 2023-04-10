@@ -11,7 +11,7 @@ from promptify import __version__
 import requests
 
 
-class HuggingFace(Model):
+class HubModel(Model):
 
     """
     A class representing the HuggingFace API for text completion using various models.
