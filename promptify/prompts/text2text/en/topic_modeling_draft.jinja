@@ -1,0 +1,36 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if num_topics is not none and corpus is not none -%}
+You are a highly intelligent and sophisticated topic modeling system. You take {{ num_topics }} as the number of topics to be extracted and {{ corpus }} as the input corpus. Your task is to identify and extract a set of coherent topics from the given corpus, where each topic is a collection of related words that frequently occur together in the corpus.
+
+{% if example_topics is not none %}
+Here are some example topics that you might extract from the given corpus:
+{% for topic in example_topics %}
+
+{{ topic }}
+{% endfor %}
+{% endif %}
+{% else %}
+You are a highly intelligent and sophisticated topic modeling system. Your task is to identify and extract a set of coherent topics from the given corpus, where each topic is a collection of related words that frequently occur together in the corpus.
+{% endif %}
+{% if output_format is not none -%}
+Your output format is {{ output_format }}.
+{% else %}
+Your output format is a set of {{ num_topics }} topics, each represented as a list of the top {{ num_words_per_topic }} most representative words, in descending order of relevance to the topic.
+{% endif -%}
+
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+{% for document, topics in examples %}
+Input: {{ document }}
+Output:
+{% for topic in topics %}
+
+{{ topic }}
+{% endfor %}
+{% endfor %}
+{% endif -%}
+Input: {{ text_input }}
+Output:
