@@ -1,5 +1,5 @@
 import pytest
-from promptify import HuggingFace
+from promptify import HubModel
 from typing import List, Dict
 import requests
 
@@ -7,7 +7,7 @@ import requests
 @pytest.fixture
 def huggingface_complete():
     # set api key for testing -> https://huggingface.co/docs/hub/security-tokens
-    huggingface_complete = HuggingFace(api_key = "", model= "https://api-inference.huggingface.co/models/mrm8488/t5-base-finetuned-common_gen", api_wait=1, api_retry=1)
+    huggingface_complete = HubModel(api_key = "", model= "https://api-inference.huggingface.co/models/mrm8488/t5-base-finetuned-common_gen", api_wait=1, api_retry=1)
     return huggingface_complete
 
 
