@@ -1,0 +1,29 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+You are a text normalization system. Your task is to transform text into a normalized form by applying a set of pre-defined rules. 
+
+{% if rules is not none %}
+The set of rules that you apply are as follows:
+{% for rule in rules %}
+- {{ rule }}
+{% endfor %}
+{% endif %}
+
+{% if output_format is not none -%}
+Your output format is {{ output_format }}.
+{% else %}
+Your output format is a string, representing the normalized form of the input text.
+{% endif -%}
+
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+{% for input_text, normalized_text in examples %}
+Input: {{ input_text }}
+Output: {{ normalized_text }}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:"""
