@@ -4,7 +4,6 @@ import tiktoken
 from parser import Parser
 from base_model import Model
 
-
 class OpenAI_ChatComplete(Model):
     name = "OpenAI"
     description = "OpenAI API for text completion using various models"
@@ -27,10 +26,9 @@ class OpenAI_ChatComplete(Model):
         api_wait=None,
         api_retry=None,
         max_completion_length: int = 20,
+        summary_threshold: int = 1500,
         session_identifier: str = None,
-        messages = [
-        {"role": "system", "content": "you are a helpful assistant"},
-        ],
+        messages = None
     ):
         super().__init__(api_key, model, api_wait, api_retry)
 
@@ -49,10 +47,11 @@ class OpenAI_ChatComplete(Model):
         self._verify_model()
         self.encoder    = tiktoken.encoding_for_model(self.model)
         self.max_tokens = self.default_max_tokens(self.model)
-        self.messages = messages.copy() if messages else []
+        self.messages = messages.copy() if messages else [{"role": "system", "content": "you are a helpful assistant"}]
         self.parser = Parser()
         self.set_key(self.api_key)
         self.session_identifier = session_identifier
+        self.summary_threshold = summary_threshold
         if session_identifier:
             self._load_session(session_identifier)
 
@@ -147,17 +146,65 @@ class OpenAI_ChatComplete(Model):
         else:
             with open(f"sessions/{session_identifier}.json", "r") as f:
                 self.messages = json.load(f)
+                
+    def summarize_conversation(self) -> List[Dict]:
+        # get all messages except the first one
+        target_list = self.messages[1:]
+        conversation = ""
+        for target in target_list:
+            conversation += target["role"]+": "+target["content"]
+            
+        max_tokens = self.calculate_max_tokens(self.messages)
+        
+        summarizer_message = '''
+        You are a message summarizer. You will be given a conversation and you will have to summarize it.
+        '''
+        
+        summary_conversation = [
+            {"role": "system", "content": summarizer_message},
+            {"role": "user", "content": conversation}
+        ]
+            
+        response = self._openai.ChatCompletion.create(
+            model=self.model,
+            messages= summary_conversation,
+            max_tokens=max_tokens,
+            temperature=self.temperature,
+            top_p=self.top_p,
+            n=self.n,
+            stop=self.stop,
+            logit_bias=self.logit_bias,
+            request_timeout=self.request_timeout,
+            presence_penalty=self.presence_penalty,
+            frequency_penalty=self.frequency_penalty,
+        )
+        del self.messages[1:]
+        
+        summary = response["choices"][0]["message"]["content"].strip(" \n")
+        
+        self.messages.append({"role": "assistant", "content": summary})
 
-    def run(self, prompt: str) -> List[Optional[str]]:
+        return self.messages, summary
+
+    def run(self, prompt: str, summarize:bool=False) -> List[Optional[str]]:
         """
         prompt: str - The prompt to use for the completion
        """
        
         result = []
         
+        str_messages =  str(self.messages)
+        prompt_tokens = len(self.encoder.encode(str_messages))
+        
+        if prompt_tokens > self.summary_threshold or summarize:
+            print("Summarizing conversation")
+            _, summary = self.summarize_conversation()
+            print("Summary:", summary)
+        
         self.messages.append({"role": "user", "content": prompt})
 
         max_tokens = self.calculate_max_tokens(self.messages)
+        
         response = self._openai.ChatCompletion.create(
             model=self.model,
             messages= self.messages,
