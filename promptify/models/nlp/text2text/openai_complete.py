@@ -1,5 +1,6 @@
 from typing import Dict, List, Optional, Tuple, Union
 import openai
+import json
 import tiktoken
 from promptify.parser.parser import Parser
 from promptify.models.nlp.text2text.base_model import Model
@@ -43,7 +44,6 @@ class OpenAI(Model):
         The request timeout for the OpenAI API.
     max_completion_length : int
         The maximum length of the completion.
-
     Methods
     -------
     supported_models() -> Dict[str, str]:
@@ -70,7 +70,6 @@ class OpenAI(Model):
         Returns a dictionary of the current parameters for the OpenAI model.
     run(prompts: List[str]) -> List[Optional[str]]:
         Runs the OpenAI model on the specified prompts and returns the completions.
-
     """
 
     name = "OpenAI"
@@ -94,6 +93,9 @@ class OpenAI(Model):
         api_wait= 60,
         api_retry= 6,
         max_completion_length: int = 20,
+        summary_threshold: int = 1500,
+        session_identifier: str = None,
+        messages = None
     ):
         """
         Constructs an instance of the OpenAI class.
@@ -147,14 +149,22 @@ class OpenAI(Model):
         self.encoder = tiktoken.encoding_for_model(self.model)
         self.max_tokens = self.default_max_tokens(self.model)
 
+        if self.model in [ "gpt-3.5-turbo"]:
+          self.messages = messages.copy() if messages else [{"role": "system", "content": "you are a helpful assistant"}]
+        else:
+          self.messages  = ""
+        
         self.parser = Parser()
         self.set_key(self.api_key)
+        self.session_identifier = session_identifier
+        self.summary_threshold = summary_threshold
+        if session_identifier:
+            self._load_session(session_identifier)
 
     @classmethod
     def supported_models(cls) -> Dict[str, str]:
         """
         Returns a dictionary of the supported OpenAI models with their descriptions.
-
         Returns
         -------
         Dict[str, str]
@@ -165,17 +175,19 @@ class OpenAI(Model):
             "text-curie-001": "text-curie-001 is very capable, faster and lower cost than Davinci.",
             "text-babbage-001": "text-babbage-001 is capable of straightforward tasks, very fast, and lower cost.",
             "text-ada-001": "text-ada-001 is capable of very simple tasks, usually the fastest model in the GPT-3 series, and lowest cost.",
+            "gpt-4": "More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat. Will be updated with our latest model iteration.",
+            "gpt-3.5-turbo": "	Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003. Will be updated with our latest model iteration",
         }
+    
+
 
     def default_max_tokens(self, model_name: str) -> int:
         """
         Returns the default maximum number of tokens for a given OpenAI model.
-
         Parameters
         ----------
         model_name : str
             The name of the OpenAI model to retrieve the default maximum number of tokens for.
-
         Returns
         -------
         int
@@ -187,6 +199,8 @@ class OpenAI(Model):
             "text-curie-001": 2048,
             "text-babbage-001": 2048,
             "text-ada-001": 2048,
+            "gpt-4": 8192,
+            "gpt-3.5-turbo": 4096,
         }
         return token_dict[model_name]
 
@@ -200,7 +214,6 @@ class OpenAI(Model):
     def set_key(self, api_key: str):
         """
         Sets the OpenAI API key to be used for making API requests.
-
         Parameters
         ----------
         api_key : str
@@ -213,7 +226,6 @@ class OpenAI(Model):
     def set_model(self, model: str):
         """
         Sets the current OpenAI model to be used for generating completions.
-
         Parameters
         ----------
         model : str
@@ -226,7 +238,6 @@ class OpenAI(Model):
     def get_description(self) -> str:
         """
         Returns the description of the current OpenAI model.
-
         Returns
         -------
         str
@@ -238,7 +249,6 @@ class OpenAI(Model):
     def get_endpoint(self) -> str:
         """
         Returns the endpoint ID of the current OpenAI model.
-
         Returns
         -------
         str
@@ -250,30 +260,30 @@ class OpenAI(Model):
     def calculate_max_tokens(self, prompt: str) -> int:
         """
         Calculates the maximum number of tokens for the current OpenAI model given a prompt.
-
         Parameters
         ----------
         prompt : str
             The prompt to calculate the maximum number of tokens for.
-
         Returns
         -------
         int
             The maximum number of tokens for the current OpenAI model given the prompt.
         """
+
+        prompt        =  str(prompt)
         prompt_tokens = len(self.encoder.encode(prompt))
-        max_tokens = self.default_max_tokens(self.model) - prompt_tokens
+        max_tokens    = self.default_max_tokens(self.model) - prompt_tokens
+
+        print(prompt_tokens, max_tokens)
         return max_tokens
 
     def model_output_raw(self, response: Dict) -> Dict:
         """
         Returns the raw output data from an OpenAI API response.
-
         Parameters
         ----------
         response : Dict
             The OpenAI API response.
-
         Returns
         -------
         Dict
@@ -281,21 +291,24 @@ class OpenAI(Model):
         """
 
         data = {}
-        data["text"] = response["choices"][0]["text"]
+
+        if self.model in [ "gpt-3.5-turbo"]:
+            data["text"] = response["choices"][0]["message"]['content'].strip(" \n")
+        else:
+            data["text"] = response["choices"][0]["text"].strip(" \n")
+        
         data["usage"] = dict(response["usage"])
         return data
 
     def model_output(self, response: Dict, max_completion_length: int) -> Dict:
         """
         Returns a dictionary containing the parsed output from an OpenAI API response.
-
         Parameters
         ----------
         response : Dict
             The OpenAI API response.
         max_completion_length : int
             The maximum length of the completion.
-
         Returns
         -------
         Dict
@@ -303,17 +316,44 @@ class OpenAI(Model):
         """
 
         data = {}
-        data["text"] = self.parser.escaped_(response["choices"][0]["text"])
+
+        if self.model in [ "gpt-3.5-turbo"]:
+            data["text"] = response["choices"][0]["message"]['content'].strip(" \n")
+        else:
+
+
+            data["text"] = response["choices"][0]["text"]
+
         data["usage"] = dict(response["usage"])
         data["parsed"] = self.parser.fit(data["text"], max_completion_length)
-        return data
 
+        return data
+    
+    def _store_session(self, session_identifier: str):
+        import json
+        import os 
+        
+        if not os.path.exists("sessions"):
+            os.mkdir("sessions")
+        with open(f"sessions/{session_identifier}.json", "w") as f:
+            json.dump(self.messages, f)
+            
+    def _load_session(self, session_identifier: str):
+        import json
+        import os
+        
+        if not os.path.exists(f"sessions/{session_identifier}.json") or os.path.getsize(f"sessions/{session_identifier}.json") == 0:
+            print("No session found")
+        else:
+            with open(f"sessions/{session_identifier}.json", "r") as f:
+                self.messages = json.load(f)
+    
+    
     def get_parameters(
         self,
     ) -> Dict[str, Union[str, int, float, List[str], Dict[str, int]]]:
         """
         Returns a dictionary containing the current parameters for the OpenAI API request.
-
         Returns
         -------
         Dict[str, Union[str, int, float, List[str], Dict[str, int]]]
@@ -337,12 +377,10 @@ class OpenAI(Model):
     def run(self, prompts: List[str]) -> List[Optional[str]]:
         """
         Generates completions for a list of prompts.
-
         Parameters
         ----------
         prompts : List[str]
             A list of prompts to generate completions for.
-
         Returns
         -------
         List[Optional[str]]
@@ -353,23 +391,45 @@ class OpenAI(Model):
 
         for prompt in prompts:
             # Automatically calculate max output tokens if not specified
-
-            max_tokens = self.calculate_max_tokens(prompt)
-            response = self._openai.Completion.create(
-                model=self.model,
-                prompt=prompt,
-                max_tokens=max_tokens,
-                temperature=self.temperature,
-                top_p=self.top_p,
-                n=self.n,
-                logprobs=self.logprobs,
-                echo=self.echo,
-                stop=self.stop,
-                best_of=self.best_of,
-                logit_bias=self.logit_bias,
-                request_timeout=self.request_timeout,
-                presence_penalty=self.presence_penalty,
-                frequency_penalty=self.frequency_penalty,
+  
+            if self.model in [ "gpt-3.5-turbo"]:
+                self.messages.append({"role": "user", "content": prompt})
+                max_tokens = self.calculate_max_tokens(self.messages)
+                response = self._openai.ChatCompletion.create(
+                    model=self.model,
+                    messages= self.messages,
+                    max_tokens=max_tokens,
+                    temperature=self.temperature,
+                    top_p=self.top_p,
+                    n=self.n,
+                    stop=self.stop,
+                    logit_bias=self.logit_bias,
+                    request_timeout=self.request_timeout,
+                    presence_penalty=self.presence_penalty,
+                    frequency_penalty=self.frequency_penalty,
             )
+                self.messages.append({"role": "assistant", "content": response["choices"][0]["message"]["content"].strip(" \n")})
+            else:
+                self.messages+=f'prompt: {prompt}'
+                max_tokens    = self.calculate_max_tokens(self.messages)
+                response      = self._openai.Completion.create(
+                    model=self.model,
+                    prompt=self.messages,
+                    max_tokens=max_tokens,
+                    temperature=self.temperature,
+                    top_p=self.top_p,
+                    n=self.n,
+                    logprobs=self.logprobs,
+                    echo=self.echo,
+                    stop=self.stop,
+                    best_of=self.best_of,
+                    logit_bias=self.logit_bias,
+                    request_timeout=self.request_timeout,
+                    presence_penalty=self.presence_penalty,
+                    frequency_penalty=self.frequency_penalty,
+                )
+                self.messages+=f'{response["choices"][0]["text"]}'
             result.append(response)
+            if self.session_identifier:
+              self._store_session(self.session_identifier)
         return result
