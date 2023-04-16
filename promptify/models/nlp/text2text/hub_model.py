@@ -75,8 +75,8 @@ class HubModel(Model):
         max_time: Optional[float] = None,
         num_return_sequences: int = 1,
         do_sample: bool = False,
-        api_wait=None,
-        api_retry=None,
+        api_wait= 60,
+        api_retry= 6,
         max_completion_length: int = 20,
     ):
         """
@@ -108,9 +108,9 @@ class HubModel(Model):
             The number of sequences to generate for each prompt.
         do_sample : bool, default=True
             Whether to use sampling when generating text.
-        api_wait : None
+        api_wait : 60
             Not used.
-        api_retry : None
+        api_retry : 6
             Not used.
         max_completion_length : int, default=20
             The maximum length of the completed text.
