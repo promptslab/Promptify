@@ -90,12 +90,12 @@ class OpenAI(Model):
         best_of: int = 1,
         logit_bias: Optional[Dict[str, int]] = None,
         request_timeout: Union[float, Tuple[float, float]] = None,
-        api_wait= 60,
-        api_retry= 6,
+        api_wait=60,
+        api_retry=6,
         max_completion_length: int = 20,
         summary_threshold: int = 1500,
         session_identifier: str = None,
-        messages = None
+        messages=None,
     ):
         """
         Constructs an instance of the OpenAI class.
@@ -149,11 +149,15 @@ class OpenAI(Model):
         self.encoder = tiktoken.encoding_for_model(self.model)
         self.max_tokens = self.default_max_tokens(self.model)
 
-        if self.model in [ "gpt-3.5-turbo"]:
-          self.messages = messages.copy() if messages else [{"role": "system", "content": "you are a helpful assistant"}]
+        if self.model in ["gpt-3.5-turbo"]:
+            self.messages = (
+                messages.copy()
+                if messages
+                else [{"role": "system", "content": "you are a helpful assistant"}]
+            )
         else:
-          self.messages  = ""
-        
+            self.messages = ""
+
         self.parser = Parser()
         self.set_key(self.api_key)
         self.session_identifier = session_identifier
@@ -178,8 +182,6 @@ class OpenAI(Model):
             "gpt-4": "More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat. Will be updated with our latest model iteration.",
             "gpt-3.5-turbo": "	Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003. Will be updated with our latest model iteration",
         }
-    
-
 
     def default_max_tokens(self, model_name: str) -> int:
         """
@@ -270,9 +272,9 @@ class OpenAI(Model):
             The maximum number of tokens for the current OpenAI model given the prompt.
         """
 
-        prompt        =  str(prompt)
+        prompt = str(prompt)
         prompt_tokens = len(self.encoder.encode(prompt))
-        max_tokens    = self.default_max_tokens(self.model) - prompt_tokens
+        max_tokens = self.default_max_tokens(self.model) - prompt_tokens
 
         print(prompt_tokens, max_tokens)
         return max_tokens
@@ -292,11 +294,11 @@ class OpenAI(Model):
 
         data = {}
 
-        if self.model in [ "gpt-3.5-turbo"]:
-            data["text"] = response["choices"][0]["message"]['content'].strip(" \n")
+        if self.model in ["gpt-3.5-turbo"]:
+            data["text"] = response["choices"][0]["message"]["content"].strip(" \n")
         else:
             data["text"] = response["choices"][0]["text"].strip(" \n")
-        
+
         data["usage"] = dict(response["usage"])
         return data
 
@@ -317,38 +319,50 @@ class OpenAI(Model):
 
         data = {}
 
-        if self.model in [ "gpt-3.5-turbo"]:
-            data["text"] = response["choices"][0]["message"]['content'].strip(" \n")
+        if self.model in ["gpt-3.5-turbo"]:
+            data["text"] = response["choices"][0]["message"]["content"].strip(" \n")
         else:
-
-
             data["text"] = response["choices"][0]["text"]
 
         data["usage"] = dict(response["usage"])
         data["parsed"] = self.parser.fit(data["text"], max_completion_length)
 
         return data
-    
+
     def _store_session(self, session_identifier: str):
         import json
-        import os 
-        
+        import os
+
         if not os.path.exists("sessions"):
             os.mkdir("sessions")
         with open(f"sessions/{session_identifier}.json", "w") as f:
             json.dump(self.messages, f)
-            
+
     def _load_session(self, session_identifier: str):
         import json
         import os
-        
-        if not os.path.exists(f"sessions/{session_identifier}.json") or os.path.getsize(f"sessions/{session_identifier}.json") == 0:
+
+        if (
+            not os.path.exists(f"sessions/{session_identifier}.json")
+            or os.path.getsize(f"sessions/{session_identifier}.json") == 0
+        ):
             print("No session found")
         else:
             with open(f"sessions/{session_identifier}.json", "r") as f:
                 self.messages = json.load(f)
-    
-    
+
+    def summarize_prompt(self, prompt, output):
+        prompt_ = "Below is the query from user and output from assisant. Please summarize the conversation. \n\n"
+        prompt_ += "Query: " + prompt + "\n\n"
+
+        print(output)
+        prompt_ += "Output: " + output["text"] + "\n\n"
+        prompt_ += "Summarized Conversation: "
+
+        print(prompt_)
+        result = self.run([prompt_])
+        return self.model_output_raw(result[0])
+
     def get_parameters(
         self,
     ) -> Dict[str, Union[str, int, float, List[str], Dict[str, int]]]:
@@ -391,13 +405,16 @@ class OpenAI(Model):
 
         for prompt in prompts:
             # Automatically calculate max output tokens if not specified
-  
-            if self.model in [ "gpt-3.5-turbo"]:
-                self.messages.append({"role": "user", "content": prompt})
-                max_tokens = self.calculate_max_tokens(self.messages)
+
+            if self.model in ["gpt-3.5-turbo"]:
+                prompt_template = [
+                    {"role": "system", "content": "you are a helpful assistant."}
+                ]
+                prompt_template.append({"role": "user", "content": prompt})
+                max_tokens = self.calculate_max_tokens(prompt_template)
                 response = self._openai.ChatCompletion.create(
                     model=self.model,
-                    messages= self.messages,
+                    messages=prompt_template,
                     max_tokens=max_tokens,
                     temperature=self.temperature,
                     top_p=self.top_p,
@@ -407,12 +424,75 @@ class OpenAI(Model):
                     request_timeout=self.request_timeout,
                     presence_penalty=self.presence_penalty,
                     frequency_penalty=self.frequency_penalty,
-            )
-                self.messages.append({"role": "assistant", "content": response["choices"][0]["message"]["content"].strip(" \n")})
+                )
+
             else:
-                self.messages+=f'prompt: {prompt}'
-                max_tokens    = self.calculate_max_tokens(self.messages)
-                response      = self._openai.Completion.create(
+                max_tokens = self.calculate_max_tokens(prompt)
+                response = self._openai.Completion.create(
+                    model=self.model,
+                    prompt=prompt,
+                    max_tokens=max_tokens,
+                    temperature=self.temperature,
+                    top_p=self.top_p,
+                    n=self.n,
+                    logprobs=self.logprobs,
+                    echo=self.echo,
+                    stop=self.stop,
+                    best_of=self.best_of,
+                    logit_bias=self.logit_bias,
+                    request_timeout=self.request_timeout,
+                    presence_penalty=self.presence_penalty,
+                    frequency_penalty=self.frequency_penalty,
+                )
+            result.append(response)
+        return result
+
+    def run_with_session(self, prompts: List[str]) -> List[Optional[str]]:
+        """
+        Generates completions for a list of prompts.
+        Parameters
+        ----------
+        prompts : List[str]
+            A list of prompts to generate completions for.
+        Returns
+        -------
+        List[Optional[str]]
+            A list of generated completions, or None if an error occurred.
+        """
+
+        result = []
+
+        for prompt in prompts:
+            # Automatically calculate max output tokens if not specified
+
+            if self.model in ["gpt-3.5-turbo"]:
+                self.messages.append({"role": "user", "content": prompt})
+                max_tokens = self.calculate_max_tokens(self.messages)
+                response = self._openai.ChatCompletion.create(
+                    model=self.model,
+                    messages=self.messages,
+                    max_tokens=max_tokens,
+                    temperature=self.temperature,
+                    top_p=self.top_p,
+                    n=self.n,
+                    stop=self.stop,
+                    logit_bias=self.logit_bias,
+                    request_timeout=self.request_timeout,
+                    presence_penalty=self.presence_penalty,
+                    frequency_penalty=self.frequency_penalty,
+                )
+
+                summurized_prompt = self.summarize_prompt(
+                    prompt, self.model_output_raw(response)
+                )
+                self.messages.append(
+                    {"role": "assistant", "content": summurized_prompt["text"]}
+                )
+
+            else:
+                self.messages += f"prompt: {prompt}"
+                max_tokens = self.calculate_max_tokens(self.messages)
+                response = self._openai.Completion.create(
                     model=self.model,
                     prompt=self.messages,
                     max_tokens=max_tokens,
@@ -428,8 +508,13 @@ class OpenAI(Model):
                     presence_penalty=self.presence_penalty,
                     frequency_penalty=self.frequency_penalty,
                 )
-                self.messages+=f'{response["choices"][0]["text"]}'
+
+                summurized_prompt = self.summarize_prompt(
+                    prompt, self.model_output_raw(response)
+                )
+                self.messages += f"{summurized_prompt}\n"
             result.append(response)
             if self.session_identifier:
-              self._store_session(self.session_identifier)
+                self._store_session(self.session_identifier)
+
         return result
