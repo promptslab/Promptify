@@ -136,7 +136,7 @@ class Prompter:
             A dictionary containing the names and paths of the templates in the directory.
         """
 
-        all_templates = glob.glob(f"{template_path}/*.jinja")
+        all_templates = glob.glob(f"{template_path}/**/*.jinja", recursive=True)
         template_names = [os.path.basename(template) for template in all_templates]
         template_dict = dict(zip(template_names, all_templates))
         return template_dict
@@ -199,8 +199,7 @@ class Prompter:
         default_templates = self.get_available_templates(templates_dir)
 
         if template in default_templates:
-            template_name = template
-            template_dir = templates_dir
+            template_dir, template_name = os.path.split(default_templates[template])
             environment = Environment(loader=FileSystemLoader(template_dir))
             template_instance = environment.get_template(template)
 
