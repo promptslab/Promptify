@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
-from typing import List, Optional, Union, Dict
+from typing import Dict, List, Optional, Union
+
 import tenacity
 
 
@@ -384,6 +385,7 @@ class Model(metaclass=ABCMeta):
                 multiplier=0.3, exp_base=3, max=self.api_wait
             ),
             stop=tenacity.stop_after_attempt(self.api_retry),
+            reraise=True,
         )
 
     def execute_with_retry(self, *args, **kwargs):
