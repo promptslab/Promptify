@@ -301,6 +301,18 @@ class Model(metaclass=ABCMeta):
         """
 
         raise NotImplementedError
+    
+    @abstractmethod
+    def summarize_conversation(self) -> List[Dict]:
+        """
+        Get the conversation history turn into a summary.
+
+        Returns:
+            List[Dict]
+                summarized conversation history
+        """
+        
+        pass
 
     @abstractmethod
     def run(self, prompts: List[str]) -> List[str]:
