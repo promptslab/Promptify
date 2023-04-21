@@ -29,6 +29,7 @@
         },
         "created": "Dec 12, 2022, 11:36 PM",
         "updated": "2023-04-21",
+        "citation": "Pal, A. (2022). Prompt for identifying named entities in text using NLP models. [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/ner
     }
 ]
 
