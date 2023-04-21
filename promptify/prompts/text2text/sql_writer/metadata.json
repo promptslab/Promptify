@@ -25,5 +25,6 @@
         },
         "created": "Feb 18, 2023, 2:22 AM",
         "updated": "2023-04-21",
+        "citation": "Akbulut, E. (2023). Convert plain text into SQL queries using NLP models. [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/sql_writer"
     }
 ]
