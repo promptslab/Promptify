@@ -3,7 +3,7 @@
         "models": ["text-davinci-003", "gpt-3.5-turbo"],
         "language": "en",
         "task": "Multiclass Text Classification",
-        "description": "Prompt for multiclass text classification using NLP models.",
+        "description": "Prompt for multiclass text classification using Large Language Models(LLMs).",
         "authors": "Ankit Pal (@monk1337)",
         "file_name": "multiclass_gpt.jinja",
         "version": "1.1",
@@ -24,7 +24,7 @@
         },
         "created": "Jan 5, 2023, 6:45 AM",
         "updated": "2023-04-21",
-        "citation": "Pal, A. (2023). Prompt for multiclass text classification using NLP models. [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/multiclass_classification",
+        "citation": "Pal, A. (2023). Prompt for multiclass text classification using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/multiclass_classification",
     }
 ]
 
