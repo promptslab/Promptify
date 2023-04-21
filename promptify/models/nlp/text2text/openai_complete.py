@@ -1,9 +1,12 @@
 from typing import Dict, List, Optional, Tuple, Union
-import openai
+
 import json
+import openai
+import tenacity
 import tiktoken
-from promptify.parser.parser import Parser
+
 from promptify.models.nlp.text2text.base_model import Model
+from promptify.parser.parser import Parser
 
 
 class OpenAI(Model):
@@ -328,6 +331,32 @@ class OpenAI(Model):
         data["parsed"] = self.parser.fit(data["text"], max_completion_length)
 
         return data
+
+    def _retry_decorator(self):
+        """
+        Decorator function for retrying API requests if they fail.
+
+        Returns
+        -------
+        tenacity.Retrying
+            A decorator function for retrying API requests.
+
+        Notes
+        -----
+        This method is a decorator function for retrying API requests using tenacity.
+        """
+
+        return tenacity.retry(
+            wait=tenacity.wait_random_exponential(
+                multiplier=0.3, exp_base=3, max=self.api_wait
+            ),
+            stop=tenacity.stop_after_attempt(self.api_retry),
+            retry=tenacity.retry_if_exception_type(
+                (openai.error.APIError, openai.error.TryAgain, openai.error.Timeout,
+                 openai.error.APIConnectionError, openai.error.RateLimitError,
+                 openai.error.ServiceUnavailableError, )),
+            reraise=True,
+        )
 
     def _store_session(self, session_identifier: str):
         import json
