@@ -2,30 +2,29 @@
     {
         "models": ["text-davinci-003", "gpt-3.5-turbo"],
         "language": "en",
-        "task": "Tabular Data Extraction",
-        "description": "Convert plain text to structured tabular data using NLP models.",
-        "authors": "Eren Akbulut (@eren23)",
-        "file_name": "tabular_extractor_gpt.jinja",
+        "task": "Multiclass Text Classification",
+        "description": "Prompt for multiclass text classification using NLP models.",
+        "authors": "Aaditya Ura (@monk1337)",
+        "file_name": "multiclass_gpt.jinja",
         "version": "1.1",
         "source": "Original",
         "tags": [
-            "tabular_data_extraction",
+            "multiclass_classification",
             "natural_language_processing",
             "text_analysis",
-            "table_extraction",
             "nlp",
-            "tabular",
-            "data_extraction",
+            "text_classification",
             "text",
-            "structure",
-            "table",
+            "classification",
         ],
         "license": {
             "name": "CC BY-SA 4.0",
             "url": "https://creativecommons.org/licenses/by-sa/4.0/",
             "restrictions": "None",
         },
-        "created": "Jan 31, 2023, 3:52 AM",
+        "created": "Jan 5, 2023, 6:45 AM",
         "updated": "2023-04-21",
     }
 ]
+
+

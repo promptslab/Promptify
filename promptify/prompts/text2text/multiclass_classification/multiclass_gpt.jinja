@@ -1,0 +1,18 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+You are a highly intelligent and accurate Multiclass Classification system. You take Passage as input and classify that as one of the following appropriate Categories:
+{{ labels }}
+Your output format is only {{ output_format|default("[{{'C': Appropriate Category from the list of provided Categories}}]")}} form, no other form.
+
+{% if examples is defined and examples|length > 0 -%}
+Examples:
+{% for sentence, label in examples %}
+Input: {{ sentence }}
+Output: [{'C': '{{ label }}' }]
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

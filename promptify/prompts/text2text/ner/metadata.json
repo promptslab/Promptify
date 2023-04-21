@@ -1,19 +1,35 @@
-[{
-    "models": ["text-davinci-003", "gpt-3.5-turbo"],
-    "language": "en",
-    "task": "Named Entity Recognition",
-    "description": "Prompt for Named Entity Recognition task",
-    "authors": "Aaditya Ura (@monk1337)",
-    "file_name": "ner_gpt.jinja",
-    "version": "1.1",
-    "source": "Original",
-    "tags": ["healthcare", "biology", "named_entity", "nlp", "entities"],
-    "license": {
-        "name": "CC BY-SA 4.0",
-        "url": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "restrictions": "None"
-    },
+[
+    {
+        "models": ["text-davinci-003", "gpt-3.5-turbo"],
+        "language": "en",
+        "task": "Named Entity Recognition (NER)",
+        "description": "Prompt for identifying named entities in text using NLP models.",
+        "authors": "Aaditya Ura (@monk1337)",
+        "file_name": "ner_gpt.jinja",
+        "version": "1.1",
+        "source": "Original",
+        "tags": [
+            "named_entities",
+            "natural_language_processing",
+            "text_analysis",
+            "entity_extraction",
+            "entity_recognition",
+            "nlp",
+            "text",
+            "entity",
+            "recognition",
+            "named",
+            "entities",
+            "ner",
+        ],
+        "license": {
+            "name": "CC BY-SA 4.0",
+            "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "restrictions": "None",
+        },
+        "created": "Dec 12, 2022, 11:36 PM",
+        "updated": "2023-04-21",
+    }
+]
 
-    "created": "Dec 12, 2022, 11:36 PM",
-    "updated": "2023-04-21"
-}]
+
