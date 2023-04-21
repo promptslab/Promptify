@@ -3,7 +3,7 @@ import openai
 import json
 import tiktoken
 from promptify.parser.parser import Parser
-from promptify.models.nlp.text2text.base_model import Model
+from .models.text2text.api.base_model import Model
 
 
 class OpenAI(Model):
