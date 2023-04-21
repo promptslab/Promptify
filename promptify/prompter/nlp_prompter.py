@@ -373,11 +373,6 @@ class Prompter:
             A list of model output strings
         """
 
-        if not self.template_path:
-            raise ValueError(
-                "ReferenceError: template is not defined. Task template from existing templates such as ner.jinja, qa.jinja etc or provide custom jinja template with absolute path"
-            )
-
         prompt = self.generate_prompt(template, text_input, **kwargs)
 
         if "verbose" in kwargs:
