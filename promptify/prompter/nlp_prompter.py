@@ -1,6 +1,7 @@
 import os
-import glob
 import uuid
+from glob import glob
+from promptify import read_json
 from typing import List, Dict, Any, Optional
 from jinja2 import Environment, FileSystemLoader, meta, Template
 
@@ -12,7 +13,7 @@ class Prompter:
     ----------
     model : any
         A language model to generate text from.
-    
+
     allowed_missing_variables : list of str, optional
         A list of variable names that are allowed to be missing from the template. Default is ['examples', 'description', 'output_format'].
     default_variable_values : dict of str: any, optional
@@ -135,6 +136,17 @@ class Prompter:
         template_dict = dict(zip(template_names, all_templates))
         return template_dict
 
+    def get_metadata(self, model_name, template_name, template_path):
+        template_name, _ = template_name.split(".jinja")
+        metadata_files = glob(os.path.join(template_path, template_name, "*.json"))
+        meta_content = read_json(metadata_files[0])
+        for metadata in meta_content:
+            if model_name in metadata["models"]:
+                metadata["file_path"] = os.path.join(template_path, template_name)
+                return metadata
+
+        return None
+
     def update_default_variable_values(self, new_defaults: Dict[str, Any]) -> None:
         """
         Updates the default variable values with the given dictionary.
@@ -168,7 +180,6 @@ class Prompter:
             template_dict[name] = self.load_template(template)
         return template_dict
 
-
     def load_template(self, template: str, from_string: bool = False):
         """
         Loads a single template and returns its information as a dictionary.
@@ -200,15 +211,17 @@ class Prompter:
         else:
             current_dir = os.path.dirname(os.path.realpath(__file__))
             current_dir, _ = os.path.split(current_dir)
+            templates_dir = os.path.join(current_dir, "prompts", "text2text")
+            all_folders = {
+                f"{folder}.jinja": folder for folder in os.listdir(templates_dir)
+            }
 
-            templates_dir     = os.path.join(current_dir, "prompts", "text2text", self.language)
-            default_templates = self.get_available_templates(templates_dir)
-
-            if template in default_templates:
-                template_name = template
-                template_dir = templates_dir
+            if template in all_folders:
+                meta_data = self.get_metadata(self.model.model, template, templates_dir)
+                template_name = meta_data["file_name"]
+                template_dir = meta_data["file_path"]
                 environment = Environment(loader=FileSystemLoader(template_dir))
-                template_instance = environment.get_template(template)
+                template_instance = environment.get_template(template_name)
 
             else:
                 self.verify_template_path(template)
@@ -228,7 +241,6 @@ class Prompter:
 
         self.loaded_templates[template] = template_data
         return self.loaded_templates[template]
-
 
     def verify_template_path(self, templates_path: str):
         if not os.path.isfile(templates_path):
@@ -311,26 +323,27 @@ class Prompter:
         str
             The generated prompt string.
         """
-        
 
-        loader = self.load_template(template)
-        variables = self.get_template_variables(
-            loader["environment"], loader["template_name"]
-        )
+        loader = self.load_template(template, kwargs.get("from_string", False))
 
-        kwargs["text_input"] = text_input
-        variables_missing = [
-            variable
-            for variable in variables
-            if variable not in kwargs
-            and variable not in self.allowed_missing_variables
-            and variable not in self.default_variable_values
-        ]
-
-        if variables_missing:
-            raise ValueError(
-                f"Missing required variables in template {', '.join(variables_missing)}"
+        if loader["environment"]:
+            variables = self.get_template_variables(
+                loader["environment"], loader["template_name"]
             )
+
+            kwargs["text_input"] = text_input
+            variables_missing = [
+                variable
+                for variable in variables
+                if variable not in kwargs
+                and variable not in self.allowed_missing_variables
+                and variable not in self.default_variable_values
+            ]
+
+            if variables_missing:
+                raise ValueError(
+                    f"Missing required variables in template {', '.join(variables_missing)}"
+                )
 
         kwargs.update(self.default_variable_values)
         prompt = loader["template"].render(**kwargs).strip()
