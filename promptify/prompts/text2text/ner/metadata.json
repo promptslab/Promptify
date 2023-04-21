@@ -3,8 +3,17 @@
     "language": "en",
     "task": "Named Entity Recognition",
     "description": "Prompt for Named Entity Recognition task",
-    "authors": "Monk1337",
+    "authors": "Aaditya Ura (@monk1337)",
     "file_name": "ner_gpt.jinja",
+    "version": "1.1",
+    "source": "Original",
+    "tags": ["healthcare", "biology", "named_entity", "nlp", "entities"],
+    "license": {
+        "name": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "restrictions": "None"
+    },
+
     "created": "Dec 12, 2022, 11:36 PM",
     "updated": "2023-04-21"
 }]
