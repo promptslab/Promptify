@@ -1,0 +1,10 @@
+[{
+    "models": ["text-davinci-003", "gpt-3.5-turbo"],
+    "language": "en",
+    "task": "Named Entity Recognition",
+    "description": "Prompt for Named Entity Recognition task",
+    "authors": "Eren Akbulut (@eren23)",
+    "file_name": "tabular_extractor_gpt.jinja",
+    "created": "Jan 31, 2023, 3:52 AM",
+    "updated": "2023-04-21"
+}]
