@@ -2,7 +2,7 @@ import os
 import glob
 import uuid
 from typing import List, Dict, Any, Optional
-from jinja2 import Environment, FileSystemLoader, meta
+from jinja2 import Environment, FileSystemLoader, meta, Template
 
 
 class Prompter:
@@ -12,10 +12,7 @@ class Prompter:
     ----------
     model : any
         A language model to generate text from.
-    template : str, optional
-        A Jinja2 template to use for generating the prompt, available template name such as ner.jinja, qa.jinja or custom template path. Must be a valid file path.
-    raw_prompt : bool, optional
-        A flag indicating whether to use raw prompts or not. Default is False.
+    
     allowed_missing_variables : list of str, optional
         A list of variable names that are allowed to be missing from the template. Default is ['examples', 'description', 'output_format'].
     default_variable_values : dict of str: any, optional
@@ -68,8 +65,6 @@ class Prompter:
     def __init__(
         self,
         model,
-        template: Optional[str] = None,
-        raw_prompt: bool = False,
         allowed_missing_variables: Optional[List[str]] = None,
         default_variable_values: Optional[Dict[str, Any]] = None,
         max_completion_length: int = 20,
@@ -99,8 +94,7 @@ class Prompter:
         language : str, optional
             The language of the templates to be loaded. Default is 'en'.
         """
-        self.template_path = template
-        self.raw_prompt = raw_prompt
+
         self.model = model
         self.max_completion_length = max_completion_length
         self.cache_prompt = cache_prompt
@@ -174,54 +168,67 @@ class Prompter:
             template_dict[name] = self.load_template(template)
         return template_dict
 
-    def load_template(self, template: str):
+
+    def load_template(self, template: str, from_string: bool = False):
         """
         Loads a single template and returns its information as a dictionary.
 
         Parameters
         ----------
         template : str
-            The path to the template to load.
+            The path to the template to load or the template content as a string if from_string is True.
+        from_string : bool, optional
+            Whether the template parameter contains the template content as a string.
 
         Returns
         -------
         dict
             A dictionary containing information on the loaded template.
         """
+
         if template in self.loaded_templates:
             return self.loaded_templates[template]
 
-        current_dir = os.path.dirname(os.path.realpath(__file__))
-        current_dir, _ = os.path.split(current_dir)
-
-        templates_dir = os.path.join(current_dir, "prompts", "text2text", self.language)
-
-        default_templates = self.get_available_templates(templates_dir)
-
-        if template in default_templates:
-            template_name = template
-            template_dir = templates_dir
-            environment = Environment(loader=FileSystemLoader(template_dir))
-            template_instance = environment.get_template(template)
-
+        if from_string:
+            template_instance = Template(template)
+            template_data = {
+                "template_name": "from_string",
+                "template_dir": None,
+                "environment": None,
+                "template": template_instance,
+            }
         else:
-            self.verify_template_path(template)
-            custom_template_dir, custom_template_name = os.path.split(template)
+            current_dir = os.path.dirname(os.path.realpath(__file__))
+            current_dir, _ = os.path.split(current_dir)
 
-            template_name = custom_template_name
-            template_dir = custom_template_dir
-            environment = Environment(loader=FileSystemLoader(template_dir))
-            template_instance = environment.get_template(custom_template_name)
+            templates_dir     = os.path.join(current_dir, "prompts", "text2text", self.language)
+            default_templates = self.get_available_templates(templates_dir)
 
-        template_data = {
-            "template_name": template_name,
-            "template_dir": template_dir,
-            "environment": environment,
-            "template": template_instance,
-        }
+            if template in default_templates:
+                template_name = template
+                template_dir = templates_dir
+                environment = Environment(loader=FileSystemLoader(template_dir))
+                template_instance = environment.get_template(template)
+
+            else:
+                self.verify_template_path(template)
+                custom_template_dir, custom_template_name = os.path.split(template)
+
+                template_name = custom_template_name
+                template_dir = custom_template_dir
+                environment = Environment(loader=FileSystemLoader(template_dir))
+                template_instance = environment.get_template(custom_template_name)
+
+            template_data = {
+                "template_name": template_name,
+                "template_dir": template_dir,
+                "environment": environment,
+                "template": template_instance,
+            }
 
         self.loaded_templates[template] = template_data
         return self.loaded_templates[template]
+
 
     def verify_template_path(self, templates_path: str):
         if not os.path.isfile(templates_path):
@@ -288,7 +295,7 @@ class Prompter:
         self.prompt_variables_map[template_name] = undeclared_variables
         return undeclared_variables
 
-    def generate_prompt(self, text_input, **kwargs) -> str:
+    def generate_prompt(self, template, text_input, **kwargs) -> str:
         """
         Generates a prompt based on a template and input variables.
 
@@ -305,10 +312,8 @@ class Prompter:
             The generated prompt string.
         """
         
-        if self.raw_prompt:
-            return text_input
-        
-        loader = self.load_template(self.template_path)
+
+        loader = self.load_template(template)
         variables = self.get_template_variables(
             loader["environment"], loader["template_name"]
         )
@@ -351,7 +356,7 @@ class Prompter:
         ]
         return outputs
 
-    def fit(self, text_input, **kwargs):
+    def fit(self, template, text_input, **kwargs):
         """
         Generates model output for a given input using a template.
 
@@ -367,15 +372,13 @@ class Prompter:
         List[str]
             A list of model output strings
         """
-        if self.raw_prompt:
-            return self.raw_fit(text_input)
 
         if not self.template_path:
             raise ValueError(
                 "ReferenceError: template is not defined. Task template from existing templates such as ner.jinja, qa.jinja etc or provide custom jinja template with absolute path"
             )
 
-        prompt = self.generate_prompt(text_input, **kwargs)
+        prompt = self.generate_prompt(template, text_input, **kwargs)
 
         if "verbose" in kwargs:
             if kwargs["verbose"]:
