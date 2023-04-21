@@ -4,7 +4,7 @@
         "language": "en",
         "task": "Named Entity Recognition (NER)",
         "description": "Prompt for identifying named entities in text using NLP models.",
-        "authors": "Aaditya Ura (@monk1337)",
+        "authors": "Ankit Pal (@monk1337)",
         "file_name": "ner_gpt.jinja",
         "version": "1.1",
         "source": "Original",
