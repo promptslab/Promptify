@@ -3,7 +3,7 @@
         "models": ["text-davinci-003", "gpt-3.5-turbo"],
         "language": "en",
         "task": "Tabular Data Extraction",
-        "description": "Convert plain text to structured tabular data using NLP models.",
+        "description": "Convert plain text to structured tabular data using Large Language Models(LLMs).",
         "authors": "Eren Akbulut (@eren23)",
         "file_name": "tabular_extractor_gpt.jinja",
         "version": "1.1",
@@ -27,6 +27,6 @@
         },
         "created": "Jan 31, 2023, 3:52 AM",
         "updated": "2023-04-21",
-        "citation": "Akbulut, E. (2023). Convert plain text to structured tabular data using NLP models. [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/tabular_extractor"
+        "citation": "Akbulut, E. (2023). Convert plain text to structured tabular data using Large Language Models(LLMs). [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/tabular_extractor"
     }
 ]
