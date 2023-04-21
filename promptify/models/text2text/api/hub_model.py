@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional, Tuple, Union
 from huggingface_hub import model_info
-from promptify.models.nlp.text2text.base_model import Model
+from .models.text2text.api.base_model import Model
 from huggingface_hub.utils import (
     RepositoryNotFoundError,
     build_hf_headers,
