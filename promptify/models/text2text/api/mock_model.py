@@ -1,5 +1,5 @@
 from typing import List, Dict
-from promptify.models.nlp.text2text.base_model import Model
+from promptify.models.text2text.api.base_model import Model
 
 
 class MockModel(Model):
