@@ -1,10 +1,19 @@
 [{
     "models": ["text-davinci-003", "gpt-3.5-turbo"],
     "language": "en",
-    "task": "Named Entity Recognition",
-    "description": "Prompt for Named Entity Recognition task",
+    "task": "Tabular Extractor",
+    "description": "Plain text to Tabular data conversion",
     "authors": "Eren Akbulut (@eren23)",
     "file_name": "tabular_extractor_gpt.jinja",
+    "version": "1.1",
+    "source": "Original",
+    "tags": ["healthcare", "biology", "Tabular", "nlp", "table"],
+    "license": {
+        "name": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "restrictions": "None"
+    },
+
     "created": "Jan 31, 2023, 3:52 AM",
     "updated": "2023-04-21"
 }]
