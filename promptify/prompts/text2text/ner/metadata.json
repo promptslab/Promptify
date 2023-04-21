@@ -1,9 +1,10 @@
-{
-    "models": ["gpt3"],
+[{
+    "models": ["text-davinci-003", "gpt-3.5-turbo"],
     "language": "en",
     "task": "Named Entity Recognition",
     "description": "Prompt for Named Entity Recognition task",
     "authors": "Monk1337",
-    "created": "2023-04-21",
-    "updated": "2023-04-22"
-}
+    "file_name": "ner_gpt.jinja",
+    "created": "Dec 12, 2022, 11:36 PM",
+    "updated": "2023-04-21"
+}]
