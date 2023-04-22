@@ -15,12 +15,12 @@
             "nlp",
             "text_classification",
             "text",
-            "classification",
+            "classification"
         ],
         "license": {
             "name": "CC BY-SA 4.0",
             "url": "https://creativecommons.org/licenses/by-sa/4.0/",
-            "restrictions": "None",
+            "restrictions": "None"
         },
         "created": "Jan 5, 2023, 6:45 AM",
         "updated": "2023-04-21",
