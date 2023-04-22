@@ -1,7 +1,7 @@
 import os
 import uuid
 from glob import glob
-from promptify import read_json
+from promptify.utils.file_utils import *
 from typing import List, Dict, Any, Optional
 from jinja2 import Environment, FileSystemLoader, meta, Template
 
