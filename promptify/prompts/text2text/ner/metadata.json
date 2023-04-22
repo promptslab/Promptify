@@ -20,12 +20,12 @@
             "recognition",
             "named",
             "entities",
-            "ner",
+            "ner"
         ],
         "license": {
             "name": "CC BY-SA 4.0",
             "url": "https://creativecommons.org/licenses/by-sa/4.0/",
-            "restrictions": "None",
+            "restrictions": "None"
         },
         "created": "Dec 12, 2022, 11:36 PM",
         "updated": "2023-04-21",
