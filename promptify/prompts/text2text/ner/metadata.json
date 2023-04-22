@@ -49,6 +49,6 @@
       "contributors":[
          
       ],
-      "citation":"Pal, A. (2022). Prompt for identifying named entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/ner"
+      "citation":"Pal, A. (2022). Prompt for identifying named entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/ner/ner_openai.jinja"
    }
 ]
