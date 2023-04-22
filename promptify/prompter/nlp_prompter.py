@@ -431,7 +431,6 @@ class Prompter:
             if self.cache_prompt:
                 self.prompt_cache[prompt] = outputs
 
-        print(outputs)
         message = create_message(template, prompt, outputs[0]['text'], outputs[0]['parsed']['data']['completion'], **variables_dict)
         self.conversation["messages"].append(message)
         write_json(self.full_path, self.conversation, 'history')
