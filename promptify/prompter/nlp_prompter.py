@@ -103,11 +103,13 @@ class Prompter:
         self.prompt_cache = {}
         self.loaded_templates = {}
 
-        self.allowed_missing_variables = allowed_missing_variables or [
+        self.allowed_missing_variables = [
             "examples",
             "description",
             "output_format",
         ]
+        
+        self.allowed_missing_variables.extend(allowed_missing_variables or [])
 
         self.default_variable_values = default_variable_values or {}
         self.model_args_count = self.model.run.__code__.co_argcount
@@ -137,6 +139,11 @@ class Prompter:
         return template_dict
 
     def get_metadata(self, model_name, template_name, template_path):
+
+        """
+        Returns the metadata for a given template.
+        """
+
         template_name, _ = template_name.split(".jinja")
         metadata_files = glob(os.path.join(template_path, template_name, "*.json"))
         meta_content = read_json(metadata_files[0])
@@ -205,7 +212,7 @@ class Prompter:
             template_data = {
                 "template_name": "from_string",
                 "template_dir": None,
-                "environment": None,
+                "environment":  None,
                 "template": template_instance,
             }
         else:
@@ -325,13 +332,13 @@ class Prompter:
         """
 
         loader = self.load_template(template, kwargs.get("from_string", False))
+        kwargs["text_input"] = text_input
 
         if loader["environment"]:
             variables = self.get_template_variables(
                 loader["environment"], loader["template_name"]
             )
 
-            kwargs["text_input"] = text_input
             variables_missing = [
                 variable
                 for variable in variables
