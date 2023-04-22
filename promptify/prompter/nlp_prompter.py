@@ -1,7 +1,14 @@
 import os
 import uuid
 from glob import glob
+import datetime
+
+from pathlib import Path
+
 from promptify.utils.file_utils import *
+from promptify.utils.conversation_utils import *
+from promptify.utils.data_utils import *
+
 from typing import List, Dict, Any, Optional
 from jinja2 import Environment, FileSystemLoader, meta, Template
 
@@ -70,7 +77,6 @@ class Prompter:
         default_variable_values: Optional[Dict[str, Any]] = None,
         max_completion_length: int = 20,
         cache_prompt: bool = False,
-        language: str = "en",
     ) -> None:
         """
         Initialize Prompter with default or user-specified settings.
@@ -99,7 +105,6 @@ class Prompter:
         self.model = model
         self.max_completion_length = max_completion_length
         self.cache_prompt = cache_prompt
-        self.language = language
         self.prompt_cache = {}
         self.loaded_templates = {}
 
@@ -117,6 +122,14 @@ class Prompter:
             1 : self.model_args_count
         ]
         self.prompt_variables_map = {}
+        
+        self.conversation_path = os.getcwd()
+        self.con_folder, self.conversation_id   = setup_folder(self.conversation_path)
+        self.full_path         = os.path.join(self.conversation_path, self.con_folder)
+        model_dict             = {key: value for key, value in model.__dict__.items() if is_string_or_digit(value)}
+        self.conversation      = get_conversation_schema(self.conversation_id, self.model.model, **model_dict)
+        write_json(self.full_path, self.conversation, 'history')
+
 
     def get_available_templates(self, template_path: str) -> Dict[str, str]:
         """
@@ -226,8 +239,8 @@ class Prompter:
             if template in all_folders:
                 meta_data = self.get_metadata(self.model.model, template, templates_dir)
                 template_name = meta_data["file_name"]
-                template_dir = meta_data["file_path"]
-                environment = Environment(loader=FileSystemLoader(template_dir))
+                template_dir  = meta_data["file_path"]
+                environment   = Environment(loader=FileSystemLoader(template_dir))
                 template_instance = environment.get_template(template_name)
 
             else:
@@ -252,6 +265,8 @@ class Prompter:
     def verify_template_path(self, templates_path: str):
         if not os.path.isfile(templates_path):
             raise ValueError(f"Templates path {templates_path} does not exist")
+    
+
 
     def list_templates(self, environment) -> List[str]:
         """
@@ -338,6 +353,7 @@ class Prompter:
             variables = self.get_template_variables(
                 loader["environment"], loader["template_name"]
             )
+            variables_dict = {temp_variable_: kwargs.get(temp_variable_, None) for temp_variable_ in variables}
 
             variables_missing = [
                 variable
@@ -351,10 +367,12 @@ class Prompter:
                 raise ValueError(
                     f"Missing required variables in template {', '.join(variables_missing)}"
                 )
+        else:
+          variables_dict = {"data": None}
 
         kwargs.update(self.default_variable_values)
         prompt = loader["template"].render(**kwargs).strip()
-        return prompt
+        return prompt, variables_dict
 
     def raw_fit(self, prompt: str):
         """
@@ -393,7 +411,7 @@ class Prompter:
             A list of model output strings
         """
 
-        prompt = self.generate_prompt(template, text_input, **kwargs)
+        prompt, variables_dict = self.generate_prompt(template, text_input, **kwargs)
 
         if "verbose" in kwargs:
             if kwargs["verbose"]:
@@ -413,4 +431,8 @@ class Prompter:
             if self.cache_prompt:
                 self.prompt_cache[prompt] = outputs
 
+        print(outputs)
+        message = create_message(template, prompt, outputs[0]['text'], outputs[0]['parsed']['data']['completion'], **variables_dict)
+        self.conversation["messages"].append(message)
+        write_json(self.full_path, self.conversation, 'history')
         return outputs
