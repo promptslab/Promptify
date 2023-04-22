@@ -5,7 +5,7 @@
         "task": "Named Entity Recognition (NER)",
         "description": "Prompt for identifying named entities in text using Large Language Models(LLMs).",
         "authors": "Ankit Pal (@monk1337)",
-        "file_name": "ner_gpt.jinja",
+        "file_name": "ner_openai.jinja",
         "version": "1.1",
         "source": "Original",
         "tags": [
