@@ -95,4 +95,4 @@ def setup_folder(folder_path: str, folder_name: str = None) -> str:
     folder = folder_path / folder_name
     folder.mkdir(parents=True, exist_ok=True)
 
-    return str(folder)
+    return str(folder), folder_name
