@@ -2,40 +2,70 @@ import json
 import datetime
 from typing import Dict, Any
 
-def get_conversation_schema(conversation_id: str, llm_name: str, **llm_metadata: Any) -> Dict[str, Any]:
+
+def get_conversation_schema(
+    conversation_id: str, llm_name: str, **llm_metadata: Any
+) -> Dict[str, Any]:
     """
     Constructs a conversation schema with the specified parameters.
-    
+
     Args:
     - conversation_id: A string representing the unique identifier of the conversation.
     - llm_name: A string representing the name of the language model.
     - **llm_metadata: Optional additional metadata to associate with the language model.
-    
+
     Returns:
     A dictionary representing the conversation schema.
     """
     # Remove any api_key from the kwargs to avoid potential security issues
-    llm_metadata.pop('api_key', None)
+    llm_metadata.pop("api_key", None)
 
     # Construct the conversation schema dictionary
     conversation_schema = {
         "conversation_id": conversation_id,
         "start_time": str(datetime.datetime.now().strftime("%Y_%m_%d:%H:%M:%S")),
-        "llm": {
-            "name": llm_name,
-            "meta_data": llm_metadata
-        },
+        "llm": {"name": llm_name, "meta_data": llm_metadata},
         "participants": [
-            {
-                "name": "User",
-                "is_bot": False
-            },
-            {
-                "name": "Assistant",
-                "is_bot": True
-            }
+            {"name": "User", "is_bot": False},
+            {"name": "Assistant", "is_bot": True},
         ],
-        "messages": []
+        "messages": [],
     }
-    
+
     return conversation_schema
+
+
+def create_message(
+    task: str,
+    prompt: str,
+    response: str,
+    structured_response: Any,
+    **template_metadata: Any
+) -> Dict[str, Any]:
+    """
+    Creates a message dictionary with the specified parameters.
+
+    Args:
+    - task: A string representing the task the message is associated with.
+    - prompt: A string representing the prompt that initiated the message.
+    - response: A string representing the message response.
+    - structured_response: A structured representation of the message response.
+    - **template_metadata: Optional metadata to associate with the message.
+
+    Returns:
+    A dictionary representing the message.
+    """
+    # Get the current timestamp as a formatted string
+    timestamp = str(datetime.datetime.now().strftime("%Y_%m_%d:%H:%M:%S"))
+
+    # Construct the message dictionary
+    message = {
+        "timestamp": timestamp,
+        "task": task,
+        "template_meta_data": template_metadata,
+        "prompt": prompt,
+        "response": response,
+        "structured_response": structured_response,
+    }
+
+    return message
