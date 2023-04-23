@@ -113,7 +113,7 @@ class Prompter:
             "description",
             "output_format",
         ]
-        
+
         self.allowed_missing_variables.extend(allowed_missing_variables or [])
 
         self.default_variable_values = default_variable_values or {}
@@ -122,14 +122,19 @@ class Prompter:
             1 : self.model_args_count
         ]
         self.prompt_variables_map = {}
-        
-        self.conversation_path = os.getcwd()
-        self.con_folder, self.conversation_id   = setup_folder(self.conversation_path)
-        self.full_path         = os.path.join(self.conversation_path, self.con_folder)
-        model_dict             = {key: value for key, value in model.__dict__.items() if is_string_or_digit(value)}
-        self.conversation      = get_conversation_schema(self.conversation_id, self.model.model, **model_dict)
-        write_json(self.full_path, self.conversation, 'history')
 
+        self.conversation_path = os.getcwd()
+        self.con_folder, self.conversation_id = setup_folder(self.conversation_path)
+        self.full_path = os.path.join(self.conversation_path, self.con_folder)
+        model_dict = {
+            key: value
+            for key, value in model.__dict__.items()
+            if is_string_or_digit(value)
+        }
+        self.conversation = get_conversation_schema(
+            self.conversation_id, self.model.model, **model_dict
+        )
+        write_json(self.full_path, self.conversation, "history")
 
     def get_available_templates(self, template_path: str) -> Dict[str, str]:
         """
@@ -152,7 +157,6 @@ class Prompter:
         return template_dict
 
     def get_metadata(self, model_name, template_name, template_path):
-
         """
         Returns the metadata for a given template.
         """
@@ -225,7 +229,7 @@ class Prompter:
             template_data = {
                 "template_name": "from_string",
                 "template_dir": None,
-                "environment":  None,
+                "environment": None,
                 "template": template_instance,
             }
         else:
@@ -239,8 +243,8 @@ class Prompter:
             if template in all_folders:
                 meta_data = self.get_metadata(self.model.model, template, templates_dir)
                 template_name = meta_data["file_name"]
-                template_dir  = meta_data["file_path"]
-                environment   = Environment(loader=FileSystemLoader(template_dir))
+                template_dir = meta_data["file_path"]
+                environment = Environment(loader=FileSystemLoader(template_dir))
                 template_instance = environment.get_template(template_name)
 
             else:
@@ -265,8 +269,6 @@ class Prompter:
     def verify_template_path(self, templates_path: str):
         if not os.path.isfile(templates_path):
             raise ValueError(f"Templates path {templates_path} does not exist")
-    
-
 
     def list_templates(self, environment) -> List[str]:
         """
@@ -353,7 +355,10 @@ class Prompter:
             variables = self.get_template_variables(
                 loader["environment"], loader["template_name"]
             )
-            variables_dict = {temp_variable_: kwargs.get(temp_variable_, None) for temp_variable_ in variables}
+            variables_dict = {
+                temp_variable_: kwargs.get(temp_variable_, None)
+                for temp_variable_ in variables
+            }
 
             variables_missing = [
                 variable
@@ -368,7 +373,7 @@ class Prompter:
                     f"Missing required variables in template {', '.join(variables_missing)}"
                 )
         else:
-          variables_dict = {"data": None}
+            variables_dict = {"data": None}
 
         kwargs.update(self.default_variable_values)
         prompt = loader["template"].render(**kwargs).strip()
@@ -431,7 +436,13 @@ class Prompter:
             if self.cache_prompt:
                 self.prompt_cache[prompt] = outputs
 
-        message = create_message(template, prompt, outputs[0]['text'], outputs[0]['parsed']['data']['completion'], **variables_dict)
+        message = create_message(
+            template,
+            prompt,
+            outputs[0]["text"],
+            outputs[0]["parsed"]["data"]["completion"],
+            **variables_dict,
+        )
         self.conversation["messages"].append(message)
-        write_json(self.full_path, self.conversation, 'history')
+        write_json(self.full_path, self.conversation, "history")
         return outputs
