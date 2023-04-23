@@ -1,0 +1,49 @@
+[
+    {
+       "models":[
+          "text-davinci-003",
+          "gpt-3.5-turbo"
+       ],
+       "language":"en",
+       "task":"Relation Extraction",
+       "description":"Prompt for identifying and extracting relationships between entities in text using Large Language Models(LLMs).",
+       "authors":"Ankit Pal",
+       "github":"monk1337",
+       "point_of_contact":"aadityaura@gmail.com",
+       "llm_parameters":{
+          "temperature":0.7
+       },
+       "file_name":"relation_extraction.jinja",
+       "sample_data":"relation_extraction_data.json",
+       "version":"1.1",
+       "source":"Original",
+       "tags":[
+          "relation_extraction",
+          "natural_language_processing",
+          "text_analysis",
+          "entity_extraction",
+          "entity_recognition",
+          "nlp",
+          "text",
+          "relation",
+          "extraction",
+          "entity",
+          "recognition",
+          "entities"
+       ],
+       "license":{
+          "name":"CC BY-SA 4.0",
+          "url":"https://creativecommons.org/licenses/by-sa/4.0/",
+          "restrictions":"None"
+       },
+       "limitations":"",
+       "created":"Dec 12, 2022, 11:36 PM",
+       "updated":"2023-04-21",
+       "nft":"",
+       "sample_output":[
+       ],
+       "contributors":[
+       ],
+       "citation":"Pal, A. (2022). Prompt for identifying and extracting relationships between entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/relation_extraction/relation_extraction.jinja"
+    }
+ ]

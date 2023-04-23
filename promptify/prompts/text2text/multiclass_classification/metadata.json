@@ -6,27 +6,41 @@
       ],
       "language":"en",
       "task":"Multiclass Text Classification",
-      "description":"Prompt for multiclass text classification using Large Language Models(LLMs).",
-      "authors":"Ankit Pal (@monk1337)",
-      "file_name":"multiclass_gpt.jinja",
+      "description":"Prompt for classifying text into multiple classes using Large Language Models(LLMs).",
+      "authors":"Ankit Pal",
+      "github":"monk1337",
+      "point_of_contact":"aadityaura@gmail.com",
+      "llm_parameters":{
+         "temperature":0.7
+      },
+      "file_name":"multiclass_classification.jinja",
+      "sample_data":"multiclass_classification_data.json",
       "version":"1.1",
       "source":"Original",
       "tags":[
-         "multiclass_classification",
+         "text_classification",
          "natural_language_processing",
          "text_analysis",
+         "multiclass_classification",
          "nlp",
-         "text_classification",
          "text",
-         "classification"
+         "classification",
+         "multiple",
+         "classes"
       ],
       "license":{
          "name":"CC BY-SA 4.0",
          "url":"https://creativecommons.org/licenses/by-sa/4.0/",
          "restrictions":"None"
       },
-      "created":"Jan 5, 2023, 6:45 AM",
+      "limitations":"",
+      "created":"Dec 12, 2022, 11:36 PM",
       "updated":"2023-04-21",
-      "citation":"Pal, A. (2023). Prompt for multiclass text classification using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/multiclass_classification"
+      "nft":"",
+      "sample_output":[{"C": "label"}],
+      "contributors":[
+         
+      ],
+      "citation":"Pal, A. (2022). Prompt for classifying text into multiple classes using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/classification/multiclass_classification.jinja"
    }
 ]

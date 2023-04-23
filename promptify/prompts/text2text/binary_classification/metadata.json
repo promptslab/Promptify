@@ -6,30 +6,28 @@
       ],
       "language":"en",
       "task":"Binary Text Classification",
-      "description":"Prompt for identifying named entities in text using Large Language Models(LLMs).",
+      "description":"Prompt for classifying text into two classes using Large Language Models(LLMs).",
       "authors":"Ankit Pal",
       "github":"monk1337",
       "point_of_contact":"aadityaura@gmail.com",
       "llm_parameters":{
          "temperature":0.7
       },
-      "file_name":"ner_openai.jinja",
-      "sample_data":"ner_openai_data.json",
+      "file_name":"binary_classification.jinja",
+      "sample_data":"binary_classification_data.json",
       "version":"1.1",
       "source":"Original",
       "tags":[
-         "named_entities",
+         "text_classification",
          "natural_language_processing",
          "text_analysis",
-         "entity_extraction",
-         "entity_recognition",
+         "binary_classification",
          "nlp",
          "text",
-         "entity",
-         "recognition",
-         "named",
-         "entities",
-         "ner"
+         "classification",
+         "binary",
+         "two",
+         "classes"
       ],
       "license":{
          "name":"CC BY-SA 4.0",
@@ -40,15 +38,11 @@
       "created":"Dec 12, 2022, 11:36 PM",
       "updated":"2023-04-21",
       "nft":"",
-      "sample_output":[
-         {
-            "T":"type of entity",
-            "E":"entity"
-         }
-      ],
+      "sample_output":{
+         "labels": "negative"
+     },
       "contributors":[
-         
       ],
-      "citation":"Pal, A. (2022). Prompt for identifying named entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/ner/ner_openai.jinja"
+      "citation":"Pal, A. (2022). Prompt for classifying text into two classes using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/binary_classification.jinja"
    }
 ]
