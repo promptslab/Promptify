@@ -1,0 +1,46 @@
+[
+    {
+       "models":[
+          "text-davinci-003",
+          "gpt-3.5-turbo"
+       ],
+       "language":"en",
+       "task":"Explanation Generation",
+       "description":"Prompt for generating explanations of concepts using Large Language Models(LLMs).",
+       "authors":"Ankit Pal",
+       "github":"monk1337",
+       "point_of_contact":"aadityaura@gmail.com",
+       "llm_parameters":{
+          "temperature":0.7
+       },
+       "file_name":"explain.jinja",
+       "sample_data":"explain_data.json",
+       "version":"1.1",
+       "source":"Original",
+       "tags":[
+          "explanation_generation",
+          "natural_language_processing",
+          "text_generation",
+          "concept_explanation",
+          "nlp",
+          "text",
+          "explanation",
+          "concept",
+          "generation"
+       ],
+       "license":{
+          "name":"CC BY-SA 4.0",
+          "url":"https://creativecommons.org/licenses/by-sa/4.0/",
+          "restrictions":"None"
+       },
+       "limitations":"",
+       "created":"Dec 12, 2022, 11:36 PM",
+       "updated":"2023-04-21",
+       "nft":"",
+       "sample_output":[],
+       "contributors":[
+          
+       ],
+       "citation":"Pal, A. (2022). Prompt for generating explanations of concepts using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/explain.jinja"
+    }
+ ]
