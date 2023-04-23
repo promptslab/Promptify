@@ -4,13 +4,12 @@ from promptify.utils.data_utils import *
 
 class ConversationLogger:
     
-    def __init__(self, conversation_path: str, conversation_id: str, llm_parameters: Dict):
+    def __init__(self, conversation_path: str, llm_parameters: Dict):
         
         """Create a logger for a conversation.
 
         Args:
             conversation_path: The path to the folder where conversations will be stored.
-            conversation_id: A unique identifier for the conversation.
             model_name: The name of the language model used in the conversation.
             model_dict: A dictionary containing metadata about the model.
         """
