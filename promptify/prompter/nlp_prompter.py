@@ -4,10 +4,10 @@ from glob import glob
 import datetime
 from pathlib import Path
 
-from prompt_cache import PromptCache
+from promptify.prompter.prompt_cache import PromptCache
 from promptify.utils.data_utils import *
-from template_loader import TemplateLoader
-from conversation_logger import ConversationLogger
+from promptify.prompter.template_loader import TemplateLoader
+from promptify.prompter.conversation_logger import ConversationLogger
 
 
 from typing import List, Dict, Any, Optional
