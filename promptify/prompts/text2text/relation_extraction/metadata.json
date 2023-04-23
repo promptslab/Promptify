@@ -44,6 +44,6 @@
        ],
        "contributors":[
        ],
-       "citation":"Pal, A. (2022). Prompt for identifying and extracting relationships between entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/relation_extraction/relation_extraction.jinja"
+       "citation":"Pal, A. (2022). Prompt for identifying and extracting relationships between entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/relation_extraction.jinja"
     }
  ]
