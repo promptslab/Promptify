@@ -7,7 +7,7 @@ from pathlib import Path
 from promptify.prompter.prompt_cache import PromptCache
 from promptify.utils.data_utils import *
 from promptify.prompter.template_loader import TemplateLoader
-from promptify.prompter.conversation_logger import ConversationLogger
+from promptify.prompter.conversation_logger import *
 
 
 from typing import List, Dict, Any, Optional
