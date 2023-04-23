@@ -197,9 +197,8 @@ class Prompter:
 
         prompt, variables_dict = self.generate_prompt(template, text_input, **kwargs)
 
-        if "verbose" in kwargs:
-            if kwargs["verbose"]:
-                print(prompt)
+        if kwargs.get("verbose", False):
+            print(prompt)
 
         if self.cache_prompt:
             output = self.prompt_cache.get(prompt)
