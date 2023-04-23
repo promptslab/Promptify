@@ -9,7 +9,7 @@ from jinja2 import Environment, FileSystemLoader, meta, Template
 
 
 class Prompter:
-    
+
     """
     A class to generate prompts and obtain completions from a language model.
     Parameters
@@ -62,14 +62,16 @@ class Prompter:
         Returns model outputs for a given prompt.
 
     """
-    
-    def __init__(self, model, allowed_missing_variables: Optional[List[str]] = None,
-             default_variable_values: Optional[Dict[str, Any]] = None,
-             max_completion_length: int = 20,
-             cache_prompt: bool = False,
-            cache_size: int = 200,
-            ) -> None:
-        
+
+    def __init__(
+        self,
+        model,
+        allowed_missing_variables: Optional[List[str]] = None,
+        default_variable_values: Optional[Dict[str, Any]] = None,
+        max_completion_length: int = 20,
+        cache_prompt: bool = False,
+        cache_size: int = 200,
+    ) -> None:
         """
         Initialize Prompter with default or user-specified settings.
 
@@ -93,7 +95,7 @@ class Prompter:
         language : str, optional
             The language of the templates to be loaded. Default is 'en'.
         """
-        
+
         self.model = model
         self.max_completion_length = max_completion_length
         self.cache_prompt = cache_prompt
@@ -125,7 +127,6 @@ class Prompter:
         self.default_variable_values.update(new_defaults)
 
     def generate_prompt(self, template, text_input, **kwargs) -> str:
-        
         """
         Generates a prompt based on a template and input variables.
 
@@ -141,11 +142,11 @@ class Prompter:
         str
             The generated prompt string.
         """
-        
+
         loader = self.template_loader.load_template(
             template, self.model_dict["model"], kwargs.get("from_string", False)
         )
-        
+
         kwargs["text_input"] = text_input
 
         if loader["environment"]:
@@ -192,7 +193,7 @@ class Prompter:
         List[str]
             A list of model output strings
         """
-            
+
         prompt, variables_dict = self.generate_prompt(template, text_input, **kwargs)
 
         if "verbose" in kwargs:
