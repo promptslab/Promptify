@@ -1,4 +1,5 @@
 import json
+import uuid
 import datetime
 from typing import Dict, Any
 
@@ -57,10 +58,13 @@ def create_message(
     """
     # Get the current timestamp as a formatted string
     timestamp = str(datetime.datetime.now().strftime("%Y_%m_%d:%H:%M:%S"))
+    prompt_id = str(uuid.uuid4())
 
     # Construct the message dictionary
+    
     message = {
         "timestamp": timestamp,
+        "prompt_id":prompt_id,
         "task": task,
         "template_meta_data": template_metadata,
         "prompt": prompt,
