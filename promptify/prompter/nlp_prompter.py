@@ -70,7 +70,7 @@ class Prompter:
         allowed_missing_variables: Optional[List[str]] = None,
         default_variable_values: Optional[Dict[str, Any]] = None,
         max_completion_length: int = 20,
-        cache_prompt: bool = False,
+        cache_prompt: bool = True,
         cache_size: int = 200,
     ) -> None:
         """
