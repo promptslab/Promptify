@@ -1,0 +1,28 @@
+name: MongoDB Integration
+on:
+  push:
+    branches: [main]
+
+jobs:
+  mongodb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Push data to MongoDB
+        run: node app.js
+        env:
+          MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+          MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+
+      - name: Commit Changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: "prompt_bot"
+          author_email: actions@github.com
+          message: adding unique id to the metadata
+          add: promptify/prompts/text2text
