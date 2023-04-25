@@ -38,45 +38,6 @@
          "url":"https://creativecommons.org/licenses/by-sa/4.0/",
          "restrictions":"None"
       },
-      "sample_input":"The patient is a 93-year-old female with a medical history of chronic right hip pain, osteoporosis,hypertension, depression, and chronic atria fibrillation admitted for evaluation and management of severe nausea and vomiting and urinary tract infection",
-      "sample_output":[
-         {
-            "E":"93-year-old",
-            "T":"Age"
-         },
-         {
-            "E":"chronic right hip pain",
-            "T":"Medical Condition"
-         },
-         {
-            "E":"osteoporosis",
-            "T":"Medical Condition"
-         },
-         {
-            "E":"hypertension",
-            "T":"Medical Condition"
-         },
-         {
-            "E":"depression",
-            "T":"Medical Condition"
-         },
-         {
-            "E":"chronic atrial fibrillation",
-            "T":"Medical Condition"
-         },
-         {
-            "E":"severe nausea and vomiting",
-            "T":"Symptom"
-         },
-         {
-            "E":"urinary tract infection",
-            "T":"Medical Condition"
-         },
-         {
-            "Branch":"Internal Medicine",
-            "Group":"Geriatrics"
-         }
-      ],
       "limitations":"",
       "created":"Dec 12, 2022, 11:36 PM",
       "updated":"2023-04-21",
