@@ -1,47 +1,45 @@
 [
-    {
-       "models":[
-          "text-davinci-003",
-          "gpt-3.5-turbo"
-       ],
-       "language":"en",
-       "task":"Multilabel Text Classification",
-       "description":"Prompt for assigning multiple labels to text using Large Language Models(LLMs).",
-       "authors":"Ankit Pal",
-       "github":"monk1337",
-       "point_of_contact":"aadityaura@gmail.com",
-       "llm_parameters":{
-          "temperature":0.7
-       },
-       "file_name":"multilabel_classification.jinja",
-       "sample_data":"multilabel_classification_data.json",
-       "version":"1.1",
-       "source":"Original",
-       "tags":[
-          "text_classification",
-          "natural_language_processing",
-          "text_analysis",
-          "multilabel_classification",
-          "nlp",
-          "text",
-          "classification",
-          "multiple",
-          "labels"
-       ],
-       "license":{
-          "name":"CC BY-SA 4.0",
-          "url":"https://creativecommons.org/licenses/by-sa/4.0/",
-          "restrictions":"None"
-       },
-       "limitations":"",
-       "created":"Dec 12, 2022, 11:36 PM",
-       "updated":"2023-04-21",
-       "nft":"",
-       "sample_output":[
-       ],
-       "contributors":[
-          
-       ],
-       "citation":"Pal, A. (2022). Prompt for assigning multiple labels to text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/multilabel_classification.jinja"
-    }
- ]
+   {
+      "models": [
+         "text-davinci-003",
+         "gpt-3.5-turbo"
+      ],
+      "language": "en",
+      "task": "Multilabel Text Classification",
+      "description": "Prompt for assigning multiple labels to text using Large Language Models(LLMs).",
+      "authors": "Ankit Pal",
+      "github": "monk1337",
+      "point_of_contact": "aadityaura@gmail.com",
+      "llm_parameters": {
+         "temperature": 0.7
+      },
+      "file_name": "multilabel_classification.jinja",
+      "sample_data": "multilabel_classification_data.json",
+      "version": "1.1",
+      "source": "Original",
+      "tags": [
+         "text_classification",
+         "natural_language_processing",
+         "text_analysis",
+         "multilabel_classification",
+         "nlp",
+         "text",
+         "classification",
+         "multiple",
+         "labels"
+      ],
+      "license": {
+         "name": "CC BY-SA 4.0",
+         "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+         "restrictions": "None"
+      },
+      "limitations": "",
+      "created": "Dec 12, 2022, 11:36 PM",
+      "updated": "2023-04-21",
+      "nft": "",
+      "sample_output": [],
+      "contributors": [],
+      "citation": "Pal, A. (2022). Prompt for assigning multiple labels to text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/multilabel_classification.jinja",
+      "promptId": "f92079f2-4710-4107-aec0-e430cbcc3635"
+   }
+]

@@ -1,23 +1,23 @@
 [
    {
-      "models":[
+      "models": [
          "text-davinci-003",
          "gpt-3.5-turbo"
       ],
-      "language":"en",
-      "task":"Binary Text Classification",
-      "description":"Prompt for classifying text into two classes using Large Language Models(LLMs).",
-      "authors":"Ankit Pal",
-      "github":"monk1337",
-      "point_of_contact":"aadityaura@gmail.com",
-      "llm_parameters":{
-         "temperature":0.7
+      "language": "en",
+      "task": "Binary Text Classification",
+      "description": "Prompt for classifying text into two classes using Large Language Models(LLMs).",
+      "authors": "Ankit Pal",
+      "github": "monk1337",
+      "point_of_contact": "aadityaura@gmail.com",
+      "llm_parameters": {
+         "temperature": 0.7
       },
-      "file_name":"binary_classification.jinja",
-      "sample_data":"binary_classification_data.json",
-      "version":"1.1",
-      "source":"Original",
-      "tags":[
+      "file_name": "binary_classification.jinja",
+      "sample_data": "binary_classification_data.json",
+      "version": "1.1",
+      "source": "Original",
+      "tags": [
          "text_classification",
          "natural_language_processing",
          "text_analysis",
@@ -29,20 +29,20 @@
          "two",
          "classes"
       ],
-      "license":{
-         "name":"CC BY-SA 4.0",
-         "url":"https://creativecommons.org/licenses/by-sa/4.0/",
-         "restrictions":"None"
+      "license": {
+         "name": "CC BY-SA 4.0",
+         "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+         "restrictions": "None"
       },
-      "limitations":"",
-      "created":"Dec 12, 2022, 11:36 PM",
-      "updated":"2023-04-21",
-      "nft":"",
-      "sample_output":{
+      "limitations": "",
+      "created": "Dec 12, 2022, 11:36 PM",
+      "updated": "2023-04-21",
+      "nft": "",
+      "sample_output": {
          "labels": "negative"
-     },
-      "contributors":[
-      ],
-      "citation":"Pal, A. (2022). Prompt for classifying text into two classes using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/binary_classification.jinja"
+      },
+      "contributors": [],
+      "citation": "Pal, A. (2022). Prompt for classifying text into two classes using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/binary_classification.jinja",
+      "promptId": "dbd5ae07-71e3-442b-a5b9-bf6aa63f8714"
    }
 ]

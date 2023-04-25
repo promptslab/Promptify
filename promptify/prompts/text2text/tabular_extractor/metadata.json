@@ -1,30 +1,36 @@
-[{
-	"models": ["text-davinci-003", "gpt-3.5-turbo"],
-	"language": "en",
-	"task": "Tabular Data Extraction",
-	"description": "Convert plain text to structured tabular data using Large Language Models(LLMs).",
-	"authors": "Eren Akbulut (@eren23)",
-	"file_name": "tabular_extractor_gpt.jinja",
-	"version": "1.1",
-	"source": "Original",
-	"tags": [
-		"tabular_data_extraction",
-		"natural_language_processing",
-		"text_analysis",
-		"table_extraction",
-		"nlp",
-		"tabular",
-		"data_extraction",
-		"text",
-		"structure",
-		"table"
-	],
-	"license": {
-		"name": "CC BY-SA 4.0",
-		"url": "https://creativecommons.org/licenses/by-sa/4.0/",
-		"restrictions": "None"
-	},
-	"created": "Jan 31, 2023, 3:52 AM",
-	"updated": "2023-04-21",
-	"citation": "Akbulut, E. (2023). Convert plain text to structured tabular data using Large Language Models(LLMs). [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/tabular_extractor"
-}]
+[
+   {
+      "models": [
+         "text-davinci-003",
+         "gpt-3.5-turbo"
+      ],
+      "language": "en",
+      "task": "Tabular Data Extraction",
+      "description": "Convert plain text to structured tabular data using Large Language Models(LLMs).",
+      "authors": "Eren Akbulut (@eren23)",
+      "file_name": "tabular_extractor_gpt.jinja",
+      "version": "1.1",
+      "source": "Original",
+      "tags": [
+         "tabular_data_extraction",
+         "natural_language_processing",
+         "text_analysis",
+         "table_extraction",
+         "nlp",
+         "tabular",
+         "data_extraction",
+         "text",
+         "structure",
+         "table"
+      ],
+      "license": {
+         "name": "CC BY-SA 4.0",
+         "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+         "restrictions": "None"
+      },
+      "created": "Jan 31, 2023, 3:52 AM",
+      "updated": "2023-04-21",
+      "citation": "Akbulut, E. (2023). Convert plain text to structured tabular data using Large Language Models(LLMs). [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/tabular_extractor",
+      "promptId": "d5bae62d-6229-4fd9-8f22-f5df7fb5fe85"
+   }
+]
