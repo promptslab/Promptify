@@ -4,6 +4,7 @@
          "text-davinci-003",
          "gpt-3.5-turbo"
       ],
+      "prompt":"You are a highly intelligent and accurate Named-entity recognition(NER) system. You take Passage as input and your task is to recognize and extract specific types of named entities in that given passage and classify into a set of entity types. Your output format is only [{'T': type of entity from predefined entity types, 'E': entity in the input text}},...,{{'branch' : Appropriate branch of the passage ,'group': Appropriate Group of the passage}] form, no other form.",
       "language":"en",
       "task":"Named Entity Recognition (NER)",
       "description":"Prompt for identifying named entities in text using Large Language Models(LLMs).",
@@ -36,16 +37,49 @@
          "url":"https://creativecommons.org/licenses/by-sa/4.0/",
          "restrictions":"None"
       },
+      "sample_input":"The patient is a 93-year-old female with a medical history of chronic right hip pain, osteoporosis,hypertension, depression, and chronic atria fibrillation admitted for evaluation and management of severe nausea and vomiting and urinary tract infection",
+      "sample_output":[
+         {
+            "E":"93-year-old",
+            "T":"Age"
+         },
+         {
+            "E":"chronic right hip pain",
+            "T":"Medical Condition"
+         },
+         {
+            "E":"osteoporosis",
+            "T":"Medical Condition"
+         },
+         {
+            "E":"hypertension",
+            "T":"Medical Condition"
+         },
+         {
+            "E":"depression",
+            "T":"Medical Condition"
+         },
+         {
+            "E":"chronic atrial fibrillation",
+            "T":"Medical Condition"
+         },
+         {
+            "E":"severe nausea and vomiting",
+            "T":"Symptom"
+         },
+         {
+            "E":"urinary tract infection",
+            "T":"Medical Condition"
+         },
+         {
+            "Branch":"Internal Medicine",
+            "Group":"Geriatrics"
+         }
+      ],
       "limitations":"",
       "created":"Dec 12, 2022, 11:36 PM",
       "updated":"2023-04-21",
       "nft":"",
-      "sample_output":[
-         {
-            "T":"type of entity",
-            "E":"entity"
-         }
-      ],
       "contributors":[
          
       ],
