@@ -16,8 +16,7 @@ jobs:
           npm install
           node app.js
         env:
-          MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
-          MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
 
       - name: Commit Changes
         uses: EndBug/add-and-commit@v7

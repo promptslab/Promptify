@@ -61,7 +61,7 @@ function main() {
       }
       try {
         let file = require(`${rootPath}/${t}/metadata.json`);
-        file=file[0]
+        file = file[0];
         return file;
       } catch {}
     })
@@ -102,7 +102,7 @@ function createUniqueId() {
 }
 
 async function init() {
-  let mongoURI = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@promptify.lfu9er5.mongodb.net/promptify`;
+  let mongoURI = process.env.MONGODB_URI;
   createUniqueId();
   await initMongo(mongoose, mongoURI);
   await main();
