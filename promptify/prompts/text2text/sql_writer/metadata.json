@@ -1,28 +1,34 @@
-[{
-	"models": ["text-davinci-003", "gpt-3.5-turbo"],
-	"language": "en",
-	"task": "SQL Query Generation",
-	"description": "Convert plain text into SQL queries using Large Language Models(LLMs).",
-	"authors": "Eren Akbulut (@eren23)",
-	"file_name": "sql_writer_gpt.jinja",
-	"version": "1.1",
-	"source": "Original",
-	"tags": [
-		"sql_query_generation",
-		"natural_language_processing",
-		"text_analysis",
-		"nlp",
-		"sql",
-		"query_generation",
-		"text",
-		"database"
-	],
-	"license": {
-		"name": "CC BY-SA 4.0",
-		"url": "https://creativecommons.org/licenses/by-sa/4.0/",
-		"restrictions": "None"
-	},
-	"created": "Feb 18, 2023, 2:22 AM",
-	"updated": "2023-04-21",
-	"citation": "Akbulut, E. (2023). Convert plain text into SQL queries using Large Language Models(LLMs). [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/sql_writer"
-}]
+[
+   {
+      "models": [
+         "text-davinci-003",
+         "gpt-3.5-turbo"
+      ],
+      "language": "en",
+      "task": "SQL Query Generation",
+      "description": "Convert plain text into SQL queries using Large Language Models(LLMs).",
+      "authors": "Eren Akbulut (@eren23)",
+      "file_name": "sql_writer_gpt.jinja",
+      "version": "1.1",
+      "source": "Original",
+      "tags": [
+         "sql_query_generation",
+         "natural_language_processing",
+         "text_analysis",
+         "nlp",
+         "sql",
+         "query_generation",
+         "text",
+         "database"
+      ],
+      "license": {
+         "name": "CC BY-SA 4.0",
+         "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+         "restrictions": "None"
+      },
+      "created": "Feb 18, 2023, 2:22 AM",
+      "updated": "2023-04-21",
+      "citation": "Akbulut, E. (2023). Convert plain text into SQL queries using Large Language Models(LLMs). [Computer software]. https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/sql_writer",
+      "prompt_id": "a438a915-c057-4ce1-bd56-bac700a65733"
+   }
+]

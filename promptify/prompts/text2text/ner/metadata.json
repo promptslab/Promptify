@@ -1,25 +1,25 @@
 [
    {
-      "prompt_id":"31149b8c-9e18-4c64-90af-87f0fb37aa88",
-      "models":[
+      "prompt_id": "31149b8c-9e18-4c64-90af-87f0fb37aa88",
+      "models": [
          "text-davinci-003",
          "gpt-3.5-turbo"
       ],
-      "prompt":"You are a highly intelligent and accurate Named-entity recognition(NER) system. You take Passage as input and your task is to recognize and extract specific types of named entities in that given passage and classify into a set of entity types. Your output format is only [{'T': type of entity from predefined entity types, 'E': entity in the input text}},...,{{'branch' : Appropriate branch of the passage ,'group': Appropriate Group of the passage}] form, no other form.",
-      "language":"en",
-      "task":"Named Entity Recognition (NER)",
-      "description":"Prompt for identifying named entities in text using Large Language Models(LLMs).",
-      "authors":"Ankit Pal",
-      "github":"monk1337",
-      "point_of_contact":"aadityaura@gmail.com",
-      "llm_parameters":{
-         "temperature":0.7
+      "prompt": "You are a highly intelligent and accurate Named-entity recognition(NER) system. You take Passage as input and your task is to recognize and extract specific types of named entities in that given passage and classify into a set of entity types. Your output format is only [{'T': type of entity from predefined entity types, 'E': entity in the input text}},...,{{'branch' : Appropriate branch of the passage ,'group': Appropriate Group of the passage}] form, no other form.",
+      "language": "en",
+      "task": "Named Entity Recognition (NER)",
+      "description": "Prompt for identifying named entities in text using Large Language Models(LLMs).",
+      "authors": "Ankit Pal",
+      "github": "monk1337",
+      "point_of_contact": "aadityaura@gmail.com",
+      "llm_parameters": {
+         "temperature": 0.7
       },
-      "file_name":"ner_openai.jinja",
-      "sample_data":"ner_openai_data.json",
-      "version":"1.1",
-      "source":"Original",
-      "tags":[
+      "file_name": "ner_openai.jinja",
+      "sample_data": "ner_openai_data.json",
+      "version": "1.1",
+      "source": "Original",
+      "tags": [
          "named_entities",
          "natural_language_processing",
          "text_analysis",
@@ -33,18 +33,16 @@
          "entities",
          "ner"
       ],
-      "license":{
-         "name":"CC BY-SA 4.0",
-         "url":"https://creativecommons.org/licenses/by-sa/4.0/",
-         "restrictions":"None"
+      "license": {
+         "name": "CC BY-SA 4.0",
+         "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+         "restrictions": "None"
       },
-      "limitations":"",
-      "created":"Dec 12, 2022, 11:36 PM",
-      "updated":"2023-04-21",
-      "nft":"",
-      "contributors":[
-         
-      ],
-      "citation":"Pal, A. (2022). Prompt for identifying named entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/ner/ner_openai.jinja"
+      "limitations": "",
+      "created": "Dec 12, 2022, 11:36 PM",
+      "updated": "2023-04-21",
+      "nft": "",
+      "contributors": [],
+      "citation": "Pal, A. (2022). Prompt for identifying named entities in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/tree/main/promptify/prompts/text2text/ner/ner_openai.jinja"
    }
 ]
