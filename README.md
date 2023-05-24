@@ -109,10 +109,10 @@ result       = nlp_prompter.fit('ner.jinja',
 
 | Task Name | Colab Notebook | Status |
 |-------------|-------|-------|
-| Named Entity Recognition | [NER Examples with GPT-3](https://colab.research.google.com/drive/16DUUV72oQPxaZdGMH9xH1WbHYu6Jqk9Q?usp=sharing) | ✅  |
-| Multi-Label Text Classification | [Classification Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
-| Multi-Class Text Classification | [Classification Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
-| Binary Text Classification  | [Classification Examples with GPT-3](https://colab.research.google.com/drive/1gNqDxNyMMUO67DxigzRAOa7C_Tcr2g6M?usp=sharing) | ✅    |
+| Named Entity Recognition | [NER Examples with GPT-3](notebooks/NER Examples with GPT-3.ipynb) | ✅  |
+| Multi-Label Text Classification | [Classification Examples with GPT-3](notebooks/Classification Examples with GPT-3.ipynb) | ✅    |
+| Multi-Class Text Classification | [Classification Examples with GPT-3](notebooks/Classification Examples with GPT-3.ipynb) | ✅    |
+| Binary Text Classification  | [Classification Examples with GPT-3](notebooks/Classification Examples with GPT-3.ipynb) | ✅    |
 | Question-Answering | [QA Task Examples with GPT-3](https://colab.research.google.com/drive/1Yhl7iFb7JF0x89r1L3aDuufydVWX_VrL?usp=sharing) | ✅    |
 | Question-Answer Generation | [QA Task Examples with GPT-3](https://colab.research.google.com/drive/1Yhl7iFb7JF0x89r1L3aDuufydVWX_VrL?usp=sharing) | ✅    |
 | Relation-Extraction | [Relation-Extraction Examples with GPT-3](https://colab.research.google.com/drive/1iW4QNjllc8ktaQBWh3_04340V-tap1co?usp=sharing) | ✅    |
