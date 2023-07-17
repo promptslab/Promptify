@@ -48,11 +48,13 @@ pip3 install git+https://github.com/promptslab/Promptify.git
 
 ## Quick tour
 
-To immediately use a LLM model for your NLP task, we provide the `Prompter` API.
+To immediately use a LLM model for your NLP task, we provide the `Pipeline` API.
 
 ```python
-from promptify import OpenAI
 from promptify import Prompter
+from promptify import OpenAI
+from promptify import Pipeline
+
 
 sentence     =  "The patient is a 93-year-old female with a medical  				 
                 history of chronic right hip pain, osteoporosis,					
@@ -61,14 +63,14 @@ sentence     =  "The patient is a 93-year-old female with a medical
                 of severe nausea and vomiting and urinary tract				
                 infection"
 
-model        = OpenAI(api_key) # or `HubModel()` for Huggingface-based inference
-nlp_prompter = Prompter(model)
+model        = OpenAI(api_key) # or `HubModel()` for Huggingface-based inference or 'Azure' etc
+prompter     = Prompter('ner.jinja') # select a template or provide custom template
+pipe         = Pipeline(prompter , model)
 
 
-result       = nlp_prompter.fit('ner.jinja',
-                          domain      = 'medical',
-                          text_input  = sentence, 
-                          labels      = None)
+result       = pipe.fit(sentence,
+                          domain  = 'medical',
+                          labels  = None)
                           
                           
 ### Output
