@@ -1,4 +1,6 @@
 openai==0.27.0
+cohere==4.13.1
+anthropic==0.3.4
 regex==2022.10.31
 appdirs==1.4.4
 jinja2==2.11.3
