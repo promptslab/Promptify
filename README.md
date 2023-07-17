@@ -51,10 +51,7 @@ pip3 install git+https://github.com/promptslab/Promptify.git
 To immediately use a LLM model for your NLP task, we provide the `Pipeline` API.
 
 ```python
-from promptify import Prompter
-from promptify import OpenAI
-from promptify import Pipeline
-
+from promptify import Prompter,OpenAI, Pipeline
 
 sentence     =  "The patient is a 93-year-old female with a medical  				 
                 history of chronic right hip pain, osteoporosis,					
