@@ -8,5 +8,5 @@ markupsafe==2.0.1
 huggingface_hub==0.12
 pytest==7.2.2
 tenacity==8.2.2
-tiktoken==0.3.2
+tiktoken==0.4.0
 tqdm==4.65.0
