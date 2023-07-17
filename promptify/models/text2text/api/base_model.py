@@ -143,9 +143,8 @@ class Model(metaclass=ABCMeta):
         self._verify_model()
         self.set_key(api_key)
 
-    @classmethod
     @abstractmethod
-    def supported_models(cls) -> List[str]:
+    def supported_models(self):
         """
         Get a list of supported models for the endpoint.
 
@@ -161,8 +160,7 @@ class Model(metaclass=ABCMeta):
         Examples
         --------
         >>> class MyModel(Model):
-        ...     @classmethod
-        ...     def supported_models(cls) -> List[str]:
+        ...     def supported_models(self):
         ...         return ['gpt', 'davinci']
         """
 

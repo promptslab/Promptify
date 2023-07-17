@@ -1,0 +1,120 @@
+{
+    "conversation_id": "00da081e76f838d0c648b1248243b041",
+    "start_time": "2023_07_11:23:26:44",
+    "llm": {
+        "name": "gpt-3.5-turbo",
+        "meta_data": {
+            "model": "gpt-3.5-turbo",
+            "api_wait": 1,
+            "api_retry": 1,
+            "temperature": 0.7,
+            "top_p": 1,
+            "n": 1,
+            "echo": false,
+            "presence_penalty": 0,
+            "frequency_penalty": 0,
+            "best_of": 1,
+            "max_completion_length": 20,
+            "max_tokens": 4096,
+            "summary_threshold": 1500
+        }
+    },
+    "participants": [
+        {
+            "name": "User",
+            "is_bot": false
+        },
+        {
+            "name": "Assistant",
+            "is_bot": true
+        }
+    ],
+    "messages": [
+        {
+            "timestamp": "2023_07_11:23:26:48",
+            "prompt_id": "4b44b8e0-24dc-4d77-916e-2b3662ddb372",
+            "task": "You are a highly intelligent and accurate medical domain Named-entity recognition(NER) system. You take Passage as input and your task is to recognize and extract specific types of medical domain named entities in that given passage and classify into a set of following predefined entity types:\ndiagnosisYour output format is only [{'T': type of entity from predefined entity types, 'E': entity in the input text}},...,{{'branch' : Appropriate branch of the passage ,'group': Appropriate Group of the passage}] form, no other form.\n\nInput: A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower extremities -\nOutput:",
+            "template_meta_data": {},
+            "prompt": {
+                "domain": "medical",
+                "description": null,
+                "output_format": null,
+                "examples": null,
+                "text_input": "A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower extremities -",
+                "labels": "diagnosis"
+            },
+            "response": "[{'T': 'diagnosis', 'E': 'pain, numbness, and tingling in both lower extremities'}, {'T': 'diagnosis', 'E': 'erectile dysfunction'}, {'T': 'branch', 'E': 'lower extremities'}, {'T': 'group', 'E': 'both lower extremities'}]",
+            "structured_response": [
+                {
+                    "T": "diagnosis",
+                    "E": "pain, numbness, and tingling in both lower extremities"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "erectile dysfunction"
+                },
+                {
+                    "T": "branch",
+                    "E": "lower extremities"
+                },
+                {
+                    "T": "group",
+                    "E": "both lower extremities"
+                }
+            ]
+        },
+        {
+            "timestamp": "2023_07_11:23:31:18",
+            "prompt_id": "fc4b12a3-05b6-4186-b9c9-5c48ec279723",
+            "task": "You are a highly intelligent and accurate medical domain Named-entity recognition(NER) system. You take Passage as input and your task is to recognize and extract specific types of medical domain named entities in that given passage and classify into a set of following predefined entity types:\ndiagnosisYour output format is only [{'T': type of entity from predefined entity types, 'E': entity in the input text}},...,{{'branch' : Appropriate branch of the passage ,'group': Appropriate Group of the passage}] form, no other form.\n\nInput: A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower extremities \nOutput:",
+            "template_meta_data": {},
+            "prompt": {
+                "domain": "medical",
+                "description": null,
+                "output_format": null,
+                "examples": null,
+                "text_input": "A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower extremities ",
+                "labels": "diagnosis"
+            },
+            "response": "[{'T': 'diagnosis', 'E': 'erectile dysfunction'}, {'T': 'diagnosis', 'E': 'pain'}, {'T': 'diagnosis', 'E': 'numbness'}, {'T': 'diagnosis', 'E': 'tingling'}, {'T': 'diagnosis', 'E': 'weak dorsalis pedis'}, {'T': 'diagnosis', 'E': 'tibialis'}, {'T': 'diagnosis', 'E': 'popliteal'}, {'T': 'diagnosis', 'E': 'femoral'}, {'branch': 'lower extremities', 'group': 'physical examination'}]",
+            "structured_response": [
+                {
+                    "T": "diagnosis",
+                    "E": "erectile dysfunction"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "pain"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "numbness"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "tingling"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "weak dorsalis pedis"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "tibialis"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "popliteal"
+                },
+                {
+                    "T": "diagnosis",
+                    "E": "femoral"
+                },
+                {
+                    "branch": "lower extremities",
+                    "group": "physical examination"
+                }
+            ]
+        }
+    ]
+}

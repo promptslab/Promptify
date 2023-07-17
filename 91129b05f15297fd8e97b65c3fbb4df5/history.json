@@ -1,0 +1,33 @@
+{
+    "conversation_id": "91129b05f15297fd8e97b65c3fbb4df5",
+    "start_time": "2023_07_11:23:24:28",
+    "llm": {
+        "name": "gpt-3.5-turbo",
+        "meta_data": {
+            "model": "gpt-3.5-turbo",
+            "api_wait": 1,
+            "api_retry": 1,
+            "temperature": 0.7,
+            "top_p": 1,
+            "n": 1,
+            "echo": false,
+            "presence_penalty": 0,
+            "frequency_penalty": 0,
+            "best_of": 1,
+            "max_completion_length": 20,
+            "max_tokens": 4096,
+            "summary_threshold": 1500
+        }
+    },
+    "participants": [
+        {
+            "name": "User",
+            "is_bot": false
+        },
+        {
+            "name": "Assistant",
+            "is_bot": true
+        }
+    ],
+    "messages": []
+}

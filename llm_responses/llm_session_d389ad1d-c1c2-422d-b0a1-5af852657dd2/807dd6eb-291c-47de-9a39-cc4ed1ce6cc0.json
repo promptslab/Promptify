@@ -1,0 +1,55 @@
+{
+    "conversation_id": "d389ad1d-c1c2-422d-b0a1-5af852657dd2",
+    "start_time": "2023_07_17:11:39:44",
+    "llm": {
+        "name": "claude-instant-1",
+        "meta_data": {
+            "model": "claude-instant-1",
+            "api_wait": 60,
+            "api_retry": 6,
+            "temperature": 1,
+            "top_p": 0.7,
+            "top_k": 5,
+            "max_tokens_to_sample": 300,
+            "max_completion_length": 20
+        }
+    },
+    "participants": [
+        {
+            "name": "User",
+            "is_bot": false
+        },
+        {
+            "name": "Assistant",
+            "is_bot": true
+        }
+    ],
+    "messages": [
+        {
+            "request_timestamp": "2023_07_17:11:39:44",
+            "prompt_id": "329e0d35-8f85-4487-b1d8-876547a13136",
+            "prompt_filename": "multilabel_classification.jinja",
+            "processing_task": "You are a highly intelligent and accurate medical domain multi-label classification system. You take Passage as input and classify that into 5 appropriate medical domain Categories from the given category list:\ndiagnosis.\nYour output format is only [{'main class': Main Classification Category ,'1': 2nd level Classification Category, '2': 3rd level Classification Category,...,'branch' : Appropriate branch of the Passage ,'group': Appropriate Group of the Passage}] form, no other form.\n\nInput: A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower and and extremitiess \nOutput:",
+            "template_metadata": {},
+            "input_prompt": {
+                "labels": "diagnosis",
+                "text_input": "A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower and and extremitiess ",
+                "output_format": null,
+                "examples": null,
+                "n_output_labels": 5,
+                "description": null,
+                "domain": "medical"
+            },
+            "response_text": "[\n    {\n    'main class': 'circulatory system', \n    '1': 'arteries',\n    '2': 'peripheral arterial disease',\n    'branch': 'cardiovascular',\n    'group': 'circulatory' \n    }\n]",
+            "parsed_output": [
+                {
+                    "main class": "circulatory system",
+                    "1": "arteries",
+                    "2": "peripheral arterial disease",
+                    "branch": "cardiovascular",
+                    "group": "circulatory"
+                }
+            ]
+        }
+    ]
+}

@@ -41,6 +41,7 @@ def create_message(
     prompt: str,
     response: str,
     structured_response: Any,
+    prompt_file: str,
     **template_metadata: Any
 ) -> Dict[str, Any]:
     """
@@ -63,13 +64,16 @@ def create_message(
     # Construct the message dictionary
     
     message = {
-        "timestamp": timestamp,
-        "prompt_id":prompt_id,
-        "task": task,
-        "template_meta_data": template_metadata,
-        "prompt": prompt,
-        "response": response,
-        "structured_response": structured_response,
-    }
+        "request_timestamp": timestamp,
+        "prompt_id": prompt_id,
+        "prompt_filename": prompt_file, 
+        "processing_task": task,
+        "template_metadata": template_metadata,
+        "input_prompt": prompt,
+        "response_text": response,
+        "parsed_output": structured_response,
+        }
 
     return message
+
+

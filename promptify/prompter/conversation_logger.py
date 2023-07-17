@@ -2,28 +2,28 @@ from promptify.utils.file_utils import *
 from promptify.utils.conversation_utils import *
 from promptify.utils.data_utils import *
 
+
 class ConversationLogger:
-    
     def __init__(self, conversation_path: str, llm_parameters: Dict):
-        
         """Create a logger for a conversation.
 
         Args:
             conversation_path: The path to the folder where conversations will be stored.
-            model_name: The name of the language model used in the conversation.
             model_dict: A dictionary containing metadata about the model.
         """
-        
-        self.conversation_path = conversation_path
-        self.conversation_folder, self.conversation_id = setup_folder(self.conversation_path)
-        self.conversation_file = os.path.join(self.conversation_path, self.conversation_folder)
-        
-        model_dict = {key: value for key, value in llm_parameters.items() if is_string_or_digit(value)}
-        self.conversation = get_conversation_schema(self.conversation_id, llm_parameters['model'], **llm_parameters)
-        write_json(self.conversation_file, self.conversation, "history")
+
+        self.conversation_id = str(uuid.uuid4())
+        self.storage_name = f"llm_responses/llm_session_{self.conversation_id}/"
+        self.conversation_path = os.path.join(conversation_path, self.storage_name)
+        Path(self.conversation_path).mkdir(parents=True, exist_ok=True)
+        self.llm_parameters = llm_parameters
+        self.model_dict = {
+            key: value
+            for key, value in self.llm_parameters.items()
+            if is_string_or_digit(value)
+        }
 
     def add_message(self, message: Dict[str, Any]):
-
         """Add a message to the conversation.
         Args:
             prompt: The prompt sent to the language model.
@@ -33,8 +33,12 @@ class ConversationLogger:
             **kwargs: Additional metadata to be added to the message.
         """
 
+        self.conversation = get_conversation_schema(
+            self.conversation_id, self.llm_parameters["model"], **self.llm_parameters
+        )
+        message_id = str(uuid.uuid4())
         self.conversation["messages"].append(message)
-        write_json(self.conversation_file, self.conversation, "history")
+        write_json(self.conversation_path, self.conversation, message_id)
 
     def __repr__(self):
         return f"ConversationLogger(conversation_id={self.conversation_id}, conversation_path={self.conversation_path})"

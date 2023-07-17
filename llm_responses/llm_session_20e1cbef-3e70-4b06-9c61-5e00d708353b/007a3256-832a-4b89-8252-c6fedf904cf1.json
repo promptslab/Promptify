@@ -1,0 +1,48 @@
+{
+    "conversation_id": "20e1cbef-3e70-4b06-9c61-5e00d708353b",
+    "start_time": "2023_07_17:11:02:05",
+    "llm": {
+        "name": "claude-2",
+        "meta_data": {
+            "model": "claude-2",
+            "api_wait": 60,
+            "api_retry": 6,
+            "temperature": 1,
+            "top_p": 0.7,
+            "top_k": 5,
+            "max_tokens_to_sample": 300,
+            "max_completion_length": 20
+        }
+    },
+    "participants": [
+        {
+            "name": "User",
+            "is_bot": false
+        },
+        {
+            "name": "Assistant",
+            "is_bot": true
+        }
+    ],
+    "messages": [
+        {
+            "request_timestamp": "2023_07_17:11:02:05",
+            "prompt_id": "8eef542e-3f2a-44ba-8d10-4a1dbf0b72d1",
+            "prompt_filename": "ner.jinja",
+            "processing_task": "You are a highly intelligent and accurate medical domain Named-entity recognition(NER) system. You take Passage as input and your task is to recognize and extract specific types of medical domain named entities in that given passage and classify into a set of following predefined entity types:\ndiagnosisYour output format is only [{'T': type of entity from predefined entity types, 'E': entity in the input text}},...,{{'branch' : Appropriate branch of the passage ,'group': Appropriate Group of the passage}] form, no other form. Don't include any text in response such as 'here are named entities..' etc, return only valid json\n\nInput: A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower and and extremitiess \nOutput:",
+            "template_metadata": {},
+            "input_prompt": {
+                "domain": "medical",
+                "text_input": "A 62-year-old white man complained of pain, numbness, and tingling in both lower extremities that is increased\nby walking more than one-half a block for the past 6 months. He also complains of erectile dysfunction.\nOn physical examination, his blood pressure is 110/80, but he demonstrates weak dorsalis pedis, tibialis,\npopliteal, and femoral pulses in both lower and and extremitiess ",
+                "labels": "diagnosis",
+                "description": null,
+                "examples": null,
+                "output_format": null
+            },
+            "response_text": "[None]",
+            "parsed_output": [
+                null
+            ]
+        }
+    ]
+}

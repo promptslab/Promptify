@@ -48,8 +48,8 @@ class MockModel(Model):
     name = "mock_model"
     description = "Mock model for testing purposes"
 
-    @classmethod
-    def supported_models(cls) -> List[str]:
+    
+    def supported_models(self) -> List[str]:
         """
         Returns a list of supported models.
 
@@ -58,7 +58,7 @@ class MockModel(Model):
         List[str]
             A list of supported models.
         """
-        return [cls.name]
+        return ['mock_model']
 
     def _verify_model(self):
         """
@@ -155,9 +155,9 @@ class MockModel(Model):
             A list of responses from the model.
 
         """
-        return ["response" for _ in prompts]
+        return {'text': 'response', 'parsed': {'data': {"completion" : []}}}
 
-    def model_output(self, response):
+    def model_output(self, response, max_completion_length = None):
         """
         Processes the model's response and returns it as output.
 
@@ -171,4 +171,27 @@ class MockModel(Model):
         Output of the model.
 
         """
+
+        response = {'text': 'response', 'parsed': {'data': {"completion" : []}}}
+
+
+        
+        return response
+
+    def model_output_raw(self, response, max_completion_length = None):
+        """
+        Processes the model's response and returns it as output.
+
+        Parameters
+        ----------
+        response :
+            The response from the model.
+
+        Returns
+        -------
+        Output of the model.
+
+        """
+
+        response = {'text': 'response', 'parsed': {'data': {"completion" : []}}}
         return response

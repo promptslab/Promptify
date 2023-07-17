@@ -18,14 +18,13 @@ class TemplateLoader:
         self.loaded_templates = {}
 
     def load_template(
-        self, template: str, model_name: str = None, from_string: bool = False
+        self, template: str, model_name: str, from_string: bool = False
     ):
         """
         Load a Jinja2 template either from a string or a file.
 
         Args:
             template (str): Template string or path to the template file.
-            model_name (str) : model name
             from_string (bool): Whether to load the template from a string. Defaults to False.
 
         Returns:
@@ -66,17 +65,12 @@ class TemplateLoader:
         }
 
         if template in all_folders:
-            meta_data = self._get_metadata(model_name, template, templates_dir)
+            meta_data = self._get_metadata(template, templates_dir, model_name)
 
-            if meta_data["model"]:
-                template_name = meta_data["metadata"]["file_name"]
-                template_dir = meta_data["metadata"]["file_path"]
-                environment = Environment(loader=FileSystemLoader(template_dir))
-                template_instance = environment.get_template(template_name)
-            else:
-                raise ValueError(
-                    f"Model not found. Please choose the model from : {meta_data['metadata']}"
-                )
+            template_name = meta_data["metadata"]["file_name"]
+            template_dir = meta_data["metadata"]["file_path"]
+            environment = Environment(loader=FileSystemLoader(template_dir))
+            template_instance = environment.get_template(template_name)
 
         else:
             self._verify_template_path(template)
@@ -94,21 +88,31 @@ class TemplateLoader:
             "template": template_instance,
         }
 
-    def _get_metadata(self, model_name, template_name, template_path):
+
+    def search_model(self, data, model_name):
+
+        all_models = []
+        for sample in data:
+            if model_name in sample['models']:
+                return sample
+            else:
+                all_models.extend(sample['models'])
+        raise ValueError(
+                    f"Model not found. Please choose the model from : {all_models}"
+                )
+
+    def _get_metadata(self, template_name, template_path, model_name):
+
         template_name, _ = template_name.split(".jinja")
         metadata_files = glob(
             os.path.join(template_path, template_name, "metadata.json")
         )
 
-        meta_content = read_json(metadata_files[0])
-        checked_models = []
-        for metadata in meta_content:
-            checked_models.extend(metadata["models"])
-            if model_name in metadata["models"]:
-                metadata["file_path"] = os.path.join(template_path, template_name)
-                return {"model": True, "metadata": metadata}
-
-        return {"model": False, "metadata": checked_models}
+        metadata = read_json(metadata_files[0])
+        metadata = self.search_model(metadata, model_name)
+        metadata["file_path"] = os.path.join(template_path, template_name)
+    
+        return {"metadata": metadata}
 
     def _verify_template_path(self, templates_path: str):
         """
