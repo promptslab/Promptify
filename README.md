@@ -135,6 +135,19 @@ If you are interested in Prompt-Engineering, LLMs, ChatGPT and other latest rese
 </div>
 
 
+
+```
+
+@misc{Promptify2022,
+  title = {Promptify: Structured Output from LLMs},
+  author = {Pal, Ankit},
+  year = {2022},
+  howpublished = {\url{https://github.com/promptslab/Promptify}},
+  note = {Prompt-Engineering components for NLP tasks in Python}
+}
+
+```
+
 ## 💁 Contributing
 
 We welcome any contributions to our open source project, including new features, improvements to infrastructure, and more comprehensive documentation. 
