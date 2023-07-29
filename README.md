@@ -66,22 +66,22 @@ prompter     = Prompter('ner.jinja') # select a template or provide custom templ
 pipe         = Pipeline(prompter , model)
 
 
-result       = pipe.fit(sentence,
-                          domain  = 'medical',
-                          labels  = None)
-                          
-                          
+result = pipe.fit(sentence, domain="medical", labels=None)
+
+
 ### Output
 
-[{'E': '93-year-old', 'T': 'Age'},
- {'E': 'chronic right hip pain', 'T': 'Medical Condition'},
- {'E': 'osteoporosis', 'T': 'Medical Condition'},
- {'E': 'hypertension', 'T': 'Medical Condition'},
- {'E': 'depression', 'T': 'Medical Condition'},
- {'E': 'chronic atrial fibrillation', 'T': 'Medical Condition'},
- {'E': 'severe nausea and vomiting', 'T': 'Symptom'},
- {'E': 'urinary tract infection', 'T': 'Medical Condition'},
- {'Branch': 'Internal Medicine', 'Group': 'Geriatrics'}]
+[
+    {"E": "93-year-old", "T": "Age"},
+    {"E": "chronic right hip pain", "T": "Medical Condition"},
+    {"E": "osteoporosis", "T": "Medical Condition"},
+    {"E": "hypertension", "T": "Medical Condition"},
+    {"E": "depression", "T": "Medical Condition"},
+    {"E": "chronic atrial fibrillation", "T": "Medical Condition"},
+    {"E": "severe nausea and vomiting", "T": "Symptom"},
+    {"E": "urinary tract infection", "T": "Medical Condition"},
+    {"Branch": "Internal Medicine", "Group": "Geriatrics"},
+]
  
 ```
 
