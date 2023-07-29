@@ -34,7 +34,7 @@ class CohereModel(Model):
         num_generations: int = 1,
         api_wait=60,
         api_retry=6,
-        max_completion_length: int = 20
+        json_depth_limit: int = 20
     ):
         super().__init__(api_key, model, api_wait, api_retry)
 
@@ -43,7 +43,7 @@ class CohereModel(Model):
         self.max_tokens = max_tokens
         self.stop_sequences = stop_sequences
         self.return_likelihoods = return_likelihoods
-        self.max_completion_length = max_completion_length
+        self.json_depth_limit = json_depth_limit
         self.stream = stream
         self.truncate = truncate
         self.presence_penalty = presence_penalty
@@ -110,7 +110,7 @@ class CohereModel(Model):
         data['text'] = str(raw_response)
         return data
     
-    def model_output(self, response, max_completion_length) -> Dict:
+    def model_output(self, response, json_depth_limit) -> Dict:
         data = self.model_output_raw(response)
-        data["parsed"] = self.parser.fit(data["text"], max_completion_length)
+        data["parsed"] = self.parser.fit(data["text"], json_depth_limit)
         return data
