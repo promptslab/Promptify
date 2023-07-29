@@ -33,7 +33,7 @@ class Azure(Model):
         request_timeout: Union[float, Tuple[float, float]] = None,
         api_wait=60,
         api_retry=6,
-        max_completion_length: int = 10,
+        json_depth_limit: int = 10,
     ):
         super().__init__(api_key, model, api_wait, api_retry)
 
@@ -45,7 +45,7 @@ class Azure(Model):
         self.frequency_penalty = frequency_penalty
         self.logit_bias = logit_bias or {}
         self.request_timeout = request_timeout
-        self.max_completion_length = max_completion_length
+        self.json_depth_limit = json_depth_limit
         self.engine = engine
         self.set_key(api_key)
         self._verify_model()
@@ -168,7 +168,7 @@ class Azure(Model):
         data["usage"] = dict(response["usage"])
         return data
 
-    def model_output(self, response, max_completion_length: int) -> Dict:
+    def model_output(self, response, json_depth_limit: int) -> Dict:
         data = self.model_output_raw(response)
-        data["parsed"] = self.parser.fit(data["text"], max_completion_length)
+        data["parsed"] = self.parser.fit(data["text"], json_depth_limit)
         return data
