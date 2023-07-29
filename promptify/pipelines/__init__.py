@@ -13,7 +13,7 @@ class Pipeline:
 
         self.prompters = prompter
         self.model = model
-        self.max_completion_length: int = kwargs.get("max_completion_length", 20)
+        self.json_depth_limit: int = kwargs.get("json_depth_limit", 20)
         self.cache_prompt = kwargs.get("cache_prompt", True)
         self.cache_size = kwargs.get("cache_size", 200)
         self.prompt_cache = PromptCache(self.cache_size)
@@ -94,7 +94,7 @@ class Pipeline:
 
             if self.structured_output:
                 output = self.model.model_output(
-                    response, max_completion_length=self.max_completion_length
+                    response, max_completion_length=self.json_depth_limit
                 )
             else:
                 output = response
