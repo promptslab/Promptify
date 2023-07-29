@@ -2,7 +2,15 @@
    {
       "models": [
          "text-davinci-003",
-         "gpt-3.5-turbo"
+         "gpt-3.5-turbo",
+         "gpt-35-turbo",
+         "claude-instant-1",
+         "claude-2",
+         "command", 
+            "command-light", 
+            "command-medium-beta", 
+            "command-nightly", 
+            "command-xlarge-beta"
       ],
       "language": "en",
       "task": "Multiclass Text Classification",
