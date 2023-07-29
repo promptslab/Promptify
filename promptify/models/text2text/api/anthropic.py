@@ -28,7 +28,7 @@ class AnthropicModel(Model):
         stop_sequences: Optional[Union[str, List[str]]] = ["\n\nHuman:"],
         api_wait=60,
         api_retry=6,
-        max_completion_length: int = 20
+        json_depth_limit: int = 20
     ):
         super().__init__(api_key, model, api_wait, api_retry)
 
@@ -36,7 +36,7 @@ class AnthropicModel(Model):
         self.top_p = top_p
         self.top_k = top_k
         self.max_tokens_to_sample = max_tokens_to_sample
-        self.max_completion_length = max_completion_length
+        self.json_depth_limit = json_depth_limit
         self.stop_sequences = stop_sequences
         self.set_key(api_key)
         self._verify_model()
@@ -110,20 +110,7 @@ class AnthropicModel(Model):
             data['text'] = str(raw_response)
         return data
 
-    def model_output(self, response, max_completion_length) -> Dict:
+    def model_output(self, response, json_depth_limit) -> Dict:
         data = self.model_output_raw(response)
-        data["parsed"] = self.parser.fit(data["text"], max_completion_length)
+        data["parsed"] = self.parser.fit(data["text"], json_depth_limit)
         return data
-
-
-
-# Here is the multi-label classification output for the given passage:
-# [{'main class': 'vascular diseases', '1': 'peripheral artery disease', 'branch': 'medicine', 'group': 'cardiology'}]
-
-# The main classification is 'vascular diseases' since the passage describes symptoms and findings consistent with peripheral artery disease, a type of vascular disease. The second level classification is 'peripheral artery disease' specifically. The branch is 'medicine' and group is 'cardiology' as this condition would fall under those medical specialties.
-
-# [{'text': '["[{\'main class\': \'vascular diseases\', \'1\': \'peripheral artery disease\', \'branch\': \'medicine\', \'group\': \'cardiology\'}]"]',
-#   'parsed': {'status': 'completed',
-#    'object_type': list,
-#    'data': {'completion': ["[{'main class': 'vascular diseases', '1': 'peripheral artery disease', 'branch': 'medicine', 'group': 'cardiology'}]"],
-#     'suggestions': []}}}]
