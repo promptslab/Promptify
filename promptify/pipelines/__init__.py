@@ -94,7 +94,7 @@ class Pipeline:
 
             if self.structured_output:
                 output = self.model.model_output(
-                    response, max_completion_length=self.json_depth_limit
+                    response, json_depth_limit=self.json_depth_limit
                 )
             else:
                 output = response
