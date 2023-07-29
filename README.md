@@ -27,7 +27,7 @@
   </a>
 </h4>
 
-<img width="610px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/theme.png">
+<img width="910px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/theme.png">
 
 ## Installation
 
