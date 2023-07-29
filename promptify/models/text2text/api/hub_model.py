@@ -32,7 +32,7 @@ class HubModel(Model):
         do_sample: bool = False,
         api_wait= 60,
         api_retry= 6,
-        max_completion_length: int = 20,
+        json_depth_limit: int = 20,
     ):
         
 
@@ -50,7 +50,7 @@ class HubModel(Model):
         self.max_time = max_time
         self.num_return_sequences = num_return_sequences
         self.do_sample = do_sample
-        self.max_completion_length = max_completion_length
+        self.json_depth_limit = json_depth_limit
 
         self._verify_model()
         self.set_key(self.api_key)
@@ -94,7 +94,7 @@ class HubModel(Model):
 
         return self.supported_models()[self.model]
 
-    def model_output(self, response: Dict, max_completion_length = None) -> Dict:
+    def model_output(self, response: Dict, json_depth_limit = None) -> Dict:
         
         return [item["generated_text"] for item in response.json()]
     
