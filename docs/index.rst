@@ -52,8 +52,8 @@ Contribution and Support
 ------------------------
 
 - **GitHub Repository:** Find the source code, documentation, and other resources `here <https://github.com/promptslab/Promptify>`_.
-- **Contribution Guide:** Interested in contributing? Check out the contribution guidelines.
-- **License:** Promptify is licensed under LICENSE_NAME.
+- **Contribution Guide:** Interested in contributing? Check out the `contribution guidelines <https://github.com/promptslab/Promptify/blob/main/contribute.md>`_.
+- **License:** Promptify is licensed under Apache License 2.0
 
 Quick Links
 -----------
