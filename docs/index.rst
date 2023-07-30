@@ -75,7 +75,7 @@ Quick Links
 Why Choose Promptify?
 ---------------------
 
-Promptify is not just a tool; it's a comprehensive solution that bridges the gap between complex Natural Language Processing (NLP) tasks and practical implementation. By simplifying prompt generation and offering extensive customization, Promptify empowers users to tap into the potential of generative models like GPT and PaLM, making the creation of diverse text content quick, efficient, and accessible to all.
+Promptify is not just a tool; it's a comprehensive solution that bridges the gap between complex Natural Language Processing (NLP) tasks and practical implementation. By simplifying prompt generation and offering extensive customization, Promptify empowers users to tap into the potential of generative models like GPT, Claude etc, making the creation of diverse text content quick, efficient, and accessible to all.
 
 Citation
 --------
