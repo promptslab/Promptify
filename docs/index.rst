@@ -60,12 +60,10 @@ Community
 
 If you are interested in Prompt-Engineering, LLMs, ChatGPT, and other latest research discussions, please consider joining `PromptsLab <https://discord.gg/m88xfYMbK6>`_.
 
-.. |discord_logo| image:: https://img.shields.io/discord/1069129502472556587?color=5865F2&logo=discord&logoColor=white
+.. image:: https://img.shields.io/discord/1069129502472556587?color=5865F2&logo=discord&logoColor=white
    :target: https://discord.gg/m88xfYMbK6
    :alt: Join us on Discord
    :align: center
-
-
 
 
 Quick Links
