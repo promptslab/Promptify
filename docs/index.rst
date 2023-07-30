@@ -55,6 +55,15 @@ Contribution and Support
 - **Contribution Guide:** Interested in contributing? Check out the `contribution guidelines <https://github.com/promptslab/Promptify/blob/main/contribute.md>`_.
 - **License:** Promptify is licensed under Apache License 2.0
 
+Community
+---------
+
+<div align="center">
+If you are interested in Prompt-Engineering, LLMs, ChatGPT, and other latest research discussions, please consider joining <a href="https://discord.gg/m88xfYMbK6">PromptsLab</a></div>
+<div align="center">
+<img alt="Join us on Discord" src="https://img.shields.io/discord/1069129502472556587?color=5865F2&logo=discord&logoColor=white">
+</div>
+
 Quick Links
 -----------
 
@@ -65,3 +74,15 @@ Why Choose Promptify?
 ---------------------
 
 Promptify is not just a tool; it's a comprehensive solution that bridges the gap between complex Natural Language Processing (NLP) tasks and practical implementation. By simplifying prompt generation and offering extensive customization, Promptify empowers users to tap into the potential of generative models like GPT and PaLM, making the creation of diverse text content quick, efficient, and accessible to all.
+
+
+Citation
+--------
+
+@misc{Promptify2022,
+title = {Promptify: Structured Output from LLMs},
+author = {Pal, Ankit},
+year = {2022},
+howpublished = {\url{https://github.com/promptslab/Promptify}},
+note = {Prompt-Engineering components for NLP tasks in Python}
+}
