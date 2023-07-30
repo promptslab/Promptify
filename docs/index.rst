@@ -22,7 +22,7 @@ Promptify is a software that enables users to easily generate prompts for these 
 
 Overall, Prompt Engineering and Promptify provide a powerful and user-friendly way for users to solve NLP problems and generate text using generative models like GPT, Claude, Azure, etc. By simplifying the process of prompt generation, Prompt Engineering makes it easy for users to generate different types of text quickly and efficiently.
 
-Core Features
+Core Features 🎮
 -------------
 
 - **Prompt Generation 🧬:** Easily generate and tailor prompts for state-of-the-art generative models.
