@@ -58,11 +58,11 @@ Contribution and Support
 Community
 ---------
 
-<div align="center">
-If you are interested in Prompt-Engineering, LLMs, ChatGPT, and other latest research discussions, please consider joining <a href="https://discord.gg/m88xfYMbK6">PromptsLab</a></div>
-<div align="center">
-<img alt="Join us on Discord" src="https://img.shields.io/discord/1069129502472556587?color=5865F2&logo=discord&logoColor=white">
-</div>
+If you are interested in Prompt-Engineering, LLMs, ChatGPT, and other latest research discussions, please consider joining `PromptsLab <https://discord.gg/m88xfYMbK6>`_.
+
+.. image:: https://img.shields.io/discord/1069129502472556587?color=5865F2&logo=discord&logoColor=white
+   :align: center
+   :alt: Join us on Discord
 
 Quick Links
 -----------
@@ -79,10 +79,11 @@ Promptify is not just a tool; it's a comprehensive solution that bridges the gap
 Citation
 --------
 
+```bibliography
 @misc{Promptify2022,
-title = {Promptify: Structured Output from LLMs},
-author = {Pal, Ankit},
-year = {2022},
-howpublished = {\url{https://github.com/promptslab/Promptify}},
-note = {Prompt-Engineering components for NLP tasks in Python}
-}
+  title = {Promptify: Structured Output from LLMs},
+  author = {Pal, Ankit},
+  year = {2022},
+  howpublished = {\url{https://github.com/promptslab/Promptify}},
+  note = {Prompt-Engineering components for NLP tasks in Python}
+}```
