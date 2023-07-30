@@ -81,11 +81,7 @@ Promptify is not just a tool; it's a comprehensive solution that bridges the gap
 Citation
 --------
 
-```bibliography
-@misc{Promptify2022,
-  title = {Promptify: Structured Output from LLMs},
-  author = {Pal, Ankit},
-  year = {2022},
-  howpublished = {\url{https://github.com/promptslab/Promptify}},
-  note = {Prompt-Engineering components for NLP tasks in Python}
-}
+The citation for Promptify is as follows:
+
+```rst
+.. [Promptify2022] Ankit Pal. 2022. Promptify: Structured Output from LLMs. Prompt-Engineering components for NLP tasks in Python. URL: https://github.com/promptslab/Promptify
