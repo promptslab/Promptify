@@ -1,4 +1,4 @@
-__version__ = "0.1.4"
+__version__ = "2.0.1"
 from .parser.parser import Parser
 from .prompter.nlp_prompter import Prompter
 from .prompter.prompt_cache import PromptCache
