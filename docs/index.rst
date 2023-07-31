@@ -22,16 +22,16 @@ Promptify is a software that enables users to easily generate prompts for these 
 
 Overall, Prompt Engineering and Promptify provide a powerful and user-friendly way for users to solve NLP problems and generate text using generative models like GPT, Claude, Azure, etc. By simplifying the process of prompt generation, Prompt Engineering makes it easy for users to generate different types of text quickly and efficiently.
 
-Core Features 🎮
+Core Features
 -------------
 
-- **Prompt Generation 🧬:** Easily generate and tailor prompts for state-of-the-art generative models.
-- **Unified Architecture 🧭:** Introducing Prompter, Model & Pipeline Solution.
-- **Detailed Output Logs 📔:** Comprehensive structured JSON format output within the log folder.
-- **Wider Model Support 🤝:** Supporting models from OpenAI, Azure, Cohere, Anthropic, Huggingface, and more - think of it as your universal language model adapter.
-- **Robust Parser 🦸‍♂️:** Parser to handle incomplete or unstructured JSON outputs from any LLMs.
-- **Ready-Made Jinja Templates 📝:** Jinja prompt templates for NER, Text Classification, QA, Relation-Extraction, Tabular data, etc.
-- **Rich Customization:** Adapt the prompts to your specific needs, whether for product descriptions, summaries, or creative writing.
+- Prompt Generation Easily generate and tailor prompts for state-of-the-art generative models.
+- Unified Architecture Introducing Prompter, Model & Pipeline Solution.
+- Detailed Output Logs Comprehensive structured JSON format output within the log folder.
+- Wider Model Support Supporting models from OpenAI, Azure, Cohere, Anthropic, Huggingface, and more - think of it as your universal language model adapter.
+- Robust Parser Parser to handle incomplete or unstructured JSON outputs from any LLMs.
+- Ready-Made Jinja Templates Jinja prompt templates for NER, Text Classification, QA, Relation-Extraction, Tabular data, etc.
+- Rich Customization Adapt the prompts to your specific needs, whether for product descriptions, summaries, or creative writing.
 
 Getting Started
 ---------------
