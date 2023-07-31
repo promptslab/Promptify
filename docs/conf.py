@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath("../"))
 project = 'Promptify'
 copyright = '2023, promptslab'
 author = 'promptslab'
-release = '2.0.2'
+release = '2.0.3'
 version = "latest"
 
 # -- General configuration ---------------------------------------------------
