@@ -65,6 +65,7 @@ If you are interested in Prompt-Engineering, LLMs, ChatGPT, and other latest res
    :alt: Join us on Discord
    :align: center
 
+Twitter: https://twitter.com/promptslab
 
 Quick Links
 -----------
