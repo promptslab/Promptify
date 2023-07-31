@@ -25,13 +25,13 @@ Overall, Prompt Engineering and Promptify provide a powerful and user-friendly w
 Core Features
 -------------
 
-- Prompt Generation Easily generate and tailor prompts for state-of-the-art generative models.
-- Unified Architecture Introducing Prompter, Model & Pipeline Solution.
-- Detailed Output Logs Comprehensive structured JSON format output within the log folder.
-- Wider Model Support Supporting models from OpenAI, Azure, Cohere, Anthropic, Huggingface, and more - think of it as your universal language model adapter.
-- Robust Parser Parser to handle incomplete or unstructured JSON outputs from any LLMs.
-- Ready-Made Jinja Templates Jinja prompt templates for NER, Text Classification, QA, Relation-Extraction, Tabular data, etc.
-- Rich Customization Adapt the prompts to your specific needs, whether for product descriptions, summaries, or creative writing.
+- **Prompt Generation** Easily generate and tailor prompts for state-of-the-art generative models.
+- **Unified Architecture** Introducing Prompter, Model & Pipeline Solution.
+- **Detailed Output Logs** Comprehensive structured JSON format output within the log folder.
+- **Wider Model Support** Supporting models from OpenAI, Azure, Cohere, Anthropic, Huggingface, and more - think of it as your universal language model adapter.
+- **Robust Parser** Parser to handle incomplete or unstructured JSON outputs from any LLMs.
+- **Ready-Made Jinja Templates** Jinja prompt templates for NER, Text Classification, QA, Relation-Extraction, Tabular data, etc.
+- **Rich Customization** Adapt the prompts to your specific needs, whether for product descriptions, summaries, or creative writing.
 
 Getting Started
 ---------------
