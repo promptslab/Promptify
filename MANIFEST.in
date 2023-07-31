@@ -1,1 +1,3 @@
 include promptify/VERSION
+include requirements.txt
+include requirements-dev.txt
