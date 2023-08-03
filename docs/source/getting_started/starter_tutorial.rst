@@ -4,22 +4,25 @@ You can also check out the full documentation here. Here is a starter example fo
 
 Quick Tour
 ----------
-To immediately use a LLM model for your NLP task, we provide the Prompter API.
+To immediately use a LLM model for your NLP task, we provide the Pipeline API.
 
 .. code-block:: python
     
-    from promptify import OpenAI
-    from promptify import Prompter
-
-    sentence = "The patient is a 93-year-old female with a medical history of chronic right hip pain, osteoporosis, hypertension, depression, and chronic atrial fibrillation admitted for evaluation and management of severe nausea and vomiting and urinary tract infection"
-
-    model = OpenAI(api_key) # or `HubModel()` for Huggingface-based inference
-    nlp_prompter = Prompter(model)
-
-    result = nlp_prompter.fit('ner.jinja',
-                            domain='medical',
-                            text_input=sentence,
-                            labels=None)
+    from promptify import Prompter,OpenAI, Pipeline
+    
+    sentence     =  """The patient is a 93-year-old female with a medical  				 
+                    history of chronic right hip pain, osteoporosis,					
+                    hypertension, depression, and chronic atrial						
+                    fibrillation admitted for evaluation and management				
+                    of severe nausea and vomiting and urinary tract				
+                    infection"""
+    
+    model        = OpenAI(api_key) # or `HubModel()` for Huggingface-based inference or 'Azure' etc
+    prompter     = Prompter('ner.jinja') # select a template or provide custom template
+    pipe         = Pipeline(prompter , model)
+    
+    
+    result = pipe.fit(sentence, domain="medical", labels=None)
 
 
 .. note:: 
@@ -28,15 +31,17 @@ To immediately use a LLM model for your NLP task, we provide the Prompter API.
 
 .. code-block:: python
 
-    [{'E': '93-year-old', 'T': 'Age'},
-    {'E': 'chronic right hip pain', 'T': 'Medical Condition'},
-    {'E': 'osteoporosis', 'T': 'Medical Condition'},
-    {'E': 'hypertension', 'T': 'Medical Condition'},
-    {'E': 'depression', 'T': 'Medical Condition'},
-    {'E': 'chronic atrial fibrillation', 'T': 'Medical Condition'},
-    {'E': 'severe nausea and vomiting', 'T': 'Symptom'},
-    {'E': 'urinary tract infection', 'T': 'Medical Condition'},
-    {'Branch': 'Internal Medicine', 'Group': 'Geriatrics'}]
+    [
+        {"E": "93-year-old", "T": "Age"},
+        {"E": "chronic right hip pain", "T": "Medical Condition"},
+        {"E": "osteoporosis", "T": "Medical Condition"},
+        {"E": "hypertension", "T": "Medical Condition"},
+        {"E": "depression", "T": "Medical Condition"},
+        {"E": "chronic atrial fibrillation", "T": "Medical Condition"},
+        {"E": "severe nausea and vomiting", "T": "Symptom"},
+        {"E": "urinary tract infection", "T": "Medical Condition"},
+        {"Branch": "Internal Medicine", "Group": "Geriatrics"},
+    ]
 
 
 Features
