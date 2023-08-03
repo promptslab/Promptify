@@ -52,7 +52,6 @@ class Pipeline:
                 print(template)
 
             output = self._get_output_from_cache_or_model(template)
-
             if output is None:
                 return None
 
