@@ -184,9 +184,15 @@ class OpenAI(Model):
     def model_output_raw(self, response: Dict) -> Dict:
         data = {}
         if self.model_type == "chat_models":
-            data["text"] = response["choices"][0]["message"]["content"].strip(" \n")
+            try:
+              data["text"] = response["choices"][0]["message"]["content"].strip(" \n")
+            except Exception as e:
+              data["text"] = response[0]["choices"][0]["message"]["content"].strip(" \n")
         elif self.model_type == "completion_models":
+          try:
             data["text"] = response["choices"][0]["text"]
+          except Exception as e:
+            data["text"] = response[0]["choices"][0]["text"]
 
         data["usage"] = dict(response["usage"])
         return data
