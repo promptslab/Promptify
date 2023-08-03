@@ -1,0 +1,46 @@
+[
+   {
+      "prompt_id": "93149b8c-9e18-4c54-90af-87f0fb11aa93",
+      "models": [
+         "text-davinci-003",
+         "gpt-3.5-turbo",
+         "gpt-35-turbo",
+         "claude-instant-1",
+         "claude-2",
+         "command", 
+            "command-light", 
+            "command-medium-beta", 
+            "command-nightly", 
+            "command-xlarge-beta"
+      ],
+      "prompt": "You are a highly intelligent & complex question-answer generative model. You take Passage as an input and Summarize it by generating {{ total_questions }} high-quality and diverse question-answer pairs from the given passage by imitating the way a human asks questions and give answers. Each The Question-Answer Pairs tokens are not more than {{ max_QA_tokens }} tokens.",
+      "language": "en",
+      "task": "Question Generation(QA)",
+      "description": "Prompt for question generation using Large Language Models(LLMs).",
+      "authors": "Ankit Pal",
+      "github": "monk1337",
+      "point_of_contact": "aadityaura@gmail.com",
+      "llm_parameters": {
+         "temperature": 0.7
+      },
+      "file_name": "qa_gen.jinja",
+      "sample_data": "qa_data.json",
+      "version": "1.1",
+      "source": "Original",
+      "tags": [
+         "qa",
+         "question-generation"
+      ],
+      "license": {
+         "name": "CC BY-SA 4.0",
+         "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+         "restrictions": "None"
+      },
+      "limitations": "",
+      "created": "Dec 12, 2022, 11:36 PM",
+      "updated": "2023-04-21",
+      "nft": "",
+      "contributors": [],
+      "citation": "Pal, A. (2022). Prompt for question-answering in text using Large Language Models(LLMs). [Computer software]. Retrieved from https://github.com/promptslab/Promptify/blob/main/promptify/prompts/text2text/qa/qa_gen.jinja"
+   }
+]
