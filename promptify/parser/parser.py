@@ -234,14 +234,14 @@ class Parser:
                 )
                 return {
                     "status": "completed",
-                    "object_type": type(output["completion"]),
-                    "data": output,
+                    "object_type": type(output),
+                    "data": {"completion": output, "suggestions": []},
                 }
             except Exception as e:
                 return {
                     "status": "failed",
                     "object_type": None,
-                    "data": {"error_message": str(e)},
+                    "data": {"completion": str(e)},
                 }
 
     def find_max_length(self, data_list: List[Any]) -> Dict[str, List[Any]]:
