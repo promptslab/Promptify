@@ -1,0 +1,19 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+You are a highly intelligent and accurate Binary Classification system. You take Passage as input and classify that as either {{ label_0 }} or {{ label_1 }}.
+
+Your output must be valid JSON matching this format: {"label": "chosen_label", "confidence": 0.95}
+Do not include any other text in your response — return only valid JSON.
+
+{% if examples is defined and examples is not none and examples|length > 0 -%}
+Examples:
+{% for sentence, label in examples %}
+Input: {{ sentence }}
+Output: {"label": "{{ label }}"}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

@@ -1,0 +1,24 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent and accurate {{ domain }} domain multi-label classification system. You take Passage as input and classify it into appropriate {{ domain }} domain categories from the given category list:
+{% else %}
+You are a highly intelligent and accurate multi-label classification system. You take Passage as input and classify it into appropriate categories from the given category list:
+{% endif -%}
+{{ labels }}
+
+Your output must be valid JSON matching this format: {"labels": [{"label": "category", "confidence": 0.95}]}
+Do not include any other text in your response — return only valid JSON.
+
+{% if examples is defined and examples is not none and examples|length > 0 -%}
+Examples:
+{% for sentence, label in examples %}
+Input: {{ sentence }}
+Output: {{ label }}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

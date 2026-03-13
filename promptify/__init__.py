@@ -1,17 +1,37 @@
-__version__ = "2.0.3"
-from .parser.parser import Parser
-from .prompter.nlp_prompter import Prompter
-from .prompter.prompt_cache import PromptCache
-from .prompter.template_loader import TemplateLoader
-from .prompter.conversation_logger import ConversationLogger
-from .models.text2text.api.openai_models import OpenAI
-from .models.text2text.api.anthropic import AnthropicModel
-from .models.text2text.api.cohere import CohereModel
-from .models.text2text.api.azure_openai import Azure
-from .models.text2text.api.hub_model import HubModel
-from .models.text2text.api.mock_model import MockModel
-from .models.text2text.api.base_model import Model
-from .utils.file_utils import *
-from .utils.data_utils import *
-from .utils.conversation_utils import *
-from .pipelines import Pipeline
+"""Promptify v3 — Task-based NLP engine with structured outputs."""
+
+from promptify._version import __version__
+from promptify.core.config import ModelConfig
+from promptify.core.logging import setup_logging
+from promptify.engine.cost import get_cost_summary
+from promptify.tasks import (
+    NER,
+    QA,
+    Classify,
+    ExtractRelations,
+    ExtractTable,
+    ExtractTopics,
+    GenerateQuestions,
+    GenerateSQL,
+    NormalizeText,
+    Summarize,
+    Task,
+)
+
+__all__ = [
+    "__version__",
+    "NER",
+    "Classify",
+    "QA",
+    "Summarize",
+    "Task",
+    "ExtractRelations",
+    "ExtractTable",
+    "GenerateQuestions",
+    "GenerateSQL",
+    "NormalizeText",
+    "ExtractTopics",
+    "ModelConfig",
+    "setup_logging",
+    "get_cost_summary",
+]

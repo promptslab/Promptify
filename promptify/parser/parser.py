@@ -1,232 +1,117 @@
-import itertools
-from operator import itemgetter
-from typing import Any, Dict, List, Union, Optional
-import re
+"""Safe JSON parser — no eval(), uses json.loads + ast.literal_eval fallback."""
+
+from __future__ import annotations
+
 import ast
+import itertools
+import json
+import re
+from operator import itemgetter
+from typing import Any, Dict, List, Optional, Type, Union
+
+from pydantic import BaseModel
+
+from promptify.core.exceptions import ParserError
 
 
 class Parser:
-    """
-    A class to parse incomplete JSON objects and provide possible completions.
+    """Parse and complete potentially incomplete JSON from LLM output.
 
-    Methods
-    -------
-    is_valid_json() -> bool:
-        Checks if a string is valid JSON.
-
-    get_combinations() -> List[str]:
-        Returns all possible combinations of } and ] characters up to length n.
-
-    complete_json_object() -> Any:
-        Completes a JSON object string by appending a completion string.
-
-    get_possible_completions() -> Union[Dict[str, Any], List[Any]]:
-        Returns a list of possible completions for a JSON object string.
-
-    fit() -> Dict[str, Any]:
-        Tries to parse the input JSON string and complete it if it is incomplete.
-
-    find_max_length() -> Dict[str, List[Any]]:
-        Returns a dictionary containing the element with the maximum length in the input list.
+    Unlike v2, this parser NEVER uses eval(). It uses json.loads() with
+    ast.literal_eval() as a safe fallback.
     """
 
-    def __init__(self):
-        pass
+    def _safe_parse(self, text: str) -> Any:
+        """Parse a string as JSON/Python literal safely — no eval()."""
+        try:
+            return json.loads(text)
+        except (json.JSONDecodeError, ValueError):
+            pass
+        try:
+            return ast.literal_eval(text)
+        except (ValueError, SyntaxError):
+            pass
+        raise ValueError(f"Cannot parse: {text[:100]}")
 
     def is_valid_json(self, input_str: str) -> bool:
-        """
-        Check if the input string is valid JSON.
-
-        Parameters
-        ----------
-        input_str : str
-            The string to check for validity.
-
-        Returns
-        -------
-        bool
-            Returns True if the input string is valid JSON, otherwise False.
-
-        Notes
-        -----
-        This function uses the `json` module to check if the input string is valid JSON.
-        It evaluates the input string using `eval()`, and if it successfully loads
-        a JSON object (either a dictionary or a list), it returns True. Otherwise, it
-        returns False.
-
-        Examples
-        --------
-        >>> validator = Parser()
-        >>> validator.is_valid_json('{"name": "Alice", "age": 30}')
-        True
-        >>> validator.is_valid_json('[1, 2, 3, 4]')
-        True
-        >>> validator.is_valid_json('{"name": "Bob", "age": }')
-        False
-        >>> validator.is_valid_json('not a JSON string')
-        False
-        """
+        """Check if input is valid JSON/Python literal (dict or list)."""
         try:
-            output = eval(input_str)
-            if isinstance(output, (dict, list)):
-                return True
-            else:
-                return False
-        except Exception:
+            output = self._safe_parse(input_str)
+            return isinstance(output, (dict, list))
+        except (ValueError, SyntaxError):
             return False
 
     def escaped_(self, data: str) -> str:
+        """Handle apostrophe/quote escaping."""
         if "'" in data:
-            escaped_str = re.sub(r"(?<=\w)(')(?=\w)", r"\"", data)
-        else:
-            escaped_str = re.sub(r'(?<=\w)(")(?=\w)', r"\'", data)
-
-        return escaped_str
+            return re.sub(r"(?<=\w)(')(?=\w)", r"\"", data)
+        return re.sub(r'(?<=\w)(")(?=\w)', r"'", data)
 
     def get_combinations(
-        self, candidate_marks: List[str], n: int, should_end_mark: Optional[str] = None
+        self,
+        candidate_marks: List[str],
+        n: int,
+        should_end_mark: Optional[str] = None,
     ) -> List[str]:
-        """
-        Return all possible combinations of candidate marks up to length n.
-
-        Parameters
-        ----------
-        candidate_marks : list of str
-            Candidate marks to combine.
-        n : int
-            The maximum length of the combinations.
-        should_end_mark : str or None, optional
-            If provided, only combinations that end with this mark will be returned, by default None.
-
-        Returns
-        -------
-        list of str
-            A list of all possible combinations of candidate marks up to length n.
-        """
+        """Return all combinations of closing brackets up to length n."""
         combinations = []
         for i in range(1, n):
             for comb in itertools.product(candidate_marks, repeat=i):
                 if should_end_mark is not None and comb[-1] != should_end_mark:
-                    # cut down search space
                     continue
                 combinations.append("".join(comb))
         return combinations
 
     def complete_json_object(self, json_str: str, completion_str: str) -> Any:
-        """
-        Complete a JSON object string by appending a completion string.
-
-        Parameters
-        ----------
-        json_str : str
-            The original JSON object string.
-        completion_str : str
-            The completion string to append.
-
-        Returns
-        -------
-        Any
-            The completed JSON object as a Python object.
-
-        Raises
-        ------
-        ValueError
-            If the JSON object string cannot be fixed.
-
-        Notes:
-        ------
-        - This function appends the `completion_str` to the end of `json_str` until a valid JSON object can be obtained. If `json_str` is an invalid JSON object string, the function will remove one character from the end of `json_str` and try again until it either finds a valid JSON object string or until there are no more characters left to remove.
-
-        Examples
-        --------
-        >>> complete_json_object('{"a": 1, "b": 2', '}')
-        {'a': 1, 'b': 2}
-
-        >>> complete_json_object('{"a": 1, "b": 2}}}}}}}}}}}}}}}}}}}', '')
-        {'a': 1, 'b': 2}
-
-        >>> complete_json_object('{"a": 1, "b": 2', '')
-        Traceback (most recent call last):
-            ...
-        ValueError: Couldn't fix JSON
-        """
-        while True:
-            if not json_str:
-                raise ValueError("Couldn't fix JSON")
+        """Complete a JSON string by appending closing brackets, trimming from end until valid."""
+        text = json_str
+        while text:
             try:
-                complete_json_str = json_str + completion_str
-                python_obj = eval(complete_json_str)
-            except Exception:
-                json_str = json_str[:-1]
-                continue
-            return python_obj
+                return self._safe_parse(text + completion_str)
+            except (ValueError, SyntaxError):
+                text = text[:-1]
+        raise ValueError("Couldn't fix JSON")
 
     def get_possible_completions(
         self, json_str: str, json_depth_limit: int = 5
-    ) -> Union[Dict[str, Any], List[Any]]:
-        """
-        Returns a list of possible completions for a JSON object string.
-
-        Parameters
-        ----------
-        json_str : str
-            The JSON object string
-        json_depth_limit : int, optional
-            The maximum length of the completion strings to try (default is 5)
-
-        Returns
-        -------
-        Union[Dict[str, Any], List[Any]]
-            If the completion strings are objects, returns a dictionary with 'completion' and 'suggestions' keys.
-            If the completion strings are arrays, returns a list of suggested completions.
-        """
+    ) -> Dict[str, Any]:
+        """Generate possible completions for an incomplete JSON string."""
         candidate_marks = ["}", "]"]
         if "[" not in json_str:
             candidate_marks.remove("]")
         if "{" not in json_str:
             candidate_marks.remove("}")
 
-        # specify the mark should end with
-        should_end_mark = "]" if json_str.strip()[0] == "[" else "}"
-        completions = []
+        stripped = json_str.strip()
+        should_end_mark = "]" if stripped and stripped[0] == "[" else "}"
+
+        completions: List[Any] = []
         for completion_str in self.get_combinations(
             candidate_marks, json_depth_limit, should_end_mark=should_end_mark
         ):
             try:
                 completed_obj = self.complete_json_object(json_str, completion_str)
                 completions.append(completed_obj)
-            except Exception:
+            except (ValueError, SyntaxError):
                 pass
+
+        if not completions:
+            raise ValueError("No valid completions found")
         return self.find_max_length(completions)
 
     def fit(self, json_str: str, json_depth_limit: int = 5) -> Dict[str, Any]:
-        """
-        Tries to parse the input JSON string and complete it if it is incomplete.
+        """Parse JSON string, completing it if incomplete.
 
-        Parameters
-        ----------
-        json_str : str
-            The input JSON string
-        json_depth_limit : int, optional
-            The maximum length of the completion strings to try (default is 5)
-
-        Returns
-        -------
-        Dict[str, Any]
-            A dictionary with 'status' and 'data' keys. If the status is 'completed', the 'data'
-            key will contain the completed object and an empty list of suggestions. If the status
-            is 'failed', the 'data' key will contain an error message string. If the status is
-            'incomplete', the 'data' key will contain a list of possible completions.
+        Returns dict with 'status', 'object_type', and 'data' keys.
         """
         try:
-            output = eval(json_str)
+            output = self._safe_parse(json_str)
             return {
                 "status": "completed",
                 "object_type": type(output),
                 "data": {"completion": output, "suggestions": []},
             }
-        except Exception:
-            # remove tail braces or brackets to speed up searching.
+        except (ValueError, SyntaxError):
             json_str = re.sub(r"[\[\]\{\}\s]+$", "", json_str)
             try:
                 output = self.get_possible_completions(
@@ -244,65 +129,24 @@ class Parser:
                     "data": {"error_message": str(e)},
                 }
 
-    def find_max_length(self, data_list: List[Any]) -> Dict[str, List[Any]]:
-        """
-        Returns a dictionary containing the element with the maximum length in the input list,
-        as well as a list of all elements sorted by length in descending order.
-
-        Parameters
-        ----------
-        data_list : list of any type
-            A list of elements to be compared by length
-
-        Returns
-        -------
-        dict
-            A dictionary with keys 'completion' and 'suggestions'.
-
-            The value of 'completion' key is the element with the maximum length in the input list.
-
-            The value of 'suggestions' key is a list of all elements sorted by length in descending order.
-        """
-        # Create a dictionary where the keys are the indices of the elements in the input list
-        # and the values are the lengths of the corresponding elements.
+    def find_max_length(self, data_list: List[Any]) -> Dict[str, Any]:
+        """Return element with max length and all sorted suggestions."""
         length_dict = {i: len(str(element)) for i, element in enumerate(data_list)}
-
-        # Sort the dictionary by value (length) in descending order.
         sorted_indices = sorted(length_dict.items(), key=itemgetter(1), reverse=True)
-
-        # Create a new dictionary with the element with the maximum length as the 'completion' value
-        # and a list of all elements sorted by length as the 'suggestions' value.
-        output_dict = {
+        return {
             "completion": data_list[sorted_indices[0][0]],
             "suggestions": [data_list[i] for i, _ in sorted_indices],
         }
-        return output_dict
 
     def extract_complete_objects(self, string: str) -> List[Any]:
-        """
-        Extracts all complete Python objects from a string.
-
-        Parameters
-        ----------
-        string : str
-            The string to extract objects from.
-
-        Returns
-        -------
-        List[Any]
-            A list of all complete Python objects found in the string.
-        """
+        """Extract all complete JSON objects/arrays from a string."""
         object_regex = r"(?<!\\)(\[[^][]*?(?<!\\)\]|\{[^{}]*\})"
-
-        # The regular expression pattern matches any string starting with an opening brace or bracket,
-        # followed by any number of non-brace and non-bracket characters, and ending with a closing brace
-        # or bracket that is not preceded by an odd number of backslash escape characters.
-
-        object_strings = []
-        opening = {"{": 0, "[": 0}
+        object_strings: List[str] = []
+        opening: Dict[str, int] = {"{": 0, "[": 0}
         closing = {"}": "{", "]": "["}
-        stack = []
+        stack: List[str] = []
         start = 0
+
         for match in re.finditer(object_regex, string):
             if len(stack) == 0:
                 start = match.start()
@@ -310,24 +154,58 @@ class Parser:
             if match.group(1)[-1] in closing:
                 opening_bracket = closing[match.group(1)[-1]]
                 opening[opening_bracket] += 1
-                if opening[opening_bracket] == len(
-                    [bracket for bracket in opening.values() if bracket != 0]
-                ):
+                nonzero = [v for v in opening.values() if v != 0]
+                if opening[opening_bracket] == len(nonzero):
                     object_strings.append(string[start : match.end()])
                     stack = []
                     opening = {"{": 0, "[": 0}
-                    closing = {"}": "{", "]": "["}
-        if len(stack) > 0:
-            print(f"Error: Incomplete object at end of string: {stack[-1]}")
-        objects = []
-        for object_string in object_strings:
-            try:
-                obj = ast.literal_eval(object_string)
-                # Use ast.literal_eval() to safely evaluate the string as a Python object.
-                objects.append(obj)
-            except (ValueError, SyntaxError) as e:
-                # If the string cannot be safely evaluated as a Python object, log an error and move on to the next object.
-                print(f"Error evaluating object string '{object_string}': {str(e)}")
-                pass
 
+        objects: List[Any] = []
+        for obj_str in object_strings:
+            try:
+                objects.append(ast.literal_eval(obj_str))
+            except (ValueError, SyntaxError):
+                try:
+                    objects.append(json.loads(obj_str))
+                except (json.JSONDecodeError, ValueError):
+                    pass
         return objects
+
+    def parse(
+        self,
+        text: str,
+        output_schema: Optional[Type[BaseModel]] = None,
+    ) -> Union[BaseModel, Dict[str, Any], List[Any]]:
+        """Parse LLM text output into structured data.
+
+        If output_schema is provided, validates against the Pydantic model.
+        """
+        text = text.strip()
+
+        # Try direct JSON parse
+        try:
+            data = json.loads(text)
+            if output_schema:
+                return output_schema.model_validate(data)
+            return data
+        except (json.JSONDecodeError, ValueError):
+            pass
+
+        # Try ast.literal_eval
+        try:
+            data = ast.literal_eval(text)
+            if output_schema:
+                return output_schema.model_validate(data)
+            return data
+        except (ValueError, SyntaxError):
+            pass
+
+        # Try JSON completion
+        result = self.fit(text)
+        if result["status"] == "completed" and "completion" in result.get("data", {}):
+            data = result["data"]["completion"]
+            if output_schema:
+                return output_schema.model_validate(data)
+            return data
+
+        raise ParserError(f"Failed to parse LLM output: {text[:200]}")

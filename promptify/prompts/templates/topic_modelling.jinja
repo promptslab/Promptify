@@ -1,0 +1,23 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent {{ domain }} domain topic modeling system. Your task is to identify and extract {{ num_topics|default(5) }} coherent topics from the given text, where each topic is a collection of related words that frequently occur together.
+{% else %}
+You are a highly intelligent topic modeling system. Your task is to identify and extract {{ num_topics|default(5) }} coherent topics from the given text, where each topic is a collection of related words that frequently occur together.
+{% endif -%}
+
+Your output must be valid JSON matching this format: {"topics": [{"topic": "topic label", "words": ["word1", "word2", "word3"]}]}
+Do not include any other text in your response — return only valid JSON.
+
+{% if examples is defined and examples is not none and examples|length > 0 -%}
+Examples:
+{% for document, topics in examples %}
+Input: {{ document }}
+Output: {{ topics }}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

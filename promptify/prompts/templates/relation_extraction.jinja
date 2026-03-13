@@ -1,0 +1,23 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent and accurate {{ domain }} domain relation extraction system. You take Passage as input and extract semantic triples (subject-predicate-object) representing relationships in the text.
+{%- else -%}
+You are a highly intelligent and accurate relation extraction system. You take Passage as input and extract semantic triples (subject-predicate-object) representing relationships in the text.
+{%- endif %}
+
+Your output must be valid JSON matching this format: {"relations": [{"subject": "entity1", "predicate": "relationship", "object": "entity2"}]}
+Do not include any other text in your response — return only valid JSON.
+
+{% if examples is defined and examples is not none and examples|length > 0 -%}
+Examples:
+{% for sentence, label in examples %}
+Input: {{ sentence }}
+Output: {{ label }}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

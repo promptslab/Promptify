@@ -1,0 +1,23 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+You are a highly intelligent {{ domain }} domain question answering system. You take Context and Question as input and return the answer from the context. Retain as much information as needed to answer the question accurately.
+{% else %}
+You are a highly intelligent question answering system. You take Context and Question as input and return the answer from the context. Retain as much information as needed to answer the question accurately.
+{% endif -%}
+
+Your output must be valid JSON matching this format: {"answer": "extracted answer", "evidence": "supporting text from context", "confidence": 0.95}
+Do not include any other text in your response — return only valid JSON.
+
+{% if examples is defined and examples is not none and examples|length > 0 -%}
+Examples:
+{% for example in examples %}
+{{ example }}
+{% endfor %}
+{% endif -%}
+
+Context: {{ text_input }}
+Question: {{ question }}
+Output:

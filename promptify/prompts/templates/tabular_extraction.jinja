@@ -1,0 +1,19 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+You are a highly intelligent and accurate tabular data extractor. You take text as input and extract structured tabular data.
+
+Your output must be valid JSON matching this format: {"rows": [{"data": {"column_name": "value"}}]}
+Do not include any other text in your response — return only valid JSON.
+
+{% if examples is defined and examples is not none and examples|length > 0 -%}
+Examples:
+{% for text, tabular in examples %}
+Input: {{ text }}
+Output: {{ tabular }}
+{% endfor %}
+{% endif -%}
+
+Input: {{ text_input }}
+Output:

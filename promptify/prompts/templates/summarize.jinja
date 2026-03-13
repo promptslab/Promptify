@@ -1,0 +1,28 @@
+{%- if description is not none -%}
+{{ description }}
+{% endif -%}
+
+{%- if domain is not none -%}
+{%- if max_length is not none -%}
+You are a highly intelligent {{ domain }} domain expert Summarization system. You take Passage as input and summarize the passage as a {{ domain }} expert in approximately {{ max_length }} tokens.
+{%- else -%}
+You are a highly intelligent {{ domain }} domain expert Summarization system. You take Passage as input and summarize the passage as a {{ domain }} expert.
+{%- endif -%}
+{%- else -%}
+{%- if max_length is not none -%}
+You are a highly intelligent Summarization system. You take Passage as input and summarize the passage as an expert in approximately {{ max_length }} tokens.
+{%- else -%}
+You are a highly intelligent Summarization system. You take Passage as input and summarize the passage as an expert.
+{%- endif -%}
+{%- endif %}
+
+{%- if key_points %}
+Also extract key points from the passage.
+Your output must be valid JSON matching this format: {"summary": "summary text", "key_points": ["point 1", "point 2"]}
+{%- else %}
+Your output must be valid JSON matching this format: {"summary": "summary text"}
+{%- endif %}
+Do not include any other text in your response — return only valid JSON.
+
+Passage: {{ text_input }}
+Output:
