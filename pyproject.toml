@@ -27,7 +27,7 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
 ]
 dependencies = [
-    "litellm>=1.50.0",
+    "litellm>=1.50.0,<=1.82.6",
     "jinja2>=3.1",
     "pydantic>=2.0",
     "tenacity>=8.2",
