@@ -1,8 +1,6 @@
 <div align="center">
 <img width="110px" src="https://raw.githubusercontent.com/promptslab/Promptify/main/assets/logo.png">
 <h1>Promptify</h1></div>
-<!-- 
-<h2 align="center">Promptify</h2> -->
 
 <p align="center">
   <p align="center">Task-based NLP engine with Pydantic structured outputs, built-in evaluation, and LiteLLM as the universal LLM backend. Think "scikit-learn for LLM-powered NLP".
@@ -173,14 +171,70 @@ scores = evaluate(task=ner, dataset=labeled_data, metrics=["precision", "recall"
 | Topic Modelling | `ExtractTopics` | list of topics |
 | Custom Task | `Task` | any Pydantic `BaseModel` |
 
+## FAQ
+
+### How do I set up API keys for different providers?
+
+Promptify uses LiteLLM as the backend, so API keys are set via environment variables:
+
+```bash
+# OpenAI
+export OPENAI_API_KEY="your-key"
+
+# Anthropic
+export ANTHROPIC_API_KEY="your-key"
+
+# Google
+export GOOGLE_API_KEY="your-key"
+
+# For local models (Ollama), no API key needed
+# Just ensure Ollama is running locally
+```
+
+### How do I add few-shot examples to improve accuracy?
+
+Pass examples to any task:
+
+```python
+ner = NER(
+    model="gpt-4o-mini",
+    examples=[
+        ("Patient has diabetes", [Entity(text="diabetes", label="CONDITION")]),
+        ("John is 45 years old", [Entity(text="45", label="AGE")]),
+    ]
+)
+```
+
+### What if my provider doesn't support structured outputs?
+
+Promptify includes a safe fallback parser that extracts JSON from text responses without using `eval()`. This works automatically for providers without native structured output support.
+
+### How do I track API costs?
+
+Use `get_cost_summary()` on any task instance:
+
+```python
+ner = NER(model="gpt-4o-mini")
+result = ner("some text")
+print(ner.get_cost_summary())
+```
+
+### Can I use Promptify with Azure OpenAI?
+
+Yes! Use the `azure/` prefix:
+
+```python
+ner = NER(model="azure/gpt-4")
+```
+
+Make sure to set `AZURE_API_KEY`, `AZURE_API_BASE`, and `AZURE_API_VERSION` environment variables.
+
 ## Community
 <div align="center">
 If you are interested in Prompt-Engineering, LLMs, and NLP, please consider joining <a href="https://discord.gg/m88xfYMbK6">PromptsLab</a></div>
 <div align="center">
 <img alt="Join us on Discord" src="https://img.shields.io/discord/1069129502472556587?color=5865F2&logo=discord&logoColor=white">
 </div>
-
-
 
 ```
 
